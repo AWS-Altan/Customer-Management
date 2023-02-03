@@ -1,0 +1,2976 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ExpiredAccessToken">
+            <Condition>(fault.name = "access_token_expired")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenExpired</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidAccessToken">
+            <Condition>(fault.name = "invalid_access_token" OR fault.name = "InvalidAccessToken" OR fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenInvalid</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ThreatDetected">
+            <Condition>(fault.name = "ThreatDetected")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ExecutionFailed">
+            <Condition>(fault.name = "ExecutionFailed") AND (jsonattack.failed = "true" OR regularexpressionprotection.failed = "true")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="RequestTooLarge">
+            <Condition>(fault.name = "TooBigBody")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SourceMessageNotAvailable">
+            <Condition>(fault.name = "SourceMessageNotAvailable")</Condition>
+            <Step>
+                <Name>AM-SourceMessageNotAvailable</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="IPDeniedAccess">
+            <Condition>(fault.name Matches "IPDeniedAccess") </Condition>
+            <Step>
+                <Name>AM-IPDeniedAccess</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsError") OR (error.header.FaultHeader = "ErrorQueryParam")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsErrorActivate")</Condition>
+                <Name>AM-ErrorMessageVerifyParamsActivate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "VerbError")</Condition>
+                <Name>AM-ErrorMessageVerbError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "changeSubscriberSIMError")</Condition>
+                <Name>AM-ErrorMessageChangeSubscriberSIM</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "changeSubscriberLinkError")</Condition>
+                <Name>AM-ErrorMessageChangeSubscriberLink</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSubscriberStatusError")</Condition>
+                <Name>AM-ErrorMessageChangeSubscriberStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingError") or (error.header.FaultHeader = "OfferingIdError")</Condition>
+                <Name>AM-ErrorMessageOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityVersionError")</Condition>
+                <Name>AM-ErrorMessageServiceabilityVersion</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>EV-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "VerifyDateErrorPatch") OR (error.header.FaultHeader = "VerifyDateError")</Condition>
+                <Name>AM-ErrorMessageVerifyDate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "AWSError")</Condition>
+                <Name>AM-ErrorMessageAWSResponse</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DefaultOfferingIdErrorActivate")</Condition>
+                <Name>AM-ErrorMessageActivateNotDefaultOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DefaultOfferingIdErrorChange")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryDefaultOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DefaultOfferingIdErrorChangeBatch")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryDefaultOfferingBatch</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "NotAllowedApplyAdjustment")</Condition>
+                <Name>AM-ErrorNotAllowedApplyAdjustment</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ContentTypeError")</Condition>
+                <Name>AM-ErrorMessageContentType</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ScheduleDateNull")</Condition>
+                <Name>AM-ErrorMessageScheduleDateNull</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "RefactorDateError")</Condition>
+                <Name>AM-ErrorMessageRefactorDateError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "EvalCancelOfferingError")</Condition>
+                <Name>AM-ErrorEvalCancelOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CancelEffectiveError")</Condition>
+                <Name>AM-ErrorMessageCancelEffective</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExtractLatLong")</Condition>
+                <Name>AM-ErrorMessageExtractLatLong</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidDataError")</Condition>
+                <Name>AM-ErrorMessageInvalidData</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoordinatesError")</Condition>
+                <Name>AM-ErrorMessageValidateCoordinates</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateLocalApps")</Condition>
+                <Name>AM-ErrorMessageValidateLocalApps</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetImeiHssError")</Condition>
+                <Name>AM-ErrorMessageGetImeiHss</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetImsiNewIccidError")</Condition>
+                <Name>AM-ErrorMessageGetImsiNewIccid</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UpdateImsiHssError")</Condition>
+                <Name>AM-ErrorMessageUpdateImsiHss</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IncorrectScheduleDate")</Condition>
+                <Name>AM-ErrorMessageIncorrectScheduleDate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatedAndNotActivated")</Condition>
+                <Name>AM-ErrorValidatedAndNotActivated</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateError204")</Condition>
+                <Name>AM-ErrorMesaggeValidate204</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateLookupForOperatorError204")</Condition>
+                <Name>AM-ErrorMessageNotFoundOperator</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageDefaultServer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "LocationError")</Condition>
+                <Name>AM-ErrorMessageLocationLinking</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusError")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateImeiVsBeIdError")</Condition>
+                <Name>AM-ErrorMessageValidateImeiVsBeId</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateImeiVsBeIdErrorNonContent")</Condition>
+                <Name>AM-ErrorMessageValidateImeiVsBeIdNonContent</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ErrorOfferinIdProduct")</Condition>
+                <Name>AM-ErrorMessageOfferinIdProduct</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "FIFFNotAllowed")</Condition>
+                <Name>AM-ErrorMessageFIFFNotAllowed</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "WithoutCoordinatesError")</Condition>
+                <Name>AM-ErrorMessageWithoutCoordinatesVar</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ActivateLockError") OR (error.header.FaultHeader = "BlockedOperation")</Condition>
+                <Name>AM-ErrorMessageActivateLock</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "NoHasDownSpeedError")</Condition>
+                <Name>AM-ErrorMessageNoHasDownSpeed</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "SameImei")</Condition>
+                <Name>AM-ErrorMessageSameImei</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IncorrectLengthCorrdinates")</Condition>
+                <Name>AM-ErrorMessageLengthCoordinates</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageLenghtError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageLengthError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "NotCompatibleOfferingSDError")</Condition>
+                <Name>AM-ResponseNotCompatibleOfferingSDError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReasonError")</Condition>
+                <Name>AM-ResponseReasonError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3Error")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3Error</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingIdHbb")</Condition>
+                <Name>AM-OfferingIdHbbError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeMSISDNError")</Condition>
+                <Name>AM-ErrorMessageChangeMSISDN</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidMsisdnType")</Condition>
+                <Name>AM-ErrorMessageInvalidMsisdnType</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidNIR")</Condition>
+                <Name>AM-ErrorMessageInvalidNIR</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSupplementaryOfferingError")</Condition>
+                <Name>AM-ChangeSuppOfferingDeleteError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferNotValidToPurchase")</Condition>
+                <Name>AM-OfferNotValidToPurchase</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CoordinatesNotAllowed")</Condition>
+                <Name>AM-CoordinatesNotAllowed</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedSuppOfferError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedSuppOffer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DevAppSvaInvalid")</Condition>
+                <Name>AM-ErrorMessageDevAppSvaInvalid</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "SubReasonError")</Condition>
+                <Name>AM-ErrorMessageSubReason</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionInHssCommands")</Condition>
+                <Name>AM-ErrorMessagePreregisteredAndActiveHssCommands</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnbarringForzadoError")</Condition>
+                <Name>AM-ResponseUnbarringForzadoError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetCatalogPromotionsFiltered")</Condition>
+                <Name>AM-AcceptedMessageGetCatalogPromotionsFiltered</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3ErrorSatellital")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3ErrorSatellital</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(fault.name = "TooBigBody") AND (responseCoverage = null) AND (statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageContentLength</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.code = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.status = 500 and statusAccepted.message = null)</Condition>
+            <Name>FC-CallSG500</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null and errorMessage.maxSpeed = null and configSG500 = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed != null and configSG500 = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponseMaxSpeed</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed = null and configSG500 = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+        <Step>
+            <Condition>(statusAccepted.message != null)</Condition>
+            <Name>AM-MessageTwoHundredTwoAccepted</Name>
+        </Step>
+        <Step>
+            <Name>FC-AuditorServiceResource</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>FC-Security</Name>
+            </Step>
+            <Step>
+                <Name>EV-PathVariablesRequest</Name>
+            </Step>
+            <Step>
+                <Name>FC-AuditorServiceResource</Name>
+            </Step>
+            <Step>
+                <Name>FC-ValidateRequestHeaders</Name>
+            </Step>
+            <Step>
+                <Name>AC-SecurityIP</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>SC-ReportBeId</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>FC-AuditorServiceResource</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="suspendMsisdn">
+            <Description>Suspension de un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async == "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetScheduleDateSuspend</Name>
+                    <Condition>validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-NotifySuspension</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateSuspendResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SendSmsSuspend</Name>
+                    <Condition>(validateScheduleDate != "true") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/suspend") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="reactivateMsisdn">
+            <Description>ReactivarMsisdn</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetScheduleDateReactivate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateReactivateResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/reactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preDeactivateMsisdn">
+            <Description>Operación que permite dar de baja un msisdn.</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async == "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "") and (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                    <Condition>(async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false" and (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false" and (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDatePreDeactivate</Name>
+                    <Condition>validateScheduleDate == "true" and (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true" and (async = "false")</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePreDeactivateResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/predeactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="deactivateMsisdn">
+            <Description>Operación que permite dar de baja un msisdn.</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateDeactivate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePreDeactivateResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/deactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="resume">
+            <Description>Resume</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async == "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-HasResumeCatching</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetResumeCatching</Name>
+                    <Condition>(hasResumeCatching = "true") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                    <Condition>statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null) AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>(statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)) and verifyScheduleDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>(statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)) and verifyDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetScheduleDateResume</Name>
+                    <Condition>(statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)) and validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>(statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)) and validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-AllowResumeNoBand28</Name>
+                </Step>
+                <Step>
+                    <Name>FC-EvaluateUnbarringForzado</Name>
+                    <Condition>allowResumeNoBand28 == "Y" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ResumeCatchingResponse</Name>
+                    <Condition>(statusCode == "200" and  (responseSubscriber_pc !="" and responseSubscriber_pc != null)) AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ScheduleDateResumeResponse</Name>
+                    <Condition>(statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)) and validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SendSmsSuspend</Name>
+                    <Condition>(validateScheduleDate != "true") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/resume") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="activateForBatch">
+            <Description>Permite activar un MSISDN sin cambiar la oferta primaria.</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/activatebatch") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="activateMsisdn">
+            <Description>Activación de un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsActivate</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null) or (validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                    <Condition>async != null</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async = "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetCatalog_recharge_channel</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-Getcatalog_recharge_pipe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateStartEffectiveDate</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RefactorValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-scheduleDateNull</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateRefactorScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateIdleStatusWithTimer</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateDefaultOffering</Name>
+                    <Condition>validateRefactorScheduleDate != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-DefaultOfferingErrorActivate</Name>
+                    <Condition>isDefaultOffering = "false"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateActivateResponse</Name>
+                    <Condition>validateRefactorScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/activate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preRegistered">
+            <Description>Operación que permite hacer una pre-activación de un usuario a través del servicio de agendamiento.</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestPreRegistered</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidOffering</Name>
+                    <Condition>(offeringId == "") or (offeringId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-OfferingDetail</Name>
+                    <Condition>(offeringId != "") and (offeringId != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidOffering</Name>
+                    <Condition>(responseCatalogOffering.status.code == 204) or (PartnerId != catalog_be_id and responseCatalogOffering.status.code == 200)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ForbidFIFF</Name>
+                </Step>
+                <Step>
+                    <Name>RF-FIFFNotAllowed</Name>
+                    <Condition>(fobidFiff == "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidatorPreregistered</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifySpeedPreregistered</Name>
+                </Step>
+                <Step>
+                    <Name>AM-AddressNotAllowed</Name>
+                    <Condition>address is null or address == ""</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-CoordinatesNotAllowed</Name>
+                    <Condition>(isHBBOffer == "false") and (isThereCoordinates != "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryServiceability</Name>
+                    <Condition>(isThereCoordinates != "false")  and (verifyServiceability = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-OfferingError</Name>
+                    <Condition>(isThereCoordinates != "false") and (verifyServiceability = "error")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-SatellitalHBBServiceabilityVersionValidator</Name>
+                    <Condition>(isThereCoordinates != "false")  and (verifyServiceability = "true") AND (isSatelliteHBBLine ="true") and (isServiceabilityVersion3 !="true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                    <Condition>msisdn != "0000000000"</Condition>
+                </Step>
+                <!--Step>
+                    <Name>RF-InvalidSubscriberStatus</Name>
+                    <Condition>(msisdn != "0000000000") and (responseQuerySubStatus.subStatus = 2 OR responseQuerySubStatus.subStatus = 3 OR responseQuerySubStatus.subStatus = 4 OR responseQuerySubStatus.subStatus = 5 OR responseQuerySubStatus.subStatus = 9)</Condition>
+                </Step-->
+                <Step>
+                    <Name>FC-ValidateDefaultOffering</Name>
+                    <Condition>msisdn != "0000000000"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-DefaultOfferingErrorActivate</Name>
+                    <Condition>msisdn != "0000000000" and isDefaultOffering = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RefactorValidateOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetOfferingProduct</Name>
+                    <Condition>msisdn != "0000000000"</Condition>
+                </Step>
+                <!--Step>
+                    <Name>RF-ErrorOfferinIdMov</Name>
+                    <Condition>(product != "Movilidad")</Condition>
+                </Step-->
+                <Step>
+                    <Name>KVM-OneNdsExecutionPart</Name>
+                </Step>
+                <Step>
+                    <Name>FC-PreregisterAndActivateOneNDS</Name>
+                    <Condition>oneNdsCommandExecutionPart="1"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesSchedulePreregistered</Name>
+                </Step>
+                <Step>
+                    <Name>Fc-ScheduleDatePorted</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncPreregister</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponsePreRegistered</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/preregistered") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="profile">
+            <Description>OperaciÃƒÂ³n que permite consultar el perfil de un subscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Request</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-TurnProfileMS</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointNewProfile</Name>
+                    <Condition>(isTurnOnProfileMS = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-HasProfileCatching</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetSecondsOnMinute</Name>
+                    <Condition>(hasProfileCatching = "true")</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>JS-GetSecondsOfTimeStamp</Name>
+                    <Condition>(hasProfileCatching = "true")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-GetProfileCatching</Name>
+                    <Condition>(hasProfileCatching = "true") and (goToCatchingResponse = "true")</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ProfileCatching</Name>
+                    <Condition>goToCatchingResponse = "true" and statusCode == "200" and  responseSubscriber_pc !="" and responseSubscriber_pc != null</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/profile") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="cancelProductsEffectiveDate">
+            <Description>Flujo que permite realizar la cancelacion de una compra de bonos suplementarios a futuro</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-CancelProductsEffectiveDateRequest</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RefactorValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ScheduleDateCancelEffectiveSupplementary</Name>
+                </Step>
+                <Step>
+                    <Name>JS-scheduleDateNull</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateRefactorScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SupplementaryOffering</Name>
+                    <Condition>validateRefactorScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-EvaluateCancelOfferings</Name>
+                    <Condition>validateRefactorScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-CancelEffectiveError</Name>
+                    <Condition>isLowerThanToday == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-EvalCancelOffering</Name>
+                    <Condition>isValidOfferId = "false" and validateRefactorScheduleDate = "false"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePurchaseResponse</Name>
+                    <Condition>validateRefactorScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/cancelEffectiveDate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="replaceExpireEffectiveDate">
+            <Description>Flujo que permite realizar la actualizacion de la fecha de expiraciÃƒÂ³n de bonos suplementarios</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-UpdateProductsExpireDateRequest</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedSuppOfferError</Name>
+                    <Condition>SuppOfferings.returnCode != "0000" </Condition>
+                </Step>
+                <Step>
+                    <Name>JS-EvaluateCancelOfferings</Name>
+                </Step>
+                <Step>
+                    <Name>RF-EvalCancelOffering</Name>
+                    <Condition>isValidOfferId = "false" </Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePurchaseResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/replaceExpireEffectiveDate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="purchaseSupplementaryOffering">
+            <Description>Flujo que permite realizar la compra de bonos suplementarios</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <!--<Condition>apigee.developer.app.name="cecilia.gutierrez.e" or apigee.developer.app.name="LuisgtwRecarga_Altan" or apigee.developer.app.name="moises.almanza.e"</Condition>-->
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetCatalog_recharge_channel</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-Getcatalog_recharge_pipe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-NotPurchaseOfferById</Name>
+                </Step>
+                <Step>
+                    <Name>JS-EvaluateSuppOfferNotPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-PurchaseDevAppNameCovid19</Name>
+                </Step>
+                <Step>
+                    <Name>RF-OfferNotValidToPurchase</Name>
+                    <Condition>isOfferNotPurchase == true and DevAppNameCovid19isValid != true</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async == "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetOfferName</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateSuppOffer</Name>
+                    <Condition>( (async = "false" and isOfferNotPurchase == false) OR (async = "true" AND apigee.developer.app.name != "aws_batch" and isOfferNotPurchase == false) )</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-OfferPromo</Name>
+                    <Condition>isSuppPromo = "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-ExposeData</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetClientesHabilitadosCompraBonos190</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAdjustmentBonus</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-NotAllowedApplyAdjustment</Name>
+                    <Condition>adjustmentOfferingId.isAllowedApp == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateStartEffectiveDate</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyStartExpireDateSupplementary</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyRefactorDate</Name>
+                    <Condition>(verifyDate = "false") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RefactorValidateScheduleDate</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateSupplementary</Name>
+                    <Condition>validateScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-scheduleDateNull</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateRefactorScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-DeleteAllOfferings</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePurchaseResponse</Name>
+                    <Condition>validateRefactorScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/purchase") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="updatePropertiesSubscriberMsisdn">
+            <Description>Permite actualizar propiedades particulares del MSISDN relacionado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>AM-RemoveOverrideMethodHeader</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageSubscriberUpdate</Name>
+                    <Condition>(validateRequest != "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestUpdateProperties</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <!--<Condition>apigee.developer.app.name = "cecilia.gutierrez.e_136" or apigee.developer.app.name="cecilia.gutierrez.e_103" or apigee.developer.app.name="cecilia.gutierrez.e" or apigee.developer.app.name="moises.almanza.e"</Condition>-->
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Async</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsync</Name>
+                </Step>
+                <Step>
+                    <Name>RF-AsyncValueError</Name>
+                    <Condition>async == "error"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateStartEffectiveDate</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RefactorValidateScheduleDate</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateChangePrimary</Name>
+                    <Condition>validateScheduleDate == "true" AND offeringId != null AND async = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateChangeSubscriberLink</Name>
+                    <Condition>validateScheduleDate == "true" AND updateLinking != null</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateChangeSubscriberSIM</Name>
+                    <Condition>validateScheduleDate == "true" AND iccid != null</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateDefaultOffering</Name>
+                    <Condition>offeringId != null AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-DefaultOfferingErrorChange</Name>
+                    <Condition>offeringId != null AND isDefaultOffering == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-scheduleDateNull</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateRefactorScheduleDate == "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateInputLength</Name>
+                    <Condition>(updateLinking != null) AND (validateRefactorScheduleDate == "false") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateCoordinatesLength</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointOffering</Name>
+                    <Condition>validateRefactorScheduleDate  == "false" AND offeringId != null</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ChangeSubscriberSIM</Name>
+                    <Condition>(iccid != null) AND (validateRefactorScheduleDate == "false") AND (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ChangeSubscriberLink</Name>
+                    <Condition>(updateLinking != null) AND (validateRefactorScheduleDate == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ChangeSubscriberMSISDN</Name>
+                    <Condition>(nir != null) AND (changeSubscriberMSISDN != null)</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberLink</Name>
+                    <Condition>(serviceabilityVersion !="3") AND (csl.Status = "OK") AND (validateRefactorScheduleDate == "false") AND responseLocationLinking.status.code = "200" AND (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberLinkServV3</Name>
+                    <Condition>(serviceabilityVersion =="3") AND (csl.Status = "OK") AND (validateRefactorScheduleDate == "false") AND responseLocationLinking.status.code = "200" AND (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberLinkAsync</Name>
+                    <Condition>(validateRefactorScheduleDate == "false") AND (async = "true") and (apigee.developer.app.name != "aws_batch") and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberLinkAsyncAWS</Name>
+                    <Condition>(csl.Status = "OK") AND (responseLocationLinking.status.code = "200") AND (async = "true") and (apigee.developer.app.name = "aws_batch")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberSIM</Name>
+                    <Condition>(css.returnCode = "0000") AND (validateRefactorScheduleDate == "false") AND (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseProxyPrimaryOffering</Name>
+                    <Condition>(validateRefactorScheduleDate == "true") AND (offeringId != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseProxyChangeSubscriberLink</Name>
+                    <Condition>(validateRefactorScheduleDate == "true") AND (updateLinking != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseProxyChangeSubscriberSIM</Name>
+                    <Condition>(validateRefactorScheduleDate == "true") AND (iccid != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberMSISDN</Name>
+                    <Condition>(validateRefactorScheduleDate == "false") AND (changeSubscriberMSISDN != null)</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{idSubscriber}") and (request.verb = "PATCH") and (request.content != null)</Condition>
+        </Flow>
+        <Flow name="operations">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances2</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null) OR (request.queryparam.startDate is null) OR (request.queryparam.endDate is null) OR (request.queryparam.startDate == "") OR (request.queryparam.endDate == "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointTransactions</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{idSubscriber}/operations") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="lockImei">
+            <Description>OperaciÃƒÂ³n que permite bloquear el dispositivo asignado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpoint</Name>
+                </Step>
+                <Step>
+                    <Name>EV-LockImeiRequest</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-AuthorizedImeiBlockers</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateSecurityAuthorization</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateImeiByBeId-ADD</Name>
+                    <Condition>authorizedBlocker != "Authorized"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateImeiByBeId</Name>
+                    <Condition>authorizedBlocker != "Authorized" and responseCode_add != 000</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateLockImei</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateLockImeiResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/{imei}/lock") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unlockImei">
+            <Description>OperaciÃƒÂ³n que permite desbloquear el dispositivo asignado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpoint</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateImeiByBeId-ADD</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateImeiByBeId</Name>
+                    <Condition>responseCode_add != 000</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesScheduleDateUnlockImei</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateUnlockResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/{imei}/unlock") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="renovateOffering">
+            <Description>OperaciÃƒÂ³n que permite renovar la oferta primaria de un msisdn.</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageRenovateOffer</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageRenovateOffer</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointOffering</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/renovate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changeIMEI">
+            <Description>Recurso que permite reemplazar el IMEI asociado a un determinado MSISDN.</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestChangeIMEI</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null) OR (identifierType is null) OR (identifierValue is null) OR (identifierType = "") OR (identifierValue = "") OR (newImei is null) OR (newImei = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-SameImei</Name>
+                    <Condition>(identifierType = "imei") AND (identifierValue = newImei)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateIdentifier</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateIdentifier</Name>
+                    <Condition>isValidIdentifier = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointSubscribers</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changeIMEI") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="activations">
+            <Description>OperaciÃƒÂ³n que permite subir un archivo con MSISDNs a activar.</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-ActivateLock</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ActivateLock</Name>
+                    <Condition>hasActivateLock = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/activations") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preDeactivates">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/predeactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="profiles">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/profiles") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="barrings">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a suspender (barring)</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/barrings") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="suspends">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a suspender</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/suspends") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="resumes">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a reanudar</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/resumes") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="deactivates">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a dar de baja.</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/deactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="reactivates">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/reactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesPrimary">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs para cambiar su oferta primaria</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesprimary") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesSIM">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesSIM") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="purchasessupplementary">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a los cuales se les comprarÃƒÂ¡n bonos suplementarios</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/purchasessupplementary") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changePrimaryOfferingBatch">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageSubscriberUpdate</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageSubscriberUpdate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestUpdateProperties</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateStartEffectiveDate</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateDefaultOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-DefaultOfferingErrorChangeBatch</Name>
+                    <Condition>isDefaultOffering == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberSIM</Name>
+                    <Condition>(css.returnCode = "0000") AND (offeringId is null)</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/offering") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changeslinking">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changeslinking") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="linkings">
+            <Description>Implementar un nuevo recurso que consulte los cambios de vinculacion registrados a partir del msisdn del suscriptor</Description>
+            <Request>
+                <Step>
+                    <Name>REP-Request</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestLinkings</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(PartnerId is null) OR (PartnerId is "") OR (msisdn is null) OR (msisdn is "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetBDV</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/msisdns/{msisdn}/linkings") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="locksImei">
+            <Description>OperaciÃƒÂ³n que permite bloquear imeis enviados por medio de un archivo de texto plano</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/locks") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unlocksImei">
+            <Description>OperaciÃƒÂ³n que permite desbloquear IMEIs enviador por medio de un archivo de texto plano</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/unlocks") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unbarring">
+            <Description>unbarring</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidReasonCode</Name>
+                    <Condition>(reason != "" and reason != "1" and reason != "5" and reason != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetNotifiedByClient</Name>
+                    <Condition>(reason == "" or reason == "1" or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetScheduleDateUnbarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                    <Condition>responseQuerySubStatus.subStatus == "2"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateResumeResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SkipTarget</Name>
+                    <Condition>responseQuerySubStatus.subStatus == "2"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/unbarring") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="barring">
+            <Description>Barring</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>request.header.errorSGE500 = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidReasonCode</Name>
+                    <Condition>(reason != "" and reason != "1" and reason != "4" and reason != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetNotifiedByClient</Name>
+                    <Condition>(reason == "" or reason == "1" or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetScheduleDateBarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-NotifyBarring</Name>
+                    <Condition>reason == "1"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDateResumeResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/barring") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unbarrings">
+            <Description>Recurso que permite desbloquear llamadas a travÃƒÂ©s de un archivo plano.</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/unbarrings") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="productsCancel">
+            <Description>Recurso para borrar ofertas suplementarias</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-ExposeData</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAdjustmentBonus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-NotAllowedApplyAdjustment</Name>
+                    <Condition>adjustmentOfferingId.isAllowedApp == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateScheduleDate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-IncorrectScheduleDate</Name>
+                    <Condition>verifyScheduleDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>verifyDate == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesCancelSupplementary</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleDate</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePurchaseResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/cancel") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Delete products">
+            <Description>Recurso para borrar ofertas suplementarias relacionadas a la subida de velocidad</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetCatalog_recharge_channel</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-Getcatalog_recharge_pipe</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestSpeedDown</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                    <Condition>apigee.developer.app.name="moises.almanza.e" or apigee.developer.app.name="cecilia.gutierrez.e"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateSpeedDown</Name>
+                </Step>
+                <Step>
+                    <Name>RF-NotCompatibleOfferingSD</Name>
+                    <Condition>validator.error == "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVariablesCancelSupplementary</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/remove") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="cancelProductsBatch">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/cancelproducts") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="resumeMobility">
+            <Description>Reanudacion de un MSISDN a causa de suspension por movilidad</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>validateRequest = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestResumeMobility</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-NoCoordinatesResumeMobility</Name>
+                    <Condition>coordinates is null or coordinates == ""</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-HasResumeCatching</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetResumeSPMCatching</Name>
+                    <Condition>hasResumeCatching = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ExtractLatitudeLongitude</Name>
+                    <Condition>statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ExtractLatLong</Name>
+                    <Condition>statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null) and ((latitude = "false") OR (longitude = "false"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndPointCaptivePortal</Name>
+                    <Condition>statusCode != "200" and (responseSubscriber_pc =="" or responseSubscriber_pc is null)</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ResumeCatchingResponse</Name>
+                    <Condition>(statusCode == "200" and  (responseSubscriber_pc !="" and responseSubscriber_pc != null))</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/resumespm") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="blackList">
+            <Description/>
+            <Request>
+                <!--<Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpoint</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/blackList") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="lookupForOperator">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-RequestLookupForOperator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null) OR (msisdn is null) OR (msisdn is "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetOperatorEndpoint</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/lookupForOperator") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberInformation">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                </Step>
+                -->
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberInformation") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberPrimaryOffering">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                </Step>
+                -->
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberPrimaryOffering") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberImei">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndPointHSS</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberImei") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberFreeUnits">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                </Step>
+                -->
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberFreeUnits") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberCoordinates">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndPointBDLCoordinates</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberCoordinates") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberFreeUnitsData">
+            <Description>OperaciÃƒÂ³n que permite consultar la informacion asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>AM-SetTargetEndPointNoRoutes</Name>
+                </Step>
+                -->
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberFreeUnitsData") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="reactivatesbss">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/reactivatesbss") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="predeactivatesbss">
+            <Description>OperaciÃƒÂ³n que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/predeactivatesbss") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="upSpeed">
+            <Description>Flujo que permite cancelar descarga a baja velocidad para esto se actualiza la fecha de expiraciÃƒÂ³n del bono suplementario</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageProductsPurchase</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-UpdateProductsExpireDateRequest</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error == "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>JS-CancelDownSpeed</Name>
+                </Step>
+                <Step>
+                    <Name>RF-NoHasDownSpeed</Name>
+                    <Condition>hasDownSpeed = "0" </Condition>
+                </Step>
+                <Step>
+                    <Name>RF-EvalCancelOffering</Name>
+                    <Condition>isValidOfferId = "false" </Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-ScheduleDatePurchaseResponse</Name>
+                    <Condition>validateScheduleDate == "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/upSpeed") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesMSISDN">
+            <Description>Operacion que permite subir un archivo para realizar cambio de msisdn a un conjunto de suscritores</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesmsisdn") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preregistrations">
+            <Description>Batch de la operacion de preregistro</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/preregistrations") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="getMsisdnStatus">
+            <Description>Brinda informacion del estado de hasta 5 usuarios finales</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>EV-GetMsisdnStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(msisdns is null) OR (msisdns = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointMsisdnStatus</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/status") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="multiActivation">
+            <Description>Operación que permite la activación de múltiples suscriptores</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-RequestMultiActivation</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestMultiActivations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(subscribersMultiActivation = null) OR (request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMultiActivationParameters</Name>
+                    <Condition>(subscribersMultiActivation != null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>(verifyParametersActivation = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetLambdaMultiActivation</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/multiactivation") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="identifierBe">
+            <Description>Obtener BE del msisdn enviado, api para SVAs</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBalances</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(identifierType is null) OR (identifierType = "") OR (identifierValue is null) OR (identifierValue = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateIdentifierTypeIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidParamIdentifierBe</Name>
+                    <Condition>isIdentifierValid = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidatorPreregistered</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateDevAppSva</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateDevAppSva</Name>
+                    <Condition>isDevAppValid = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetIdentifierBe</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/mvno/identifier") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="white-list-barring">
+            <Description>Permite incluir un msisdn a la lista blanca barring</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestWhiteListBarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null) OR (msisdn is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetInsertDeleteWhiteList</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/white-list") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="inclusion-white-list-barrings">
+            <Description>Operacion que permite recibir un archivo con MSISDNs para agregar a lista blanca de barring</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/inclusion-white-lists") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="delete-white-list-barring">
+            <Description>Permite excluir un msisdn de la lista blanca barring</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestWhiteListBarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null) OR (msisdn is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetInsertDeleteWhiteList</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/white-list") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="exclusion-white-list-barrings">
+            <Description>Operacion que permite recibir un archivo con MSISDNs para agregar a lista blanca de barring</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageBatchOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.header.OperatorId is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetEndpointBatch</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/exclusion-white-lists") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="get-white-list-barring">
+            <Description>Permite validar si un msisdn está en la lista blanca barring</Description>
+            <Request>
+                <Step>
+                    <Name>JTP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>REP-MessageMsisdnActivation</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestWhiteListBarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateTimestamp</Name>
+                </Step>
+                <Step>
+                    <Name>FC-BlockedOperations</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(request.header.Operation-User is null) OR (request.header.Operation-Password is null) OR (request.header.PartnerId is null) OR (request.content is null) OR (request.header.OperatorId is null) OR (msisdn is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetTargetGetWhiteList</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/white-list") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="validate-promotion">
+            <Description>Operacion que valida los datos de varias operaciones y valida si se puede ejecutar la compra de uno bono promiocional</Description>
+            <Request>
+                <Step>
+                    <Name>REP-MessageValidatePromotion</Name>
+                </Step>
+                <Step>
+                    <Name>JTP-MessageValidatePromotion</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyParamsError</Name>
+                    <Condition>(validateRequest == "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestValidatePromotion</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!-- Agregar validaciones y candados para solo permitir esta operacion para devapps internas -->
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/validatePromotion") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="FlujoInexistente">
+            <Description>Cuando hay un error al consumir un recurso</Description>
+            <Request>
+                <Step>
+                    <Name>RF-Verb</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/cm/v1</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="BDV">
+        <TargetEndpoint>BDV</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "BDV")</Condition>
+    </RouteRule>
+    <RouteRule name="OfferingService">
+        <TargetEndpoint>OfferingService</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "OfferingService")</Condition>
+    </RouteRule>
+    <RouteRule name="EIR">
+        <TargetEndpoint>EIR</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "EIR")</Condition>
+    </RouteRule>
+    <RouteRule name="SubscriberInfo">
+        <TargetEndpoint>SubscriberInfo</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "SubscriberInfo")</Condition>
+    </RouteRule>
+    <RouteRule name="NoRoute">
+        <Condition>(targetEndpoint.name == "NoRoute")</Condition>
+    </RouteRule>
+    <RouteRule name="BatchOperations">
+        <TargetEndpoint>BatchOperations</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "batchOperations")</Condition>
+    </RouteRule>
+    <RouteRule name="Transactions">
+        <TargetEndpoint>Transactions</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "Transactions")</Condition>
+    </RouteRule>
+    <RouteRule name="CaptivePortal">
+        <TargetEndpoint>CaptivePortal</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "CaptivePortal")</Condition>
+    </RouteRule>
+    <RouteRule name="HSS">
+        <TargetEndpoint>HSS</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "HSS")</Condition>
+    </RouteRule>
+    <RouteRule name="BDLCoordinates">
+        <TargetEndpoint>BDLCoordinates</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "BDLCoordinates")</Condition>
+    </RouteRule>
+    <RouteRule name="newProfile">
+        <TargetEndpoint>newProfile</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "newProfile")</Condition>
+    </RouteRule>
+    <RouteRule name="LookupForOperator">
+        <TargetEndpoint>LookupForOperator</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "LookupForOperator")</Condition>
+    </RouteRule>
+    <RouteRule name="GetMsisdnStatus">
+        <TargetEndpoint>GET-MSISDN-STATUS</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "getMsisdnStatus")</Condition>
+    </RouteRule>
+    <RouteRule name="LambdaMultiActivation">
+        <TargetEndpoint>LambdaMultiActivation</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "LambdaMultiActivation")</Condition>
+    </RouteRule>
+    <RouteRule name="IdentifierBe">
+        <TargetEndpoint>Identifier-BE</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "IdentifierBe")</Condition>
+    </RouteRule>
+    <RouteRule name="InsertWhiteList">
+        <TargetEndpoint>INSERT-WHITE-LIST-BARRING</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "InsertWhiteList")</Condition>
+    </RouteRule>
+    <RouteRule name="GetWhiteList">
+        <TargetEndpoint>GET-WHITE-LIST-BARRING</TargetEndpoint>
+        <Condition>(targetEndpoint.name == "GetWhiteList")</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
