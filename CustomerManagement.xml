@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="328" name="CustomerManagement">
+<APIProxy revision="1" name="CustomerManagement_NewPolicyCounter">
     <Basepaths>/cm</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1518661709423</CreatedAt>
-    <CreatedBy>victor.montes.urbina@everis.com</CreatedBy>
-    <Description>Mejora en el API de eliminación de oferta, soporte para External ID.De rev 327 prod</Description>
+    <CreatedAt>1671818181003</CreatedAt>
+    <CreatedBy>ivan.pinav.b@altanredes.com</CreatedBy>
+    <Description>New Policy Counter de rev 327 prod</Description>
     <DisplayName>CustomerManagement</DisplayName>
-    <LastModifiedAt>1675121067138</LastModifiedAt>
-    <LastModifiedBy>jose.guarneros@altanredes.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:9e1698379c1668ce7dc7c1bb0799394b769d7b66fedc71993a83dc055f3a35472eae6e3d8ecb4e14e5510d74ead8face8b4e3789fbbddc39f401f16698481c4d:us-east-1</ManifestVersion>
+    <LastModifiedAt>1672098435192</LastModifiedAt>
+    <LastModifiedBy>ivan.pinav.b@altanredes.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:e179273550d8dd5f65491c8506f3fe967ca518e25d9170aa3a05698e38bb0edbf22333c1c7704253e41a2ed2fd9e6a9cc77f8c53fa81e97d24312fbca4cc38b7:us-west-2</ManifestVersion>
     <Policies>
         <Policy>AC-SecurityIP</Policy>
         <Policy>AM-AM-ErrorMessageGetCatalogPromotionsFilteredMoreThanOne</Policy>
@@ -139,7 +139,6 @@
         <Policy>AM-ErrorMessageNotValidPCE</Policy>
         <Policy>AM-ErrorMessageOfferinIdProduct</Policy>
         <Policy>AM-ErrorMessageOffering</Policy>
-        <Policy>AM-ErrorMessageOrderError</Policy>
         <Policy>AM-ErrorMessagePredeactivate</Policy>
         <Policy>AM-ErrorMessagePrepaidToPostpaidError</Policy>
         <Policy>AM-ErrorMessagePreregisteredAndActiveHssCommands</Policy>
@@ -253,7 +252,6 @@
         <Policy>AM-ResponseExpireDate</Policy>
         <Policy>AM-ResponseExpireDateServV3</Policy>
         <Policy>AM-ResponseExtractOperations</Policy>
-        <Policy>AM-ResponseGetOrderStatus</Policy>
         <Policy>AM-ResponseGetWhiteList</Policy>
         <Policy>AM-ResponseIdentifierBe</Policy>
         <Policy>AM-ResponseImei</Policy>
@@ -573,7 +571,6 @@
         <Policy>FC-LoopQueryOrderStatus-DeleteOfferings</Policy>
         <Policy>FC-LoopQueryOrderStatus</Policy>
         <Policy>FC-LoopQueryOrderStatusByOrderIdApige</Policy>
-        <Policy>FC-LoopQueryOrderStatusByOrderIdApigeRemove</Policy>
         <Policy>FC-MSLocationActivate</Policy>
         <Policy>FC-NotificationWebhook</Policy>
         <Policy>FC-NotifyBarring</Policy>
@@ -594,8 +591,6 @@
         <Policy>FC-QueryBalance</Policy>
         <Policy>FC-QueryFreeUnit</Policy>
         <Policy>FC-QueryMsisdnStatus</Policy>
-        <Policy>FC-QueryOrderStatusByOrderIdApigeRemove</Policy>
-        <Policy>FC-QueryPurchasedOfferByIdRemove</Policy>
         <Policy>FC-QueryPurchasedOfferByOrderId</Policy>
         <Policy>FC-QueryPurchasedPrimaryOffering</Policy>
         <Policy>FC-QueryPurchasedSupplementaryOffering</Policy>
@@ -653,7 +648,6 @@
         <Policy>JS-ConvertSubscriberStatus</Policy>
         <Policy>JS-EffectiveDateCPO</Policy>
         <Policy>JS-EmptyTPS</Policy>
-        <Policy>JS-EvalStatus</Policy>
         <Policy>JS-EvaluateCancelOfferings</Policy>
         <Policy>JS-EvaluateSuppOfferNotPurchase</Policy>
         <Policy>JS-ExcludingPromotionalPurchasedOfferings</Policy>
@@ -748,8 +742,6 @@
         <Policy>JTP-MessageSubscriberUpdate</Policy>
         <Policy>JTP-MessageValidatePromotion</Policy>
         <Policy>JTP-RequestMultiActivation</Policy>
-        <Policy>JavaScript-1</Policy>
-        <Policy>JavaScript-2</Policy>
         <Policy>KV-ExposeData</Policy>
         <Policy>KVM-ActivateLock</Policy>
         <Policy>KVM-AllowResumeNoBand28</Policy>
@@ -847,7 +839,6 @@
         <Policy>RF-ProfleMSErrorAuth</Policy>
         <Policy>RF-QueryFreeUnitError</Policy>
         <Policy>RF-QueryOrderStatus</Policy>
-        <Policy>RF-QueryOrderStatusError</Policy>
         <Policy>RF-QueryPurchasedPrimaryOfferingError</Policy>
         <Policy>RF-QueryPurchasedSuppOfferError</Policy>
         <Policy>RF-QuerySubStatusError</Policy>
@@ -876,7 +867,6 @@
         <Policy>RF-TargetError</Policy>
         <Policy>RF-UnlockImeiError</Policy>
         <Policy>RF-UnsupportedOperation</Policy>
-        <Policy>RF-ValidaOrderStatus</Policy>
         <Policy>RF-ValidateContentLength</Policy>
         <Policy>RF-ValidateCoordinatesLength</Policy>
         <Policy>RF-ValidateCoverage</Policy>
@@ -914,7 +904,6 @@
         <Policy>SC-NewService</Policy>
         <Policy>SC-ReportBeId</Policy>
         <Policy>SetAuditorDataUnlockImei</Policy>
-        <Policy>ValidateOrderIdOrExternalOrderId</Policy>
         <Policy>XSL-RemoveEmptyNodes</Policy>
         <Policy>XTJ-RequestDataAuditor</Policy>
         <Policy>XTJ-RequestQuerySubscriberInformation</Policy>
@@ -941,7 +930,6 @@
         <Resource>jsc://convertSubscriberStatus.js</Resource>
         <Resource>jsc://effectiveDateCPO.js</Resource>
         <Resource>jsc://emptyTPS.js</Resource>
-        <Resource>jsc://evalStatus.js</Resource>
         <Resource>jsc://evaluateCancelOfferings.js</Resource>
         <Resource>jsc://evaluateIfOfferIsNotPurchase.js</Resource>
         <Resource>jsc://excludingPromotionalPurchasedOfferings.js</Resource>
@@ -1007,7 +995,6 @@
         <Resource>jsc://validateOfferIdContents.js</Resource>
         <Resource>jsc://validateOrderIdApigee.js</Resource>
         <Resource>jsc://validateOrderIdLength.js</Resource>
-        <Resource>jsc://validateOrderIdOrExternalOrderId.js</Resource>
         <Resource>jsc://validateQueryFreeUnit.js</Resource>
         <Resource>jsc://validateQueryFreeUnitPurchase.js</Resource>
         <Resource>jsc://validateReponseProfileMS.js</Resource>
