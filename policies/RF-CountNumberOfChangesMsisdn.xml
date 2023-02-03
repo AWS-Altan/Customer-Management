@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-CountNumberOfChangesMsisdn">
+    <DisplayName>RF-CountNumberOfChangesMsisdn</DisplayName>
+    <FaultResponse>
+        <Add>
+            <Headers>
+                <Header name="FaultHeader">ExeptionCountNumberOfChangesMsisdn</Header>
+            </Headers>
+        </Add>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-GenerateError">
-    <DisplayName>RF-GenerateError</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-DaysActivationAndPortInCError">
+    <DisplayName>RF-DaysActivationAndPortInCError</DisplayName>
     <Properties/>
     <FaultResponse>
         <Add>
             <Headers>
-                <Header name="FaultHeader">invalid_recharge_provider</Header>
+                <Header name="FaultHeader">BusinessDaysActivationAndPortInCError</Header>
             </Headers>
         </Add>
     </FaultResponse>

@@ -4,7 +4,7 @@
     <Properties/>
     <ArrayElementCount>20</ArrayElementCount>
     <ContainerDepth>10</ContainerDepth>
-    <ObjectEntryCount>7</ObjectEntryCount>
+    <ObjectEntryCount>9</ObjectEntryCount>
     <ObjectEntryNameLength>50</ObjectEntryNameLength>
     <Source>request</Source>
     <StringValueLength>200</StringValueLength>
