@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestProfileQuery">
+    <DisplayName>AM-BuildRequestProfileQuery</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="TransactionId">{transactionId}</Header>
+            <Header name="Operation-User">{Operation-User}</Header>
+            <Header name="Operation-Password">{Operation-Password}</Header>
+            <Header name="OperatorId">{OperatorId}</Header>
+            <Header name="PartnerId">{PartnerId}</Header>
+            <Header name="profileVersion">{profileVersion}</Header>
+        </Headers>
+        <Payload contentType="application/json">
+            {
+                "msisdn":"{msisdn}",
+                "ofertaincremental":"{ofertaincremental}"
+            }
+        </Payload>
+        <Verb>GET</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>flow.apn.operationpath</Name>
+        <Template>consulta_perfil_reducida</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

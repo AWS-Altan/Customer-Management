@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageGetControlPromotionsDetailExceedEventsPortIn">
+    <DisplayName>AM-ErrorMessageGetControlPromotionsDetailExceedEventsPortIn</DisplayName>
+    <AssignVariable>
+        <Name>statusAccepted.status</Name>
+        <Value>202</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>statusAccepted.code</Name>
+        <Value>202</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>statusAccepted.message</Name>
+        <Value>Promotion does not apply for this msisdn because had been applied a promotion by port-in in the past</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>202</Value>
+    </AssignVariable>
+</AssignMessage>

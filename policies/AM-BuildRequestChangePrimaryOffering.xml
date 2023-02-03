@@ -52,6 +52,7 @@
                                 <com:EffectiveDate>@startDate#</com:EffectiveDate>
                             </off:EffectiveMode>
                         </off:NewPrimaryOffering>
+                        <off:FlagStatus>@flagStatusPrimaryPurchase#</off:FlagStatus>
                     </off:ChangePrimaryOfferingReqMsg>
                 </soapenv:Body>
             </soapenv:Envelope>

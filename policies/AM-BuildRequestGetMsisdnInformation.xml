@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestGetMsisdnInformation">
+    <DisplayName>AM-BuildRequestGetMsisdnInformation</DisplayName>
+    <Add>
+        <QueryParams>
+            <QueryParam name="msisdn">{msisdn}</QueryParam>
+            <QueryParam name="TransactionId">{transactionId}</QueryParam>
+        </QueryParams>
+        <Headers>
+            <Header name="X-APIGW-TOKEN">{apigee.access_token}</Header>
+            <Header name="msisdn">{msisdn}</Header>
+            <Header name="TransactionId">{transactionId}</Header>
+        </Headers>
+    </Add>
+    <Set>
+        <!--@TODO  hay que cambiar el payload -->
+        <Payload contentType="application/json; charset=UTF-8">
+            {
+              "Operation-Password": "{Operation-Password}",
+              "Operation-User": "{Operation-User}",
+              "OperatorId": "{OperatorId}",
+              "PartnerId": "{PartnerId}",
+              "msisdn": {msisdn},
+              "TransactionId": "{transactionId}",
+              "consulta_profile": "777"
+            }
+        </Payload>
+        <Verb>GET</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>flow.recharge.operationpath</Name>
+        <Value>/msisdn_info</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>
