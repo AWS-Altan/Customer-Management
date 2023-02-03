@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="3500" name="JS-CheckValueFromAplicaPromoDefault">
+    <DisplayName>JS-CheckValueFromAplicaPromoDefault</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://checkValueFromAplicaPromoDefault.js</ResourceURL>
+</Javascript>
