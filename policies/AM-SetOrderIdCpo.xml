@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetOrderIdCpo">
+    <DisplayName>AM-SetOrderIdCpo</DisplayName>
+    <AssignVariable>
+        <Name>cpo.orderId</Name>
+        <Value/>
+        <Ref>responseChangePrimaryOffering.orderId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

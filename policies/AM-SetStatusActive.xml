@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetStatusActive">
+    <DisplayName>AM-SetStatusActive</DisplayName>
+    <AssignVariable>
+        <Name>msisdnStatus</Name>
+        <Value>Active</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>reason</Name>
+        <Value>0</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

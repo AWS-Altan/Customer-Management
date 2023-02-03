@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetTargetBDV">
+    <DisplayName>AM-SetTargetBDV</DisplayName>
+    <AssignVariable>
+        <Name>targetEndpoint.name</Name>
+        <Value>BDV</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

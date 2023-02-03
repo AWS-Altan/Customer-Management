@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAuxiliaryVariables">
+    <DisplayName>AM-SetAuxiliaryVariables</DisplayName>
+    <AssignVariable>
+        <Name>identifierType</Name>
+        <Value>msisdn</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>identifierValue</Name>
+        <Ref>msisdn</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>beId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

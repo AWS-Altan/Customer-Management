@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetVarScheduleAsyncChangePrimary">
+    <DisplayName>AM-SetVarScheduleAsyncChangePrimary</DisplayName>
+    <AssignVariable>
+        <Name>asyncOp.target</Name>
+        <Value>changeprimary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>asyncOp.resource</Name>
+        <Value>changeprimary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>asyncOp.operation</Name>
+        <Value>changeprimary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

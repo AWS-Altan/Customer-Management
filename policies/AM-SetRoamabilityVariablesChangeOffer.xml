@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetRoamabilityVariablesChangeOffer">
+    <DisplayName>AM-SetRoamabilityVariablesChangeOffer</DisplayName>
+    <AssignVariable>
+        <Name>roamability.msisdn</Name>
+        <Value/>
+        <Ref>msisdn</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>roamability.imsi</Name>
+        <Value/>
+        <Ref>imsiResponse</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>roamability.iccid</Name>
+        <Value/>
+        <Ref>iccidResponse</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>roamability.offeringId</Name>
+        <Value/>
+        <Ref>offeringId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>roamability.event</Name>
+        <Value>ValidaOfertaRI</Value>
+        <Ref/>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

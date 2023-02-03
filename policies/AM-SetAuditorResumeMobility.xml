@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAuditorResumeMobility">
+    <DisplayName>AM-SetAuditorResumeMobility</DisplayName>
+    <AssignVariable>
+        <Name>Auditor.inout</Name>
+        <Value>in</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.target</Name>
+        <Value>ResumeMobility</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.data</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+</AssignMessage>

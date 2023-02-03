@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SuspendResponseTransaction">
+    <DisplayName>AM-SuspendResponseTransaction</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "msisdn": "@msisdn#",
+                "effectiveDate": "@responseChangeStatus.rspTime#",
+                "transaction": {
+                    "id": "@transactionId#"
+                }
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

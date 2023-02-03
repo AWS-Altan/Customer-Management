@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetOrderIdToLoopQueryReactivate">
+    <DisplayName>AM-SetOrderIdToLoopQueryReactivate</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>responseActivateSubscriber.orderId</Name>
+        <Value/>
+        <Ref>responseReactivateSubs.orderId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

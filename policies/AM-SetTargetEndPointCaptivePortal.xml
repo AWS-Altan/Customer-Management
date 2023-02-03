@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetTargetEndPointCaptivePortal">
+    <DisplayName>AM-SetTargetEndPointCaptivePortal</DisplayName>
+    <AssignVariable>
+        <Name>targetEndpoint.name</Name>
+        <Value>CaptivePortal</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

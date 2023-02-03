@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesUnbarringForzado">
+    <DisplayName>AM-SetValuesUnbarringForzado</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>intentosUnbarringForzado</Name>
+        <Ref>responseDataControlUnbarringForzado.contadorUnbarringForzado</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>intervaloUnbarringForzado</Name>
+        <Ref>responseDataConfigUnbarringForzado.intervaloAplicacionBarring </Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

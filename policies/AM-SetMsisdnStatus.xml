@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetMsisdnStatus">
+    <DisplayName>AM-SetMsisdnStatus</DisplayName>
+    <AssignVariable>
+        <Name>msisdnStatus</Name>
+        <Value>Suspended</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

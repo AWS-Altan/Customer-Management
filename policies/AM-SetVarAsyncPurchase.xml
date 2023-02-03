@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetVarAsyncPurchase">
+    <DisplayName>AM-SetVarAsyncPurchase</DisplayName>
+    <AssignVariable>
+        <Name>asyncOp.target</Name>
+        <Value>purchasesupplementary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>asyncOp.resource</Name>
+        <Value>purchasesupplementary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>asyncOp.operation</Name>
+        <Value>purchasesupplementary</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetVariablesScheduleDateChangeSubscriberLink">
+    <DisplayName>AM-SetVariablesScheduleDateChangeSubscriberLink</DisplayName>
+    <AssignVariable>
+        <Name>date.target</Name>
+        <Value>Change_address</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>date.resource</Name>
+        <Value>Change_address</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>date.operation</Name>
+        <Value>Change_address</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

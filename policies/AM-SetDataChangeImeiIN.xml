@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetDataChangeImeiIN">
+    <DisplayName>AM-SetDataChangeImeiIN</DisplayName>
+    <AssignVariable>
+        <Name>Auditor.inout</Name>
+        <Value>in</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.target</Name>
+        <Value>UpdateIMEI</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.data</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+</AssignMessage>

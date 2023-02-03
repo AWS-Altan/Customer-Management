@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesToNotiMaster">
+    <DisplayName>AM-SetValuesToNotiMaster</DisplayName>
+    <AssignVariable>
+        <Name>notimaster.eventType</Name>
+        <Value>BajaSVA</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>notimaster.msisdn</Name>
+        <Ref>msisdn</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>notimaster.offeringId</Name>
+        <Ref>offeringId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>notimaster.origin</Name>
+        <Ref>origin</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

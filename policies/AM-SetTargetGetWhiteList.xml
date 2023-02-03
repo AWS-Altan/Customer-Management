@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetTargetGetWhiteList">
+    <DisplayName>AM-SetTargetGetWhiteList</DisplayName>
+    <AssignVariable>
+        <Name>targetEndpoint.name</Name>
+        <Value>GetWhiteList</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

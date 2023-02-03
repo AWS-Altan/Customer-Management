@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetRequestWaitToCompleteOrder">
+    <DisplayName>AM-SetRequestWaitToCompleteOrder</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>responseActivateSubscriber.orderId</Name>
+        <Ref>responsePredeactivateSubs.orderId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

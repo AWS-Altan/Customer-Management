@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SkipTarget">
+    <DisplayName>AM-SkipTarget</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload variableSuffix="#" variablePrefix="@" contentType="application/json">
+            {
+                "msisdn": "@msisdn#",
+                "effectiveDate": "@timestamp_mex#" 
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="https" createNew="true"/>
+</AssignMessage>

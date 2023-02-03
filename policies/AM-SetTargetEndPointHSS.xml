@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetTargetEndPointHSS">
+    <DisplayName>AM-SetTargetEndPointHSS</DisplayName>
+    <AssignVariable>
+        <Name>targetEndpoint.name</Name>
+        <Value>HSS</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

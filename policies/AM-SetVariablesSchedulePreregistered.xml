@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetVariablesSchedulePreregistered">
+    <DisplayName>AM-SetVariablesSchedulePreregistered</DisplayName>
+    <AssignVariable>
+        <Name>date.target</Name>
+        <Value>preregistered</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>date.resource</Name>
+        <Value>preregistered</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>date.operation</Name>
+        <Ref>Auditor.operation</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>
