@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetProfileQueryAuditorOUT">
+    <DisplayName>AM-SetProfileQueryAuditorOUT</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>Auditor.inout</Name>
+        <Value>out</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.target</Name>
+        <Value>Consulta de Perfil</Value>
+    </AssignVariable>
+</AssignMessage>

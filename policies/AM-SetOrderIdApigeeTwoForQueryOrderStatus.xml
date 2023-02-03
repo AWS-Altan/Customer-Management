@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetOrderIdApigeeTwoForQueryOrderStatus">
+    <DisplayName>AM-SetOrderIdApigeeTwoForQueryOrderStatus</DisplayName>
+    <AssignVariable>
+        <Name>responseActivateSubscriber.orderId</Name>
+        <Ref>responseChangeSupOffering.orderId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

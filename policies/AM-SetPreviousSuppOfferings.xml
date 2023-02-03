@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetPreviousSuppOfferings">
+    <DisplayName>AM-SetPreviousSuppOfferings</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>PreviousSuppOfferings.suppOff</Name>
+        <Value>null</Value>
+        <Ref>SuppOfferings.suppOff</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

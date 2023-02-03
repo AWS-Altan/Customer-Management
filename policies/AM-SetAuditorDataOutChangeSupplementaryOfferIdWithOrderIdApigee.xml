@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAuditorDataUnlockImeiOut">
-    <DisplayName>AM-SetAuditorDataUnlockImeiOut</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAuditorDataOutChangeSupplementaryOfferIdWithOrderIdApigee">
+    <DisplayName>AM-SetAuditorDataOutChangeSupplementaryOfferIdWithOrderIdApigee</DisplayName>
     <AssignVariable>
         <Name>Auditor.inout</Name>
         <Value>out</Value>
@@ -8,7 +8,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>Auditor.target</Name>
-        <Value>UnlockImei</Value>
+        <Value>ChangeSupplementaryOffering</Value>
         <Ref/>
     </AssignVariable>
     <AssignVariable>
@@ -18,6 +18,10 @@
     <AssignVariable>
         <Name>Auditor.data</Name>
         <Ref>response.content</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.orderId</Name>
+        <Ref>orderIdApigee</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>
