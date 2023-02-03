@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-GenerateError">
     <DisplayName>RF-GenerateError</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FaultResponse>
-        <Add>
-            <Headers>
-                <Header name="FaultHeader">invalid_recharge_provider</Header>
-            </Headers>
-        </Add>
+        <Set>
+            <Headers/>
+            <Payload contentType="text/plain"/>
+            <StatusCode>500</StatusCode>
+            <ReasonPhrase>Server Error</ReasonPhrase>
+        </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
 </RaiseFault>
