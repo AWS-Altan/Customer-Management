@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-ReactivateSubError">
+    <DisplayName>RF-ReactivateSubError</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Add>
+            <Headers>
+                <Header name="FaultHeader">ReactivateSubError</Header>
+            </Headers>
+        </Add>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

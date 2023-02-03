@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegularExpressionProtection async="false" continueOnError="false" enabled="true" name="REP-MessageMsisdnOperations">
+    <DisplayName>REP-MessageMsisdnOperations</DisplayName>
+    <URIPath>
+        <Pattern>[\s]*(?i)((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))</Pattern>
+        <Pattern>&lt;!--#(include|exec|echo|config|printenv)\s+.*</Pattern>
+        <!--<Pattern>(/(@?[\w_?\w:\*]+(\[[^]]+\])*)?)+</Pattern>-->
+        <Pattern>/?(ancestor(-or-self)?|descendant(-or-self)?|following(-sibling))</Pattern>
+        <Pattern>&lt;\s*script\b[^&gt;]*&gt;[^&lt;]+&lt;\s*/\s*script\s*&gt;</Pattern>
+    </URIPath>
+    <Header name="Operation-User">
+        <Pattern>[\s]*(?i)((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))</Pattern>
+        <Pattern>(/(@?[\w_?\w:\*]+(\[[^]]+\])*)?)+</Pattern>
+        <Pattern>/?(ancestor(-or-self)?|descendant(-or-self)?|following(-sibling))</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern>[\s]*(?i)((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))</Pattern>
+        <Pattern>(/(@?[\w_?\w:\*]+(\[[^]]+\])*)?)+</Pattern>
+        <Pattern>/?(ancestor(-or-self)?|descendant(-or-self)?|following(-sibling))</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern>[\s]*(?i)((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))</Pattern>
+        <Pattern>(/(@?[\w_?\w:\*]+(\[[^]]+\])*)?)+</Pattern>
+        <Pattern>/?(ancestor(-or-self)?|descendant(-or-self)?|following(-sibling))</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern>[\s]*(?i)((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))</Pattern>
+        <Pattern>(/(@?[\w_?\w:\*]+(\[[^]]+\])*)?)+</Pattern>
+        <Pattern>/?(ancestor(-or-self)?|descendant(-or-self)?|following(-sibling))</Pattern>
+    </Header>
+    <Source>request</Source>
+</RegularExpressionProtection>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-TurnProfileMS" mapIdentifier="TurnOnNewProfile">
+    <DisplayName>KVM-TurnProfileMS</DisplayName>
+    <Scope>environment</Scope>
+    <Get assignTo="isTurnOnProfileMS" index="1">
+        <Key>
+            <Parameter>switch</Parameter>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

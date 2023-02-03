@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-ChangeSubscriberStatus">
+    <DisplayName>RF-ChangeSubscriberStatus</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Add>
+            <Headers>
+                <Header name="FaultHeader">ChangeSubscriberStatusError</Header>
+            </Headers>
+        </Add>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

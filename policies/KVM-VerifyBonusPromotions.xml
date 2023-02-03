@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-VerifyBonusPromotions" mapIdentifier="BonusPromotionsCM">
+    <DisplayName>KVM-VerifyBonusPromotions</DisplayName>
+    <Properties/>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="haveBonusPromotions">
+        <Key>
+            <Parameter ref="PartnerId"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>
