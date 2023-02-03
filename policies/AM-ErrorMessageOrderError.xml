@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageOrderError">
+    <DisplayName>AM-ErrorMessageOrderError</DisplayName>
+    <Remove>
+        <Headers>
+            <Header name="FaultHeader"/>
+        </Headers>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {   
+                "errorCode": "@errorMessage.code#",
+                "OrderStatus": "@errorMessage.message#",
+                "description": "@errorMessage.details#"
+            }
+        </Payload>
+        <StatusCode>{errorMessage.status}</StatusCode>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="response">error</AssignTo>
+</AssignMessage>

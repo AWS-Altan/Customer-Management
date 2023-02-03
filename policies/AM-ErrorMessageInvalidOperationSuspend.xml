@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageInvalidOperationSuspend">
+    <DisplayName>AM-ErrorMessageInvalidOperationSuspend</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>44119195</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Invalid operation. The Subscriber status is Suspend.@44119195</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

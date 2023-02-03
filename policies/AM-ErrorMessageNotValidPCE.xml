@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageNotValidPCE">
+    <DisplayName>AM-ErrorMessageNotValidPCE</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Can not be subscribed singly since it depends on the primary offering.</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

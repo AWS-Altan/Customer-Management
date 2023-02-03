@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMsisdnInfo">
+    <DisplayName>AM-ErrorMsisdnInfo</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload variableSuffix="#" variablePrefix="@" contentType="application/json">
+            {
+                "errorCode": "@errorCode#",
+                "description": "@description#"
+            }
+        </Payload>
+    </Set>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Ref>statusCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>errorCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>description</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

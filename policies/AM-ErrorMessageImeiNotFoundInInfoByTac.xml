@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageImeiNotFoundInInfoByTac">
+    <DisplayName>AM-ErrorMessageImeiNotFoundInInfoByTac</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Imei not found and not connected to network</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>
