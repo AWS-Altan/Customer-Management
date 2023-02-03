@@ -13,7 +13,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>Auditor.partnerId</Name>
-        <Value>PartnerId</Value>
+        <Ref>PartnerId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>
