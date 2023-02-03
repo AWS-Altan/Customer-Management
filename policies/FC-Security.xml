@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout name="FC-Security" enabled="true" continueOnError="false" async="false">
+    <DisplayName>FC-Security</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>UF-Security</SharedFlowBundle>
+</FlowCallout>

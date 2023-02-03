@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout name="FC-ValidateHSS" enabled="true" continueOnError="false" async="false">
+    <DisplayName>FC-ValidateHSS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>BF-ValidateHSS</SharedFlowBundle>
+</FlowCallout>

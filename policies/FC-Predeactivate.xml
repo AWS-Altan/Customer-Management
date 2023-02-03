@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="true" continueOnError="true" enabled="true" name="FC-Predeactivate">
+    <DisplayName>FC-Predeactivate</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>BF-Predeactivate</SharedFlowBundle>
+</FlowCallout>

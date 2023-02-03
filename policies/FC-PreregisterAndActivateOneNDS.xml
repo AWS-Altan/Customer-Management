@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-PreregisterAndActivateOneNDS">
+    <DisplayName>FC-PreregisterAndActivateOneNDS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>BF-PreregisterAndActivateOneNDS</SharedFlowBundle>
+</FlowCallout>

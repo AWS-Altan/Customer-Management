@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JavaCallout async="false" continueOnError="false" enabled="true" name="JC-ValidateFile">
+    <DisplayName>JC-ValidateFile</DisplayName>
+    <Properties/>
+    <ClassName>com.altan.validate.file.util.ValidateFile</ClassName>
+    <ResourceURL>java://ValidateFile.jar</ResourceURL>
+</JavaCallout>
