@@ -1,0 +1,64 @@
+var offerings = JSON.parse(context.getVariable("offerings"));
+var payload = '';
+
+
+for (i = 0; i < offerings.length; i++) { 
+    payload = payload+'               <off:AddOffering>'  +
+        '                   <com:OfferingId>'  +
+        '                       <com:OfferingId>'+offerings[i].toString()+'</com:OfferingId>'  +
+        '                   </com:OfferingId>'  +
+        '                   <!--Optional:-->'  +
+        '                   <!--0 to 100 repetitions:-->'  +
+        '                   <off:EffectiveMode>'  +
+        '                       <com:Mode>I</com:Mode>'  +
+        '                       <!--Optional:-->'  +
+        '                       <com:EffectiveDate>'+context.getVariable("timestamp_mex")+'</com:EffectiveDate>'  +
+        '                   </off:EffectiveMode>'  +
+        '                   <off:ExpirationDate>'+context.getVariable("timestamp_mex")+'</off:ExpirationDate>'  +
+        '                   <off:ActiveMode>'  +
+        '                       <com:Mode>A</com:Mode>'  +
+        '                       <!--You have a CHOICE of the next 2 items at this level-->'  +
+        '                       <com:ActiveDate>'+context.getVariable("timestamp_mex")+'</com:ActiveDate>'  +
+        '                   </off:ActiveMode>'  +
+        '               </off:AddOffering>';
+}
+
+
+var payloadPurchase = '               <com:ReqHeader>'  +
+'                   <!--Optional:-->'  +
+'                   <com:Version>1</com:Version>'  +
+'                   <!--Optional:-->'  +
+'                   <com:BusinessCode>ChangeSupplementaryOffering</com:BusinessCode>'  +
+'                   <com:TransactionId>'+context.getVariable("transactionId")+'</com:TransactionId>'  +
+'                   <com:Channel>51</com:Channel>'  +
+'                   <!--Optional:-->'  +
+'                   <com:PartnerId>'+context.getVariable("PartnerId")+'</com:PartnerId>'  +
+'                   <!--Optional:-->'  +
+'                   <com:BrandId>101</com:BrandId>'  +
+'                   <com:ReqTime>'+context.getVariable("timestamp_mex")+'</com:ReqTime>'  +
+'                   <!--Optional:-->'  +
+'                   <com:TimeFormat>'  +
+'                       <com:TimeType>2</com:TimeType>'  +
+'                       <!--Optional:-->'  +
+'                       <com:TimeZoneID>1083</com:TimeZoneID>'  +
+'                   </com:TimeFormat>'  +
+'                   <!--Optional:-->'  +
+'                   <com:MsgLanguage>2049</com:MsgLanguage>'  +
+'                   <com:AccessUser>'+context.getVariable("Operation-User")+'</com:AccessUser>'  +
+'                   <com:AccessPassword>'+context.getVariable("Operation-Password")+'</com:AccessPassword>'  +
+'                   <!--Optional:-->'  +
+'                   <com:OperatorId>'+context.getVariable("OperatorId")+'</com:OperatorId>'  +
+'                   <!--0 to 100 repetitions:-->'  +
+'                   <com:AdditionalProperty>'  +
+'                       <com:Code>1</com:Code>'  +
+'                       <com:Value>1</com:Value>'  +
+'                   </com:AdditionalProperty>'  +
+'               </com:ReqHeader>'  +
+'               <off:AccessInfo>'  +
+'                   <com:ObjectIdType>4</com:ObjectIdType>'  +
+'                   <com:ObjectId>'+context.getVariable("msisdn")+'</com:ObjectId>'  +
+'               </off:AccessInfo>'  +
+'               <!--0 to 100 repetitions:-->'  + payload;
+
+
+context.setVariable("payloadPurchase", payloadPurchase);
