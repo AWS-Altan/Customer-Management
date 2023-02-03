@@ -2,6 +2,8 @@ var operation = context.getVariable("operation");
 var offeringsString = '';
 var isPossiblePurchase = 'true';
 var deleteOffersWithOrderId = 'false';
+var orderIdApigeeJs = context.getVariable("orderIdApigee");
+var externalOrderIdCommand = '<off:ExternalOrderID>'+orderIdApigeeJs+'</off:ExternalOrderID>';
 
 switch(operation) {
     case "PORT-IN":
@@ -14,39 +16,57 @@ switch(operation) {
         offeringsString = context.getVariable('responseCatalogPromotions.offerIdPromotion');
         break;
     case "COMPRA":
-        var ported = context.getVariable('responseControlPromotions.ported');
-        var incrementalBonus = context.getVariable('responseCatalogPromotions.incrementalBonus');
-        var incrementalOfferId = context.getVariable('responseCatalogPromotions.incrementalOfferId');
-        var purchaseCounter = context.getVariable('responseControlPromotions.purchaseCounter');
-        var operationSubType = context.getVariable('operationSubType');
-        var getPortabilitiesPorted = context.getVariable('getPortabilitiesPorted')
         
-        if(ported == 'SI' || getPortabilitiesPorted == 'SI'){
-            offeringsString = context.getVariable('responseCatalogPromotions.offerIdPromotionPorta'); 
-        }
-        if((ported == 'NO' || getPortabilitiesPorted == 'NO') && incrementalBonus == 'NO'){
-            offeringsString = context.getVariable('responseCatalogPromotions.offerIdPromotion');
-        }
-        if((ported == 'NO' || getPortabilitiesPorted == 'NO') && incrementalBonus == 'SI'){
-            purchaseCounter = (typeof(purchaseCounter) !== 'undefined' && purchaseCounter !== null && purchaseCounter !== "" && purchaseCounter !== "None")?parseInt(purchaseCounter):0;
-            incrementalOfferIdArr = incrementalOfferId.split('|');
-            if(operationSubType == '1'){
-                if(purchaseCounter<=(incrementalOfferIdArr.length + 1)){
-                    purchaseCounterAfterPurchase = purchaseCounter + 1;
-                    context.setVariable('purchaseCounterAfterPurchase', purchaseCounterAfterPurchase.toString());
-                    offeringsString = incrementalOfferIdArr[purchaseCounter];    
+        var purchaseConventionalBonus = context.getVariable('purchaseConventionalBonus');
+        if(purchaseConventionalBonus == "true"){
+            var ported = context.getVariable('responseControlPromotions.ported');
+            var purchaseCounter = context.getVariable('responseControlPromotions.purchaseCounter');
+            var incrementalBonus = context.getVariable('responseCatalogPromotions.incrementalBonus');
+            var incrementalOfferId = context.getVariable('responseCatalogPromotions.incrementalOfferId');
+            var operationSubType = context.getVariable('operationSubType');
+            var getPortabilitiesPorted = context.getVariable('getPortabilitiesPorted');
+            var hasSuppOffersToDelete = 'false';
+            
+            if(ported == 'SI' || getPortabilitiesPorted == 'SI'){
+                if (ported == 'SI'){
+                    offeringsString = context.getVariable('responseRecentlyAssociatedPurchase.offerIdPromotionPorta'); 
                 }else{
-                    isPossiblePurchase = 'false';
+                    offeringsString = context.getVariable('responseCatalogPromotions.offerIdPromotionPorta'); 
                 }
             }
-            if(operationSubType == '2'){
-                if(incrementalOfferIdArr.length>0){
-                    offeringsString = incrementalOfferIdArr[0]; 
-                }else{
-                    isPossiblePurchase = 'false';
+            if((ported == 'NO' || getPortabilitiesPorted == 'NO') && incrementalBonus == 'NO'){
+                offeringsString = context.getVariable('responseCatalogPromotions.offerIdPromotion');
+            }
+            if((ported == 'NO' || getPortabilitiesPorted == 'NO') && incrementalBonus == 'SI'){
+                purchaseCounter = (typeof(purchaseCounter) !== 'undefined' && purchaseCounter !== null && purchaseCounter !== "" && purchaseCounter !== "None")?parseInt(purchaseCounter):0;
+                incrementalOfferIdArr = incrementalOfferId.split('|');
+                if(operationSubType == '1'){
+                    if(purchaseCounter<=(incrementalOfferIdArr.length + 1)){
+                        purchaseCounterAfterPurchase = purchaseCounter + 1;
+                        context.setVariable('purchaseCounterAfterPurchase', purchaseCounterAfterPurchase.toString());
+                        offeringsString = incrementalOfferIdArr[purchaseCounter];    
+                    }else{
+                        isPossiblePurchase = 'false';
+                    }
+                }
+                if(operationSubType == '2'){
+                    if(incrementalOfferIdArr.length>0){
+                        offeringsString = incrementalOfferIdArr[0]; 
+                    }else{
+                        isPossiblePurchase = 'false';
+                    }
                 }
             }
-        }   
+            hasSuppOffersToDelete = context.getVariable('responseCatalogPromotions.compraEliminaOfertaActual') == "SI"?'true':hasSuppOffersToDelete;
+            context.setVariable('hasSuppOffersToDelete', hasSuppOffersToDelete);    
+        }else{
+            var offerIdFromVigencias = context.getVariable('offerIdFromVigencias');
+            if((typeof(offerIdFromVigencias) !== 'undefined' || offerIdFromVigencias !== null || offerIdFromVigencias !== "")){
+                offeringsString = offerIdFromVigencias;
+            }else{
+                isPossiblePurchase = 'false';
+            }
+        }
         break;
     case "CAMBIO":
         var getPortabilitiesPorted = context.getVariable('getPortabilitiesPorted');
@@ -133,7 +153,7 @@ if(isPossiblePurchase == 'true'){
     '                   <com:ObjectIdType>4</com:ObjectIdType>'  +
     '                   <com:ObjectId>'+context.getVariable("msisdn")+'</com:ObjectId>'  +
     '               </off:AccessInfo>'  +
-    '               <!--0 to 100 repetitions:-->'  + payload;
+    '               <!--0 to 100 repetitions:-->'  + payload + externalOrderIdCommand;
     
     
     context.setVariable("payloadPurchase", payloadPurchase);   

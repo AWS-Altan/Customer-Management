@@ -1,14 +1,20 @@
 var offeringId = context.getVariable("offeringId")
 var serviceabilityVersion = context.getVariable("serviceabilityVersion");
 var isServiceabilityVersion3=serviceabilityVersion === '3'?'true':'false';
+// Main 
+dataOffering = validateOfferingId(offeringId);
+var dataOfferingAnalizeArr = dataOffering.split('|');
+print('verifyServiceability: '+dataOfferingAnalizeArr[0]);
+print("isHBBOffer: "+dataOfferingAnalizeArr[1]);
+print('isHbbPlusBeta: '+dataOfferingAnalizeArr[2]);
+print("isSatelliteHBBLine: "+dataOfferingAnalizeArr[3]);
+
+context.setVariable("verifyServiceability", dataOfferingAnalizeArr[0]);
+context.setVariable('isHBBOffer', dataOfferingAnalizeArr[1]);
+context.setVariable('isHbbPlusBeta', dataOfferingAnalizeArr[2]);
+context.setVariable("isSatelliteHBBLine", dataOfferingAnalizeArr[3]);
 context.setVariable('isServiceabilityVersion3', isServiceabilityVersion3);
 
-// Main 
-try{
-    validateOfferingId(offeringId);
-}catch(err){
-    context.setVariable("verifyServiceability", "error");
-}
 
 // Get speed from an offering id
 function getSpeed(offeringId){
@@ -32,38 +38,47 @@ function isSatelliteHBBLine(offeringId){
             }
         }
     }
-    context.setVariable("isSatelliteHBBLine", satelliteHBBLine);
     return satelliteHBBLine;
+}
+
+function validateOfferingIdHbbPlusBeta(offeringId) {
+    var isHbbPlusBeta = 'false';
+    if(parseInt(offeringId.substr(5,2)) == 57){
+        isHbbPlusBeta = 'true';
+    }
+    return isHbbPlusBeta;
 }
 
 function validateOfferingId(offeringId) {
     // Get Speeds
-
     var speed = getSpeed(offeringId);
+    var isHBBOffer = 'false';
+    var verifyServiceability = '';
+    var returnData = '';
+    var isHbbPlusBeta = 'false';
+    var isSatelliteHBBLineFlag = 'false';
     
     if(offeringId[1] == "0" || offeringId[1] == "1" || offeringId[1] == "2"){
-        context.setVariable("isHBBOffer", "true");
+        //context.setVariable("isHBBOffer", "true");
+        isHBBOffer = 'true';
     }
-    else{
-        context.setVariable("isHBBOffer", "false");
-    }
-
     // Validate Speed
     if(speed === 0){
-        context.setVariable("verifyServiceability", "error");
-        return;
+        verifyServiceability = 'error';
     }else if(speed == 99){
-    	context.setVariable("verifyServiceability", "false");
+        verifyServiceability = 'false';
     }else{
         // Validate HBB or mobility
         if(offeringId[1] == "0" || offeringId[1] == "1" || offeringId[1] == "2"){
-            context.setVariable("verifyServiceability", "true");
-            isSatelliteHBBLine(offeringId);
+            verifyServiceability = 'true';
+            isHbbPlusBeta = validateOfferingIdHbbPlusBeta(offeringId);
+            isSatelliteHBBLineFlag = isSatelliteHBBLine(offeringId);
         }else if(offeringId[1] == "3" || offeringId[1] == "4" || offeringId[1] == "5"){
-            context.setVariable("verifyServiceability", "false");
+            verifyServiceability = 'false';
         }else{
-            context.setVariable("verifyServiceability", "false");
-            
+            verifyServiceability = 'false';
         }
     }
+    returnData = verifyServiceability+'|'+isHBBOffer+'|'+isHbbPlusBeta+'|'+isSatelliteHBBLineFlag;
+    return returnData;
 }

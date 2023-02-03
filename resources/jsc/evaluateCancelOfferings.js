@@ -6,6 +6,16 @@ var expireEffectiveDate = context.getVariable("expireEffectiveDate");
 
 var currentDate = context.getVariable("timestamp_mex");
 
+var formatDate = "YYYYMMDDHHmmss";
+
+var format = "YYYYMMDD";
+
+var deleteCaseSKY=( typeof(context.getVariable("delete")) !== 'undefined' && context.getVariable("delete") !== null && context.getVariable("delete") !== "" ) ? context.getVariable("delete") : "";
+deleteCaseSKY=deleteCaseSKY.toString();
+print("\ndeleteCaseSKY::"+ deleteCaseSKY.toString() + "\n" );
+
+var deleteOfferingsSKY = [];
+
 main();
 
 
@@ -18,8 +28,10 @@ function main(){
 	
 	
 	if ( typeof(queryOfferings) !== 'undefined' && queryOfferings !== null && queryOfferings !== "" && Array.isArray(queryOfferings)){
+	    print("\n searchManyOffers \n");
 		searchManyOffers(cancelOffering, cancelSecuencyOffering, queryOfferings, deleteOfferings);
 	}else{
+	    print("\n searchOneOffer \n");
 		searchOneOffer(cancelOffering, cancelSecuencyOffering, queryOfferings, deleteOfferings);
 	}
 	
@@ -39,6 +51,28 @@ function main(){
         '               </off:DeleteOffering>';
         isValidOfferId = true;
 	}
+	
+	//TODO STR para pruebas Cambiar condicion
+	if( deleteCaseSKY ==="1"){
+	//if( deleteCaseSKY ==="0"){
+	    print("Caso SKYHBB::" +  deleteOfferingsSKY.length +"\n");
+	    for ( i = 0; i < deleteOfferingsSKY.length ; i++){
+    	    if ( isLowerThanToday(deleteOfferingsSKY[i].effectiveDate)  ){
+    	        context.setVariable("isLowerThanToday", "true" );
+    	        //return;
+    	    }
+    		payloadDelete += 
+    		'<off:DeleteOffering>'  +
+            '                   <off:OfferingId>'  +
+            '                       <com:OfferingId>'+deleteOfferingsSKY[i].offeringId+'</com:OfferingId>'  +
+            '                       <com:PurchaseSeq>'+deleteOfferingsSKY[i].secuency+'</com:PurchaseSeq>'  +
+            '                   </off:OfferingId>'  +
+            evalTypeMode(moment( currentDate , formatDate).format(format))+
+            '               </off:DeleteOffering>';
+            isValidOfferId = true;
+	    }
+	    
+	}
       
    payloadDelete = setCompletePayload(payloadDelete);
    context.setVariable("payloadDeleteSection", payloadDelete);
@@ -55,13 +89,42 @@ function searchOneOffer(offeringId, secuency, offeringSource,deleteOfferings){
 		deleteOfferings.push(tempOffering);
 		return true;
 		
+	}else{
+	    print("\n OfferingId.OfferingId::" +  offeringSource.OfferingId.OfferingId + "  EffectiveDate::" + offeringSource.EffectiveDate + "\n");
+	    //TODO STR para pruebas Cambiar condicion
+	    if ( deleteCaseSKY==='1' && offeringSource.OfferingId.OfferingId == offeringId && isLowerThanToday( offeringSource.EffectiveDate ) ){
+	    //if ( deleteCaseSKY==='0' && offeringSource.OfferingId.OfferingId == offeringId && isLowerThanToday( offeringSource.EffectiveDate ) ){
+	       if(offeringSource.OfferingId.PurchaseSeq == cancelSecuencyOffering){ 
+	    		print ("Entra a caso");
+		   		tempOffering.secuency = offeringSource.OfferingId.PurchaseSeq;
+				tempOffering.offeringId = offeringSource.OfferingId.OfferingId;
+				tempOffering.effectiveDate = offeringSource.EffectiveDate;
+				deleteOfferingsSKY.push(tempOffering);
+				return true;
+	    	}else{
+	    		return false;
+	    	}
+ 
+    	}
+	    
 	}
 	return false;
 }
 
 function searchManyOffers(offeringId, secuency, offerings, deleteOfferings){
 	for ( var i = 0; i < offerings.length; i++){
-		if ( searchOneOffer(offeringId, secuency, offerings[i], deleteOfferings) ) break;
+	    
+	    //TODO STR para pruebas Cambiar condicion
+        if( deleteCaseSKY !=="1"){
+        //if( deleteCaseSKY !=="0"){
+
+		    if ( searchOneOffer(offeringId, secuency, offerings[i], deleteOfferings) ) break;
+		    
+        }else{
+            
+            searchOneOffer(offeringId, secuency, offerings[i], deleteOfferings);
+        }
+        
 	}
 }
 

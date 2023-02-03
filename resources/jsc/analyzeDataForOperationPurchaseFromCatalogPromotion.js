@@ -6,8 +6,6 @@ var timestamp_mx = context.getVariable("timestamp_mex");
 var format = "YYYYMMDD";
 var today = moment().tz("America/Mexico_City").format(format);
 
-limitDate = moment(limitDate).format(format);
-print('today: '+today+' limitDate: '+limitDate);
 var operationSubType = context.getVariable('operationSubType');
 var closeRegister = 'false';
 
@@ -18,31 +16,64 @@ if(operationSubType == '1'){
     
     
     if(recurrenceType == 'CANTIDAD_COMPRAS'){
-        if(parseInt(purchaseCounter)< parseInt(recurrence)){
+        if(parseInt(purchaseCounter)==9999){
+            print("|purchaseCounter::9999");
+            goToPurchase = 'true';
+            context.setVariable('updateControlPromotionFromCantidadCompras', 'true');
+            context.setVariable('insertControlPromotionFromGetPortabilities', 'false');
+            purchaseCounterAfterPurchase = 0;
+            context.setVariable('purchaseCounterAfterPurchase', purchaseCounterAfterPurchase.toString());
+            
+        }else if(parseInt(purchaseCounter)< parseInt(recurrence)){
+            print("|purchaseCounter menor a  recurrence");
             goToPurchase = 'true';
             context.setVariable('updateControlPromotionFromCantidadCompras', 'true');
             context.setVariable('insertControlPromotionFromGetPortabilities', 'false');
             purchaseCounterAfterPurchase = parseInt(purchaseCounter) + 1;
             context.setVariable('purchaseCounterAfterPurchase', purchaseCounterAfterPurchase.toString());
             //PASO 14
-        }
-        if(parseInt(purchaseCounter)>= parseInt(recurrence)){
+        }else if(parseInt(purchaseCounter)>= parseInt(recurrence)){
+            print("|purchaseCounter mayorigual a recurrence");
             needUpdateControlPromotion = 'true';
             closeRegister = 'true';
             //PASO 11 Y LUEGO 17
+            queryByFirstAssignment="false";
+            context.setVariable('queryByFirstAssignment', queryByFirstAssignment);
+            context.setVariable('responseControlPromotions.ported', "NO");
+            
         }
     }
     
     if(recurrenceType == 'CANTIDAD_DIAS'){
-        
-        if(parseInt(today) <= parseInt(limitDate)){
+        limitDate = moment(limitDate).format(format);
+        print('today: '+today+' limitDate: '+limitDate);
+
+        if( limitDate == '20990909'){
+            print("|limitDate::20990909");
+            needUpdateControlPromotion = 'true';
+            goToPurchase = 'true';
+            
+            context.setVariable('updateControlPromotionFromCantidadDias', 'true');
+            context.setVariable('insertControlPromotionFromGetPortabilities', 'false');
+            //limitDate = moment().tz("America/Mexico_City").add(parseInt(recurrence), "days").format(formatDate);
+            
+        }else if(parseInt(today) <= parseInt(limitDate)){
+            print("|limitDate menor a  hoy");
             goToPurchase = 'true';
             // PASO 14
-        }
-        if(parseInt(today) > parseInt(limitDate)){
+            context.setVariable('updateControlPromotionFromCantidadDias', 'true');
+            context.setVariable('insertControlPromotionFromGetPortabilities', 'false');
+
+        }else if(parseInt(today) > parseInt(limitDate)){
+            print("|limitDate mayor a hoy");
             needUpdateControlPromotion = 'true';
             closeRegister = 'true';
             //PASO 11 Y LUEGO 17
+            queryByFirstAssignment="false";
+            context.setVariable('queryByFirstAssignment', queryByFirstAssignment);
+            context.setVariable('promotionId', "");
+            context.setVariable('responseControlPromotions.ported', "NO");
+
         }
     }
     

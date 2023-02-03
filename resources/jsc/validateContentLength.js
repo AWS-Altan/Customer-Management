@@ -8,7 +8,7 @@ if(tam < 10485760){
 var operation = context.getVariable("operacion");
 
 if (operation == "suspends" || operation == "reactivates" || operation == "deactivates" || operation == "resumes" || operation == "predeactivates" || operation == "profiles"
-    || operation == "locks" || operation =="unlocks"){
+    || operation == "locks" || operation =="unlocks" || operation =="removes"){
     var ultima = operation.length;
     var operation = operation.substr(0, ultima-1);
     context.setVariable("operacion", operation);

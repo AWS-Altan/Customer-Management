@@ -13,6 +13,9 @@ var todayCompleteFormat = moment().tz("America/Mexico_City").format(formatDate);
 var todayAtFinalOfTheDay = moment(today).add(23, 'hours').add(30, 'minutes').format("YYYYMMDDHHmmss");
 var tomorrow = moment(today).add(1, 'days').format("YYYYMMDD");
 var tomorrowCompleteFormat= moment(tomorrow).add(1, 'seconds').format('YYYYMMDDHHmmss')
+var orderIdApigeeJs = context.getVariable("orderIdApigee");
+var externalOrderIdCommand = '<off:ExternalOrderID>'+orderIdApigeeJs+'</off:ExternalOrderID>';
+
 
 if(isProcessBatch!='true'){
     var expirationAndActivateDate = timestamp_mx;
@@ -102,7 +105,8 @@ var payloadPurchase = '               <com:ReqHeader>'  +
 '                   <com:ObjectIdType>4</com:ObjectIdType>'  +
 '                   <com:ObjectId>'+context.getVariable("msisdn")+'</com:ObjectId>'  +
 '               </off:AccessInfo>'  +
-'               <!--0 to 100 repetitions:-->'  + payload;
+'               <off:FlagStatus>'+context.getVariable("flagStatusSuppPurchase")+'</off:FlagStatus>'+
+'               <!--0 to 100 repetitions:-->'  + payload + externalOrderIdCommand;
 
 
 context.setVariable("payloadPurchase", payloadPurchase);
