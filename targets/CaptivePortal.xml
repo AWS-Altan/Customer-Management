@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="CaptivePortal">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusError")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "PredeactivateError")</Condition>
+                <Name>AM-ErrorMessagePredeactivate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateHSSError")</Condition>
+                <Name>AM-ErrorMessageValidateHSS</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReactivateSubError")</Condition>
+                <Name>AM-ErrorMessageReactivateSub</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReportLostError")</Condition>
+                <Name>AM-ErrorMessageReportLost</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CancelReportLostError")</Condition>
+                <Name>AM-ErrorMessageCancelReportLost</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryFreeUnitError")</Condition>
+                <Name>AM-ErrorMessageQueryFreeUnit</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ActivateSubscriberError")</Condition>
+                <Name>AM-ErrorMessageActivateSubscriberError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryEntityIdsError")</Condition>
+                <Name>AM-ErrorMessageQueryEntityIdsError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "PrepaidToPostpaidError")</Condition>
+                <Name>AM-ErrorMessagePrepaidToPostpaidError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSupplementaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageChangeSupplementaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySupplementaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQuerySupplementaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangePrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryOfferingDefault</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSubscriberStatusError")</Condition>
+                <Name>AM-ErrorMessageChangeSubscriberStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateQueryFreeUnit")</Condition>
+                <Name>AM-ErrorMessageValidateQueryFreeUnit</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryFreeUnitPurchaseError")</Condition>
+                <Name>AM-ErrorMessageQueryFreeUnitPurchase</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingIdError")</Condition>
+                <Name>AM-ErrorMessageOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCodeSubstatusError")</Condition>
+                <Name>AM-ErrorMessageValidateCodeSubstatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryOrderStatusError")</Condition>
+                <Name>AM-ErrorMessageQueryOrderStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>EV-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>AM-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "VerifyDateErrorPatch") OR (error.header.FaultHeader = "VerifyDateError")</Condition>
+                <Name>AM-ErrorMessageVerifyDate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DeactivateError")</Condition>
+                <Name>AM-ErrorMessageDeactivate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnsupportedOperation")</Condition>
+                <Name>AM-ErrorUnsupportedOperation</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ScheduleDateNull")</Condition>
+                <Name>AM-ErrorMessageScheduleDateNull</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MobilityOfferError")</Condition>
+                <Name>AM-ErrorMessageMobilityOffer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "AWSError")</Condition>
+                <Name>AM-ErrorMessageAWSResponse</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "resumeResponseMobilityLocked")</Condition>
+                <Name>AM-ErrorMessageResumeMobilityLocked</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "resumeResponseMobilityFalse")</Condition>
+                <Name>AM-ErrorMessageResumeMobilityFalse</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusNotSuspend")</Condition>
+                <Name>AM-ErrorMessageSubStatusNotSuspend</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IsInvalidAddressError")</Condition>
+                <Name>AM-ErrorMessageIsInvalidArea</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCaptivePortal</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURLCaptivePortal</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="resumeMobility">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-RequestCaptivePortal</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-IsCICUSer</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                    <Condition>isCicApp != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>isCicApp != "true" and responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateHBBOffer</Name>
+                    <Condition>isCicApp != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-ValidateAddress</Name>
+                    <Condition>isCicApp != "true" and isHBBOffer = 'true'</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidAddress</Name>
+                    <Condition>(isHBBOffer = 'true' and hasValidateAddress = "true" and isCicApp != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusError</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusNotSuspend</Name>
+                    <Condition>(responseQuerySubStatus.subStatus != "4")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BiuldRequestCaptivePortal</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorResumeMobility</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorResumeMobilityOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseResumeMobility</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResumeMobilityLocked</Name>
+                    <Condition>resumespm.response = "locked"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ResumeMobilityFalse</Name>
+                    <Condition>resumespm.response = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseResumeMobility</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetResponseContent</Name>
+                    <Condition>(hasResumeCatching = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-InsertResumeSPMCatching</Name>
+                    <Condition>(hasResumeCatching = "true")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/resumespm") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://52.5.233.163/cgi-bin/bigd/portal_cautivov5.cgi</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

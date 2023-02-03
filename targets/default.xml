@@ -1,0 +1,2392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusError")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "PredeactivateError")</Condition>
+                <Name>AM-ErrorMessagePredeactivate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateHSSError")</Condition>
+                <Name>AM-ErrorMessageValidateHSS</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReactivateSubError")</Condition>
+                <Name>AM-ErrorMessageReactivateSub</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReportLostError")</Condition>
+                <Name>AM-ErrorMessageReportLost</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CancelReportLostError")</Condition>
+                <Name>AM-ErrorMessageCancelReportLost</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryFreeUnitError")</Condition>
+                <Name>AM-ErrorMessageQueryFreeUnit</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ActivateSubscriberError")</Condition>
+                <Name>AM-ErrorMessageActivateSubscriberError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryEntityIdsError")</Condition>
+                <Name>AM-ErrorMessageQueryEntityIdsError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "PrepaidToPostpaidError")</Condition>
+                <Name>AM-ErrorMessagePrepaidToPostpaidError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSupplementaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageChangeSupplementaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySupplementaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQuerySupplementaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangePrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryOfferingDefault</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSubscriberStatusError")</Condition>
+                <Name>AM-ErrorMessageChangeSubscriberStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateQueryFreeUnit")</Condition>
+                <Name>AM-ErrorMessageValidateQueryFreeUnit</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryFreeUnitPurchaseError")</Condition>
+                <Name>AM-ErrorMessageQueryFreeUnitPurchase</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityVersionError")</Condition>
+                <Name>AM-ErrorMessageServiceabilityVersion</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingIdError")</Condition>
+                <Name>AM-ErrorMessageOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCodeSubstatusError")</Condition>
+                <Name>AM-ErrorMessageValidateCodeSubstatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryOrderStatusError")</Condition>
+                <Name>AM-ErrorMessageQueryOrderStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>EV-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>AM-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "VerifyDateErrorPatch") OR (error.header.FaultHeader = "VerifyDateError")</Condition>
+                <Name>AM-ErrorMessageVerifyDate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DeactivateError")</Condition>
+                <Name>AM-ErrorMessageDeactivate</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnsupportedOperation")</Condition>
+                <Name>AM-ErrorUnsupportedOperation</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ScheduleDateNull")</Condition>
+                <Name>AM-ErrorMessageScheduleDateNull</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MobilityOfferError")</Condition>
+                <Name>AM-ErrorMessageMobilityOffer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "AWSError")</Condition>
+                <Name>AM-ErrorMessageAWSResponse</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateLocalApps")</Condition>
+                <Name>AM-ErrorMessageValidateLocalApps</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetImeiHssError")</Condition>
+                <Name>AM-ErrorMessageGetImeiHss</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateError204")</Condition>
+                <Name>AM-ErrorMesaggeValidate204</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateLookupForOperatorError204")</Condition>
+                <Name>AM-ErrorMessageNotFoundOperator</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageDefaultServer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidProductError")</Condition>
+                <Name>AM-ErrorMessageInvalidProductError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "PredeactivateStatus")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeSuppError")</Condition>
+                <Name>AM-ErrorMessagePurchase</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InValidResponseResumeError")</Condition>
+                <Name>AM-ErrorMessageDefaultServer</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IsInvalidAddressError")</Condition>
+                <Name>AM-ErrorMessageIsInvalidArea</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "Band28Error")</Condition>
+                <Name>AM-ErrorMessageUnbarringBand28</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "NoBand28")</Condition>
+                <Name>AM-ErrorMessageNoBand28</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsError") OR (error.header.FaultHeader = "ErrorQueryParam")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageLenghtError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageLengthError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3Error")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3Error</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangeMSISDNError")</Condition>
+                <Name>AM-ErrorMessageChangeMSISDN</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidNIR")</Condition>
+                <Name>AM-ErrorMessageInvalidNIR</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "SubHasActionsNotifByClient")</Condition>
+                <Name>AM-ErrorMessageSubHasActionsNotifByClient</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DefaultOfferingIdErrorChange")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryDefaultOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "SubscriberStatusError")</Condition>
+                <Name>AM-ErrorMessageSubscriberStatusAtResume</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionInHssCommands")</Condition>
+                <Name>AM-ErrorMessagePreregisteredAndActiveHssCommands</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ReasonError")</Condition>
+                <Name>AM-ResponseReasonError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnbarringForzadoError")</Condition>
+                <Name>AM-ResponseUnbarringForzadoError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "LoopQueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageLoopQueryPurchasedPrimaryOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetCatalogPromotionsFiltered")</Condition>
+                <Name>AM-AcceptedMessageGetCatalogPromotionsFiltered</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionDeleteSupplementaryOfferings")</Condition>
+                <Name>AM-ErrorDeleteSupplementaryOfferings</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionInsertIntoPromotionControlTables")</Condition>
+                <Name>AM-ErrorMessageInsertIntoPromotionControlTables</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetCatalogPromotionsFilteredMoreThanOne")</Condition>
+                <Name>AM-ErrorMessageGetCatalogPromotionsFilteredMoreThanOne</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3ErrorSatellital")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3ErrorSatellital</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetControlPromotionsDetailOperationNotSupported")</Condition>
+                <Name>AM-ErrorMessageGetControlPromotionsDetailOperationNotSupported</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetControlPromotionsDetailExceedMaxEvents")</Condition>
+                <Name>AM-ErrorMessageGetControlPromotionsDetailExceedMaxEvents</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionGetControlPromotionsDataByOperation")</Condition>
+                <Name>AM-ErrorMessageGetControlPromotionsDataByOperation</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionWhenTryToAssignPromotionOffers")</Condition>
+                <Name>AM-ErrorMessageWhenTryToAssignPromotionOffers</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ExceptionErrorGetPortabilities")</Condition>
+                <Name>AM-ErrorGetPortabilities</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null and errorMessage.maxSpeed = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed != null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponseMaxSpeed</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed = null and statusAccepted.message = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+        <Step>
+            <Condition>(statusAccepted.message != null)</Condition>
+            <Name>AM-MessageTwoHundredTwoAccepted</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingDefault</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+            <Step>
+                <Name>EV-Request</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURL</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-TargetResponseError</Name>
+            </Step>
+            <Step>
+                <Name>EV-TargetError</Name>
+            </Step>
+            <Step>
+                <Name>RF-TargetError</Name>
+                <Condition>(TargetResponse.faultcode != null) and (TargetResponse.faultcode != "0000")</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="suspendMsisdn">
+            <Description>OperaciÃ³n que permite suspender un msisdn asociado a subscriptor</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeStatusSuspend</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusSuspend</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusSuspendOut</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <!--<Step>
+                    <Name>RF-RequestRepetitive</Name>
+                    <Condition>(responsePredeactivateSub.returnCode = "-999") OR (responsePredeactivateSub.returnCode is null)</Condition>
+                </Step>-->
+                <Step>
+                    <Name>EV-ChangeSubscriberStatus</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-UnsupportedOperation</Name>
+                    <Condition>(responseChangeStatus.returnCode == "1211000521") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSubscriberStatus</Name>
+                    <Condition>(responseChangeStatus.returnCode != "0000") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncSuspend</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatus</Name>
+                    <Condition>async = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatusAsync</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch") and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatusAsyncAWS</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name = "aws_batch")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/suspend") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="reactivateMsisdn">
+            <Description>ReactivarMsisdn</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!-- Se remueven politicas para validar correspondencia BE vs DN
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusError</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000")</Condition>
+                </Step>
+                
+                <Step>
+                    <Name>FC-GetReasonCode</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-GetSubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-PredeactivateStatus</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000" or ( responseQuerySubStatus.subStatus != "5" and responseQuerySubStatus.subStatus != "B07"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestReactivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataReactivate</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataReactivateOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <!--<Step>
+                    <Name>RF-RequestRepetitive</Name>
+                    <Condition>(responsePredeactivateSub.returnCode = "-999") OR (responsePredeactivateSub.returnCode is null)</Condition>
+                </Step>-->
+                <Step>
+                    <Name>EV-Reactivate</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetOrderIdToLoopQueryReactivate</Name>
+                </Step>
+                <Step>
+                    <Name>RF-UnsupportedOperation</Name>
+                    <Condition>(responseChangeStatus.returnCode == "1211000521")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ReactivateSubError</Name>
+                    <Condition>(responseReactivateSubs.returnCode != "0000")</Condition>
+                </Step>
+                <!-- Se quita por requerimiento de suspension y reanudacion fase 2 -->
+                <!--Step>
+                    <Name>AM-SetStatusReactivate</Name>
+                </Step>
+                <Step>
+                    <Name>FC-SaveMsisdnStatus</Name>
+                </Step-->
+                <Step>
+                    <Name>FC-AsyncReactivate</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseReactivateSubs</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/reactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preDeactivateMsisdn">
+            <Description>OperaciÃ³n que permite dar de baja a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!-- Se remueven politicas para validar correspondencia BE vs DN
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusError</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-ScheduledAsyncOrders</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsyncOperations</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyAsyncOperations</Name>
+                    <Condition>areThereOperations = "true" AND ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetSubscriberStatus</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-PredeactivateStatus</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000" or responseQuerySubStatus.subStatus = "5" or responseQuerySubStatus.subStatus = "B07") and ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetReasonCode</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestPredeactivate</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataPredeactivate</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataPredeactivateOut</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-Predeactivate</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <!--<Step>
+                    <Name>RF-RequestRepetitive</Name>
+                    <Condition>(responsePredeactivateSub.returnCode = "-999") OR (responsePredeactivateSub.returnCode is null)</Condition>
+                </Step>-->
+                <Step>
+                    <Name>RF-PredeactivateError</Name>
+                    <Condition>(responsePredeactivateSubs.returnCode != "0000") and ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <!-- Se quita por requerimiento suspension, reanudacion, reactivacion fase 2-->
+                <!--Step>
+                    <Name>AM-SetMsisdnStatusPredeactivate</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name = "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SaveMsisdnStatus</Name>
+                    <Condition>(async = "false") or ((async = "true") and (apigee.developer.app.name = "aws_batch"))</Condition>
+                </Step-->
+                <Step>
+                    <Name>FC-AsyncPredeactivate</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponsePredeactivateSub</Name>
+                    <Condition>async = "false"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/predeactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="deactivateMsisdn">
+            <Description>OperaciÃ³n que permite dar de baja a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestDeactivate</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataDeactivate</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataDeactivateOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <!--<Step>
+                    <Name>RF-RequestRepetitive</Name>
+                    <Condition>(responsePredeactivateSub.returnCode = "-999") OR (responsePredeactivateSub.returnCode is null)</Condition>
+                </Step>-->
+                <Step>
+                    <Name>EV-DeactivateResponse</Name>
+                </Step>
+                <Step>
+                    <Name>RF-DeactivateError</Name>
+                    <Condition>responseDeactivateSubs.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncDeactivate</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseDeactivateSub</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/deactivate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="resume">
+            <Description>Resume</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-IsCICUSer</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMsisdnStatusAtResume</Name>
+                </Step>
+                <Step>
+                    <Name>RF-SubscriberStatusAtResume</Name>
+                    <Condition>returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                    <Condition>isCicApp != "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>isCicApp != "true" and responsePrimaryOffering.returnCode != "0000" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateHBBOffer</Name>
+                    <Condition>isCicApp != "true" AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetReasonCode</Name>
+                    <Condition>(isHBBOffer = 'true' OR isFixedTel = "true") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <!-- se reintegra validacion por requerimiento de suspension, reanudacion y reactivacion fase 2 -->
+                <Step>
+                    <Name>FC-ValidateBand28</Name>
+                    <Condition>resumeVersion == "2" and (isMBBOffer == "true" or isMIFIOffer == "true") and (reason = "1" or reason = "" or reason is null or reason = "0") or (reason &gt; 1 and reason_code &gt; 1)</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-AllowResumeNoBand28</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-ImeiNotAllowedValidation</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-InfoByTac</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InfoByTacNotAllowed</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null) and deviceType == "0"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InfoByTacNotAllowed</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null) and ( band28!="1" or   (band28=="1" and category == "No Compatible") )</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-ValidateAddress</Name>
+                    <Condition>(isCicApp != "true" and reason_code = "2") and (isHBBOffer = 'true' OR isFixedTel = "true")  or (reason &gt; 1 and reason_code &gt; 1) AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidAddress</Name>
+                    <Condition>(isHBBOffer = 'true' OR isFixedTel = "true") and (hasValidateAddress = "true" and isCicApp != "true"  and reason_code = "2")  or (reason &gt; 1 and reason_code &gt; 1) AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeStatusResume</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusResume</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusResumeOut</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <!--<Step>
+                    <Name>RF-RequestRepetitive</Name>
+                    <Condition>(responsePredeactivateSub.returnCode = "-999") OR (responsePredeactivateSub.returnCode is null)</Condition>
+                </Step>-->
+                <Step>
+                    <Name>EV-ChangeSubscriberStatus</Name>
+                    <Condition>((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSubscriberStatus</Name>
+                    <Condition>(responseChangeStatus.returnCode != "0000") AND ((async = "false") OR (async = "true" AND apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncResume</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatus</Name>
+                    <Condition>async = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatusAsync</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch") and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatusAsyncAWS</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name = "aws_batch")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/resume") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="activateForBatch">
+            <Description>Permite activar un MSISDN sin cambiar la oferta primaria.</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetCatalog_recharge_channel</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-Getcatalog_recharge_pipe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyOfferingId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryServiceability</Name>
+                    <Condition>(verifyServiceability = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-OfferingError</Name>
+                    <Condition>(verifyServiceability= "error")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataActivateSubscriberOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ActivateSubscriberError</Name>
+                    <Condition>(responseActivateSubscriber.returnCode != "0000") AND (responseActivateSubscriber.returnCode != "1211000163")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-MSLocationActivate</Name>
+                    <Condition>(verifyServiceability = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-PreregisterAndActivateOneNDS</Name>
+                </Step>
+		<Step>
+                    <Name>FC-SendCommandsHSSHPE</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ActivateHSSA</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseActivateBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/activatebatch") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="activateMsisdn">
+            <Description>ActivaciÃ³n de un Msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduledAsyncOrders</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsyncOperations</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyAsyncOperations</Name>
+                    <Condition>areThereOperations = "true" AND ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyOfferingId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryServiceability</Name>
+                    <Condition>(verifyServiceability = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-OfferingError</Name>
+                    <Condition>(verifyServiceability= "error")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-SatellitalHBBServiceabilityVersionValidator</Name>
+                    <Condition>(verifyServiceability = "true") AND (isSatelliteHBBLine ="true") and (isServiceabilityVersion3 !="true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-OneNdsExecutionPart</Name>
+                </Step>
+                <Step>
+                    <Name>FC-PreregisterAndActivateOneNDS</Name>
+                    <Condition>oneNdsCommandExecutionPart="1"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataActivateSubscriberOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseActivateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ActivateSubscriberError</Name>
+                    <Condition>(responseActivateSubscriber.returnCode != "0000") AND (responseActivateSubscriber.returnCode != "1211000163")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetDataScheduleAsync</Name>
+                    <Condition>async = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleAsync</Name>
+                    <Condition>async = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ActivateSyncResponse</Name>
+                    <Condition>async = "true" and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-LoopQueryOrderStatus</Name>
+                    <Condition>(responseActivateSubscriber.returnCode != "1211000163") AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QueryOrderStatus</Name>
+                    <Condition>(rspQOS.returnCode != "0000") AND (responseActivateSubscriber.returnCode != "1211000163")  AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ChangePrimaryOffering</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ChangePrimaryOffering</Name>
+                    <Condition>(cpo.returnCode != "0000") AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyChangePrimaryOfferOrderId</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-IsFixedTelephony</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-FixedTelephonyAtActivation</Name>
+                    <Condition>(async != true) AND isFixedTel = "true"</Condition>
+                </Step>
+                <!--Step>
+                    <Name>FC-SetPortabilityOperationScript</Name>
+                    <Condition>msisdnPorted != "" AND msisdnPorted != null AND async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-VerifyBonusPromotions</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-PurchasePromotionalBonus</Name>
+                    <Condition>haveBonusPromotions = "True" AND async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMobilityOfferDM</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ExpireEffectiveDateActivate</Name>
+                    <Condition>(expireEffectiveDate != "") AND (expireEffectiveDate IsNot null)  AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-Predeactivate</Name>
+                    <Condition>(oldMsisdn != "") AND (oldMsisdn != null)  AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetStatusActive</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-SaveMsisdnStatus</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000") AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UpdateQoS</Name>
+                    <Condition>(isFixedTelephony == "true") AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-MSLocationActivate</Name>
+                    <Condition>(verifyServiceability = "true") AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateOTAConfig</Name>
+                    <Condition>async != "true"</Condition>
+                </Step-->
+                <Step>
+                    <Name>FC-AsyncActivation</Name>
+                    <Condition>async != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseActivateSubscriber</Name>
+                    <Condition>(serviceabilityVersion !="3") AND (rspAWS.id_transation_cudar is null) AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseActivateSubscriberServV3</Name>
+                    <Condition>(serviceabilityVersion =="3") AND (rspAWS.id_transation_cudar is null) AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseActivateEndDate</Name>
+                    <Condition>(serviceabilityVersion !="3") AND (expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null) AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseActivateEndDateServV3</Name>
+                    <Condition>(serviceabilityVersion =="3") AND (expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null) AND (async != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-FixedTelephonyResponse</Name>
+                    <Condition>(rspChangeMSISDN.returnCode = "0000") AND (async != "true") AND isFixedTel = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-FixedTelephonyWithFIFFResponse</Name>
+                    <Condition>(rspChangeMSISDN.returnCode = "0000") AND (async != "true") AND isFixedTel = "true" AND (expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null) </Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/activate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="profile">
+            <Description>OperaciÃ³n que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <!--Step> Se quita por reducción de tiempos, el status se obtiene de querysubinfo
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusError</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000")</Condition>
+                </Step-->
+                <Step>
+                    <Name>AM-SetMsisdnStatusInProfile</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <!--Step>
+                    <Name>FC-GetImeiSubscriber</Name>
+                    <Condition>profileVersion == "2"</Condition>
+                </Step-->
+                <Step>
+                    <Name>AM-SetAuxiliaryVariables</Name>
+                    <Condition>profileVersion == "3" or profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-IdentifySubscriber</Name>
+                    <Condition>profileVersion == "3" or profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateIMEI</Name>
+                    <Condition>profileVersion == "2" or profileVersion == "3"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnitOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryFreeUnitError</Name>
+                    <Condition>(responseQueryFreeUnit.returnCode != "0000") AND (responseQueryFreeUnit.returnCode != "20000003")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ConvertStatus</Name>
+                </Step>
+                <!-- 
+                <Step>
+                    <Name>JS-VerifyIsExpireEffectiveOffer</Name>
+                </Step>
+                 -->
+                <!--
+                <Step>
+                    <Name>FC-ScheduledOrders</Name>
+                    <Condition>(isExpireEffectiveOffer = "true")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-QueryPurchasedSupplementaryOffering</Name>
+                    <!--<Condition>(isExpireEffectiveOffer = "true")</Condition> -->
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMobilityOffer</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryBalance</Name>
+                    <Condition>(isMobilityOfferFull = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryCoordinates</Name>
+                    <Condition>profileVersion == "2" or profileVersion == "3" and (isMobilityOfferFull != "true") and (isMifiOffer != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryMsisdnStatus</Name>
+                    <Condition>profileVersion == "2" or profileVersion == "3"</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>JS-ExtractSuppOffer</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-ProfileAssamble</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseQueryFreeUnit</Name>
+                    <Condition>profileVersion != "2" and profileVersion != "3"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ProfileVersion2</Name>
+                    <Condition>profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ProfileVersion3</Name>
+                    <Condition>profileVersion == "3"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetResponseContentProfile</Name>
+                    <Condition>(hasProfileCatching = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-InsertProfileCatching</Name>
+                    <Condition>(hasProfileCatching = "true")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/profile") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="cancelProductsEffectiveDate">
+            <Description>Flujo que permite realizar la cancelacion de compra de bonos suplementarios con fecha efectiva</Description>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestCancelProductsSupplementary</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseDeleteEffectiveSupplementary</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/cancelEffectiveDate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="replaceExpireEffectiveDate">
+            <Description>Flujo que permite realizar la cancelacion de compra de bonos suplementarios con fecha efectiva</Description>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestCancelProductsSupplementary</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseDeleteEffectiveSupplementary</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/replaceExpireEffectiveDate") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="purchaseSupplementaryOffering">
+            <Description>Flujo que permite realizar la compra de bonos suplementarios</Description>
+            <Request>
+                <!-- Se remueven politicas para validar correspondencia BE vs DN
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-ScheduledOrders-Purchase</Name>
+                    <Condition>(startEffectiveDate IsNot null AND startEffectiveDate != "" AND expireEffectiveDate IsNot null AND expireEffectiveDate != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-HasScheduledOperations</Name>
+                    <Condition>hasScheduledOperations = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <!-- Se quitan politicas para llamado de query free units ya que no se ocupa -->
+                <!--Step>
+                    <Name>FC-QueryFreeUnit</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateQueryFreeUnitPurchase</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateQueryFreeUnitPurchase</Name>
+                    <Condition>(validateTotal != "true") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step-->
+                <Step>
+                    <Name>JS-JsonToArrayObject</Name>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyDate</Name>
+                    <Condition>date = "false" AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <!-- Se quita llamado para obtener ofertas previas ya que se removio la logica -->
+                <!--Step>
+                    <Name>FC-PreviousSuppOffers</Name>
+                </Step-->
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVarAsyncPurchase</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleAsync</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-PurchaseAsyncResponse</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch") and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <!--Step>
+                    <Name>FC-ExpireEffectiveDatePurchaseSupp</Name>
+                    <Condition>(expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (async = "false") or ((async = "true") and (apigee.developer.app.name = "aws_batch"))</Condition>
+                </Step-->
+                <Step>
+                    <Name>FC-PurchaseExpireEffectiveDateInBackground</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSupplementaryOffering</Name>
+                    <Condition>(offerExpire == "") OR (offerExpire is null) AND (async = "false")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-AsyncResponseAWS</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name = "aws_batch")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/purchase") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="barring">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-QuerySubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubStatusError</Name>
+                    <Condition>(responseQuerySubStatus.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetOfferingProduct</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidProduct</Name>
+                    <Condition>(product != "Movilidad" and offerFeature != "Fixed Telephony" and offerDefault != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-SubHasActionsNotifByClientError</Name>
+                    <Condition>(reason != "1" and reason_code = "1" and responseQuerySubStatus.subStatus = "3")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeStatusBarring</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusBarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusBarringOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ChangeSubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSubscriberStatus</Name>
+                    <Condition>(responseChangeStatus.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncBarring</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatus</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/barring") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unbarring">
+            <Description>unbarring</Description>
+            <Request>
+                <Step>
+                    <Name>KVM-Band28Validation</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateBarringBand28</Name>
+                    <Condition>(reason = "5")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetOfferingProduct</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidProduct</Name>
+                    <Condition>(product != "Movilidad" and offerFeature != "Fixed Telephony" and offerDefault != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateBand28</Name>
+                    <Condition>(validationBand28 == "true") and (reason = "1") and (offerFeature != "Fixed Telephony")</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-AllowResumeNoBand28</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-ImeiNotAllowedValidation</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-InfoByTac</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InfoByTacNotAllowed</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null) and deviceType == "0"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InfoByTacNotAllowed</Name>
+                    <Condition>allowResumeNoBand28 != "Y" and validationImeiNotAllowed=="true" and (reason == "1" or reason == ""  or reason == null) and ( band28!="1" or   (band28=="1" and category == "No Compatible") )</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenericGetReasonCode</Name>
+                    <Condition>(offerDefault != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-SubHasActionsNotifByClientError</Name>
+                    <Condition>(reason != "1" and reason_code = "1" and responseQuerySubStatus.subStatus = "3")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeStatusUnbarring</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusUnbarring</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+                <Step>
+                    <Name>FC-EvaluateUnbarringForzado</Name>
+                    <Condition>allowResumeNoBand28 == "Y" and (reason == "1" or reason == ""  or reason == null)</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeStatusUnbarringOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ChangeSubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSubscriberStatus</Name>
+                    <Condition>(responseChangeStatus.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncUnbarring</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSubscriberStatus</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/unbarring") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="productsCancel">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-RequestActivateMsisdn</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ScheduleDateNull</Name>
+                    <Condition>(scheduleDate = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMobilityOffer</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateMobilityOffer</Name>
+                    <Condition>isMobilityOffer = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>JS-JsonToArrayCancel</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/cancel") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Delete offering">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedOfferByOrderId</Name>
+                    <Condition>validateOffersByOrderId = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-PrepareDeleteOffering</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncDeleteOffers</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseSpeedDown</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/remove") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="subscriberInformation">
+            <Description>OperaciÃ³n que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!--<Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestSubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-ResponseQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataOutQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ConvertSubscriberStatus</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryMsisdnStatus</Name>
+                    <Condition>profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateStatusProfileV2</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseQuerySubscriberInformation</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberInformation") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberPrimaryOffering">
+            <Description>OperaciÃ³n que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!--<Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestQueryPurchasePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQuerySubscriberPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-ResponseQuerySubscriberInformation</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataOutQueryPurchasePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseQueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-getSpeedPrimaryOffering</Name>
+                    <Condition>profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseQueryPurchasedPrimaryOfferingV2</Name>
+                    <Condition>profileVersion == "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseQueryPurcahsedPrimaryOffering</Name>
+                    <Condition>profileVersion != "2"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberPrimaryOffering") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberFreeUnits">
+            <Description>OperaciÃ³n que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnitOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryFreeUnitError</Name>
+                    <Condition>(responseQueryFreeUnit.returnCode != "0000") AND (responseQueryFreeUnit.returnCode != "20000003")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyIsExpireEffectiveOffer</Name>
+                </Step>
+                <!--
+                <Step>
+                    <Name>FC-ScheduledOrders</Name>
+                    <Condition>(isExpireEffectiveOffer = "true")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-QueryPurchasedSupplementaryOffering</Name>
+                    <Condition>(isExpireEffectiveOffer = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMobilityOffer</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryBalance</Name>
+                    <Condition>(isMobilityOfferFull = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ExtractSuppOffer</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseSubscriberFreeUnits</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberFreeUnits") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="subscriberFreeUnitsData">
+            <Description>OperaciÃ³n que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataQueryFreeUnitOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseQueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryFreeUnitError</Name>
+                    <Condition>(responseQueryFreeUnit.returnCode != "0000") AND (responseQueryFreeUnit.returnCode != "20000003")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyIsExpireEffectiveOffer</Name>
+                </Step>
+                <!--
+                <Step>
+                    <Name>FC-ScheduledOrders</Name>
+                    <Condition>(isExpireEffectiveOffer = "true")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-QueryPurchasedSupplementaryOffering</Name>
+                    <Condition>(isExpireEffectiveOffer = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateMobilityOffer</Name>
+                </Step>
+                <Step>
+                    <Name>FC-QueryBalance</Name>
+                    <Condition>(isMobilityOfferFull = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ExtractSuppOfferData</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseSubscriberFreeUnits</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberFreeUnitsData") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="upSpeed">
+            <Description>Flujo que permite cancelar descarga a baja velocidad  del bono suplementario con fecha efectiva</Description>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestCancelProductsSupplementary</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>(responseChangeSupOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseDeleteEffectiveSupplementary</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/upSpeed") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="validate-promotion">
+            <Description>Operacion que valida los datos de varias operaciones y valida si se puede ejecutar la compra de uno bono promiocional</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestValidatePromotion</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetControlPromotionsDataByOperation</Name>
+                    <Condition>operation = "COMPRA" or operation = "CAMBIO"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UpdateControlPromotionsDataByOperation</Name>
+                    <Condition>(operation = "CAMBIO" and responseControlPromotions.message = "Query executed successfully, need to update promotions control table")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetCatalogPromotionsFiltered</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetPortabilities</Name>
+                    <Condition>operation = "CAMBIO"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-SetPortedValueFromGetPortabilities</Name>
+                    <Condition>operation = "CAMBIO"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetControlPromotionsDataByOperation</Name>
+                    <Condition>operation = "COMPRA" and operationSubType = "2"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-AnalyzeDataForOperationPurchaseFromCatalogPromotion</Name>
+                    <Condition>operation = "COMPRA" and operationSubType = "1"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UpdateControlPromotionsDataByOperation</Name>
+                    <Condition>(operation = "COMPRA" and operationSubType = "1" and needUpdateControlPromotion = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetCatalogPromotionsFiltered</Name>
+                    <Condition>(operation = "COMPRA" and operationSubType = "1" and needUpdateControlPromotion = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GetControlPromotionsDetailDataByOperation</Name>
+                    <Condition>operation = "REANUDACION" or operation = "UNBARRING"</Condition>
+                </Step>
+                <!--
+                <Step>
+                    <Name>FC-GetPortabilities</Name>
+                </Step>
+                <Step>
+                    <Name>RF-GenerateError</Name>
+                </Step>
+                -->
+                <Step>
+                    <Name>AM-SetOrderIdForQueryOrderStatus</Name>
+                    <Condition>(operation != "COMPRA") or (operation = "COMPRA" and goToPurchase = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-LoopQueryOrderStatus</Name>
+                    <Condition>(operation != "COMPRA") or (operation = "COMPRA" and goToPurchase = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-LoopQueryOrderStatus</Name>
+                    <Condition>(operation != "COMPRA") or (operation = "COMPRA" and goToPurchase = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QueryOrderStatus</Name>
+                    <Condition>((operation != "COMPRA") or (operation = "COMPRA" and goToPurchase = "true")) and (rspQOS.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetOfferingIPromotionFromCatalogPromotion</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ExceptionWhenTryToAssignPromotionOffers</Name>
+                    <Condition>isPossiblePurchase = 'false'</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangeSupplementaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangeSupplementaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangeSupplementaryOfferingError</Name>
+                    <Condition>responseChangeSupOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateIfOfferIsRenewable</Name>
+                    <Condition>operation = "PORT-IN" or (operation = "CAMBIO" and hasSuppOffersToDelete = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedOfferByOrderId</Name>
+                    <Condition>operation = "CAMBIO" and hasSuppOffersToDelete = "true" and isOfferingIdRenewable = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryPurchasedSupplementaryOffering</Name>
+                    <Condition>operation = "PORT-IN" and isOfferingIdRenewable = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ExcludingPromotionalPurchasedOfferings</Name>
+                    <Condition>operation = "PORT-IN" and isOfferingIdRenewable = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-DeleteSuppOffer</Name>
+                    <Condition>((operation = "PORT-IN" or operation = "CAMBIO") and isOfferingIdRenewable = "false") and hasSuppOffersToDelete = "true"</Condition>
+                    <!--<Condition>((operation = "PORT-IN" and isOfferingIdRenewable = "false") or (operation = "CAMBIO")) and hasSuppOffersToDelete = "true"</Condition>-->
+                </Step>
+                <Step>
+                    <Name>RF-ExceptionDeleteSupplementaryOfferings</Name>
+                    <Condition>((operation = "PORT-IN" or operation = "CAMBIO") and isOfferingIdRenewable = "false") and hasSuppOffersToDelete = "true" and (rspDSO.returnCode != "0000" and rspDSO.returnCode != "1211000472")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-LoopQueryOrderStatus-DeleteOfferings</Name>
+                    <Condition>((operation = "PORT-IN" or operation = "CAMBIO") and isOfferingIdRenewable = "false") and hasSuppOffersToDelete = "true" and rspDSO.returnCode = "1211000472"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-LoopQueryOrderStatus-DeleteOfferings</Name>
+                    <Condition>((operation = "PORT-IN" or operation = "CAMBIO") and isOfferingIdRenewable = "false") and hasSuppOffersToDelete = "true" and (rspQOS.orderStatus != "5") AND (rspQOS.returnCode = "1211000472")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-DeleteOfferingsInBackGroundProccess</Name>
+                    <Condition>((operation = "PORT-IN" or operation = "CAMBIO") and isOfferingIdRenewable = "false") and hasSuppOffersToDelete = "true" and (rspQOS.orderStatus != "5") AND (rspQOS.returnCode = "1211000472")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UpdateControlPromotionsDataByOperation</Name>
+                    <Condition>(operation = "COMPRA" and responseCatalogPromotions.recurrenceType = "CANTIDAD_COMPRAS" and (updateControlPromotionFromGetPortabilities = "true" or updateControlPromotionFromCantidadCompras = "true"))</Condition>
+                    <!--or (operation = "COMPRA" and updateControlPromotionFromGetPortabilities = "true")-->
+                </Step>
+                <Step>
+                    <Name>FC-InsertIntoPromotionControlTables</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetValidatePromotionResponse</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncValidatePromotion</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseValidatePromotion</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/validatePromotion") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Algorithm>RoundRobin</Algorithm>
+            <Server name="BSS_APIGW"/>
+            <Server name="BSS_APIGW_2"/>
+            <Server name="BSS_APIGW_3"/>
+            <Server name="BSS_APIGW_4"/>
+            <MaxFailures>5</MaxFailures>
+            <ServerUnhealthyResponse>
+                <ResponseCode>500</ResponseCode>
+                <ResponseCode>502</ResponseCode>
+                <ResponseCode>504</ResponseCode>
+                <ResponseCode>503</ResponseCode>
+            </ServerUnhealthyResponse>
+        </LoadBalancer>
+        <Path>/prod/{flow.bss.operationpath}</Path>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+    </HTTPTargetConnection>
+</TargetEndpoint>

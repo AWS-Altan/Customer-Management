@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="BDV">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "responseError")</Condition>
+                <Name>AM-ErrorMessageSuspend</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "verifyParams")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ResponseError400")</Condition>
+                <Name>AM-ErrorMessageResponse400</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ResponseError500")</Condition>
+                <Name>AM-ErrorMessageResponse500</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ResponseInvalidParams")</Condition>
+                <Name>AM-ErrorMessageResponseInvalidParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null) OR (errorMessage.code = "")</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingBDV</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="linkings">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestLinkings</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorLinkingsIn</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-ResponseError</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorGenericOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseInvalidParams</Name>
+                    <Condition>(period = "") OR (period is null) OR (records = "") OR (records is null)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseError500</Name>
+                    <Condition>(errorCode = "500")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseError400</Name>
+                    <Condition>(errorCode = "400") </Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseLinkings</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/msisdns/{msisdn}/linkings") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <!--<Server name="BDV"/>-->
+            <Server name="APIGW_LINKS_CHANGE_QUERY"/>
+        </LoadBalancer>
+        <!--<Path>/cgi-bin/bigd/consulta_cambios_vinculacion_dn_v5.cgi</Path>-->
+        <Path>/{environment.name}/linkings</Path>
+    </HTTPTargetConnection>
+</TargetEndpoint>

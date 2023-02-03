@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="SubscriberInfo">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MSError")</Condition>
+                <Name>AM-ErrorMessageTargetMDS</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingSubscriberInfo</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetMDS</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="changeIMEI">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-ApplyHomologatedIMEI</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangeIMEI</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetDataChangeImeiIN</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetDataChangeImeiOUT</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetAuditorData</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-TargetChangeIMEI</Name>
+                    <Condition>response.status.code != "200"</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-TargetError</Name>
+                    <Condition>response.status.code != "200"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changeIMEI") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="PY-MS-SUBSCRIBER"/>
+        </LoadBalancer>
+        <Path>/prod/{flow.mds.operationpath}</Path>
+        <Properties>
+            <Property name="success.codes">1xx,2xx,3xx,4xx,5xx</Property>
+        </Properties>
+    </HTTPTargetConnection>
+</TargetEndpoint>

@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="OfferingService">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageLenghtError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageLengthError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ChangePrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageChangePrimaryOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageError")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingError")</Condition>
+                <Name>AM-ErrorMessageValidateOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "OfferingIdError")</Condition>
+                <Name>AM-ErrorMessageOffering</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>EV-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IncorrectLengthCorrdinates")</Condition>
+                <Name>AM-ErrorMessageLengthCoordinates</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityError")</Condition>
+                <Name>AM-ErrorMessageServiceability</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ScheduleDateNull")</Condition>
+                <Name>AM-ErrorMessageScheduleDateNull</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "AWSError")</Condition>
+                <Name>AM-ErrorMessageAWSResponse</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "AsyncOperations")</Condition>
+                <Name>AM-ErrorMessageAsyncOperations</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsError") OR (error.header.FaultHeader = "ErrorQueryParam")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3Error")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3Error</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MsisdnIsNotFixed")</Condition>
+                <Name>AM-ErrorMessageMsisdnIsNotFixed</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ServiceabilityVersionError")</Condition>
+                <Name>AM-ErrorMessageServiceabilityVersion</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateCoverageV3ErrorSatellital")</Condition>
+                <Name>AM-ErrorMessageValidateCoverageV3ErrorSatellital</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null and errorMessage.maxSpeed = null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed != null)</Condition>
+            <Name>AM-ErrorMessageResponseMaxSpeed</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null and errorMessage.maxSpeed = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingOffering</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+            <Step>
+                <Name>EV-RequestSubscriber</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <Flows>
+        <Flow name="updatePropertiesSubscriberMsisdn">
+            <Description>Permite actualizar propiedades particulares del MSISDN relacionado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>KVM-GetRecoveryOffers</Name>
+                </Step>
+                <Step>
+                    <Name>EV-RequestUpdateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyFixedTelephonyAtCPO</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                    <Condition>(isFixedTel = "true") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(isFixedTel = "true") AND (responseQuerySubsInfo.returnCode != "0000") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-MsisdnIsNotFixed</Name>
+                    <Condition>(isFixedTel = "true") AND responseQuerySubsInfo.msisdnType != "2" AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduledAsyncOrders</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateAsyncOperations</Name>
+                    <Condition>((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-VerifyAsyncOperations</Name>
+                    <Condition>areThereOperations = "true" AND ((async = "true") and (apigee.developer.app.name != "aws_batch"))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyOfferingId</Name>
+                    <Condition>hbbRecoveryOffer != offeringId AND mbbRecoveryOffer != offeringId AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateInputLength</Name>
+                    <Condition>(verifyServiceability = "true") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateCoordinatesLength</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryServiceability</Name>
+                    <Condition>(verifyServiceability = "true") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-OfferingError</Name>
+                    <Condition>(verifyServiceability= "error") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-SatellitalHBBServiceabilityVersionValidator</Name>
+                    <Condition>(verifyServiceability = "true") AND (isSatelliteHBBLine ="true") and (isServiceabilityVersion3 !="true")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-EffectiveDateCPO</Name>
+                </Step>
+                <Step>
+                    <Name>FC-PreviousSuppOffers</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOffering</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOfferingOut</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangePrimaryOffering</Name>
+                    <Condition>((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-ChangePrimaryOfferingError</Name>
+                    <Condition>(responseChangePrimaryOffering.returnCode != "0000") AND ((async = "false") or ((async = "true") and (apigee.developer.app.name != "aws_batch")))</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetVarScheduleAsyncChangePrimary</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ScheduleAsync</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseUpdateSubscriber</Name>
+                    <Condition>(serviceabilityVersion !="3") AND rspAWS.id_transation_cudar is null</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseUpdateSubscriberServV3</Name>
+                    <Condition>(serviceabilityVersion =="3") AND rspAWS.id_transation_cudar is null</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseExpireDate</Name>
+                    <Condition>(serviceabilityVersion !="3") AND (expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseExpireDateServV3</Name>
+                    <Condition>(serviceabilityVersion =="3") AND (expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ChangePrimaryOfferingAsyncResponse</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name != "aws_batch") and (responseScheduleOperation.status.code = "200" and rspAWS.status = "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-AsyncResponseChangePrimary</Name>
+                    <Condition>(async = "true") and (apigee.developer.app.name = "aws_batch")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}") and (request.verb = "PATCH")</Condition>
+        </Flow>
+        <Flow name="changePrimaryOfferingBatch">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>EV-RequestUpdateSubscriber</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>JS-EffectiveDateCPO</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestChangePrimaryOfferingBatch</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangePrimaryOfferingError</Name>
+                    <Condition>(responseChangePrimaryOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-NotificationWebhook</Name>
+                </Step>
+                <Step>
+                    <Name>FC-SetPortabilityOperationScript</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetOrderIdCpo</Name>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyChangePrimaryOfferOrderIdFromChangeOfferBatch</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateIfOrderIdIsFromDate</Name>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyOfferingId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateOTAConfig</Name>
+                </Step>
+                <Step>
+                    <Name>FC-UpdateQoS</Name>
+                    <Condition>(isFixedTelephony == "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ExpireEffectiveDateActivate</Name>
+                    <Condition>(expireEffectiveDate != "") AND (expireEffectiveDate IsNot null)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangePrimaryOfferingBatch</Name>
+                    <Condition>rspAWS.id_transation_cudar is null</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseChangePrimaryOfferingBatchFIFF</Name>
+                    <Condition>(expireEffectiveDate != "") AND (expireEffectiveDate IsNot null) AND (startEffectiveDate != "") AND (startEffectiveDate IsNot null)</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/offering") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="renovateOffering">
+            <Description>Operación que permite renovar la oferta de un msisdn.</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <!-- Se remueven politicas para validar correspondencia BE vs DN
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>FC-QueryPurchasedPrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryPurchasedPrimaryOfferingError</Name>
+                    <Condition>responsePrimaryOffering.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QueryFreeUnit</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QueryFreeUnitError</Name>
+                    <Condition>rspQFU.returnCode != "0000"</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-RenovateOffer</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateOffer</Name>
+                    <Condition>changeOffering.errorCode = "400"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestRenovateOffer</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataChangePrimaryOfferingOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseChangePrimaryOffering</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ChangePrimaryOfferingError</Name>
+                    <Condition>(responseChangePrimaryOffering.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseRenovateOffer</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/renovate") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURL</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-TargetResponseError</Name>
+            </Step>
+            <Step>
+                <Name>EV-TargetError</Name>
+            </Step>
+            <Step>
+                <Name>RF-TargetError</Name>
+                <Condition>(TargetResponse.faultcode != null) and (TargetResponse.faultcode != "0000")</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Algorithm>RoundRobin</Algorithm>
+            <Server name="BSS_APIGW"/>
+            <Server name="BSS_APIGW_2"/>
+            <Server name="BSS_APIGW_3"/>
+            <Server name="BSS_APIGW_4"/>
+            <MaxFailures>5</MaxFailures>
+            <ServerUnhealthyResponse>
+                <ResponseCode>500</ResponseCode>
+                <ResponseCode>502</ResponseCode>
+                <ResponseCode>504</ResponseCode>
+                <ResponseCode>503</ResponseCode>
+            </ServerUnhealthyResponse>
+        </LoadBalancer>
+        <Path>/prod/{flow.bss.operationpath}</Path>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+    </HTTPTargetConnection>
+</TargetEndpoint>

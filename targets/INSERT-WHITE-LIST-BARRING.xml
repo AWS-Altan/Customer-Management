@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="INSERT-WHITE-LIST-BARRING">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ExpiredAccessToken">
+            <Condition>(fault.name = "access_token_expired")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenExpired</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidAccessToken">
+            <Condition>(fault.name = "invalid_access_token" OR fault.name = "InvalidAccessToken" OR fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenInvalid</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ExecutionFailed">
+            <Condition>(fault.name = "ExecutionFailed")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ThreatDetected">
+            <Condition>(fault.name = "ThreatDetected")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="RequestTooLarge">
+            <Condition>(fault.name = "TooBigBody")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SourceMessageNotAvailable">
+            <Condition>(fault.name = "SourceMessageNotAvailable")</Condition>
+            <Step>
+                <Name>AM-SourceMessageNotAvailable</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsError") OR (error.header.FaultHeader = "ErrorQueryParam")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "DateOperationsError")</Condition>
+                <Name>AM-ErrorMessageDateOperations</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetMsisdnStatusError")</Condition>
+                <Name>AM-ErrorMessageGetMsisdnStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetWhiteListError")</Condition>
+                <Name>AM-ErrorMessageGetWhiteList</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MsisdnOnWhiteList")</Condition>
+                <Name>AM-ErrorMessageMsisdnOnWhiteList</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusError")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InvalidMsisdnStatus")</Condition>
+                <Name>AM-ErrorMessageInvalidMsisdnStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "InsertWhiteListError") OR (error.header.FaultHeader = "DeleteWhiteListError")</Condition>
+                <Name>AM-ErrorMessageInsertWhiteList</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "MsisdnIsNotOnWhiteList")</Condition>
+                <Name>AM-ErrorMessageMsisdnIsNotOnWhiteList</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(fault.name = "TooBigBody") AND (responseCoverage = null)</Condition>
+            <Name>AM-ErrorMessageContentLength</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingDefault</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetUrlMsisdnStatus</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="white-list-barring">
+            <Description>Permite incluir un msisdn a la lista blanca barring</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ValidateWhiteListBarring</Name>
+                </Step>
+                <Step>
+                    <Name>RF-MsisdnOnWhiteList</Name>
+                    <Condition>whiteList = "yes"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestInsertWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataInInsertWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataOutInsertWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetStatusCode</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetAuditorData</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseInsertWhiteList</Name>
+                    <Condition>response.status.code &gt;= 400 or isValidResponse != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateTransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseInsertWhiteList</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/white-list") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="delete-white-list-barring">
+            <Description>Permite excluir un msisdn de la lista blanca barring</Description>
+            <Request>
+                <Step>
+                    <Name>FC-QuerySubsInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-QuerySubsInfoError</Name>
+                    <Condition>(responseQuerySubsInfo.returnCode != "0000")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateWhiteListBarring</Name>
+                </Step>
+                <Step>
+                    <Name>RF-MsisdnIsNotOnWhiteList</Name>
+                    <Condition>whiteList = "no"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestDeleteWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataInDeleteWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataOutDeleteWhiteList</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetStatusCode</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetAuditorData</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseDeleteWhiteList</Name>
+                    <Condition>response.status.code &gt;= 400 or isValidResponse != "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateTransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseDeleteWhiteList</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/white-list") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <Properties>
+            <Property name="success.codes">1xx,2xx,3xx,4xx</Property>
+            <Property name="keepalive.timeout.millis">28000</Property>
+        </Properties>
+        <URL>https://3y54ai17cj.execute-api.us-east-1.amazonaws.com/prod/incluye</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

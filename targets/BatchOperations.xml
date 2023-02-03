@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="BatchOperations">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ContentLengthError")</Condition>
+                <Name>AM-ErrorMessageContentLength</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateExtensionError")</Condition>
+                <Name>AM-ErrorMessageValidateExtension</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateFile")</Condition>
+                <Name>AM-ErrorMessageValidateFile</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "BatchError")</Condition>
+                <Name>AM-ErrorMessageBatch</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QueryPurchasedPrimaryOfferingError")</Condition>
+                <Name>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "VerifyParamName")</Condition>
+                <Name>AM-ErrorMessageVerifyParamName</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingBatch</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+            <Step>
+                <Name>EV-RequestBatch</Name>
+            </Step>
+            <Step>
+                <Name>KVM-AuthorizedImeiBlockers</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="activations">
+            <Description>Operación que permite subir un archivo con MSISDNs a activar.</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/activations") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preDeactivates">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/predeactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="suspends">
+            <Description>Operación que permite recibir un archivo con MSISDNs a suspender</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/suspends") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="resumes">
+            <Description>Operación que permite recibir un archivo con MSISDNs a reanudar</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/resumes") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="deactivates">
+            <Description>Operación que permite recibir un archivo con MSISDNs a dar de baja.</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/deactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="reactivates">
+            <Description>Operación que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/reactivates") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesPrimary">
+            <Description>Operación que permite recibir un archivo con MSISDNs para cambiar su oferta primaria</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesprimary") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesSIM">
+            <Description/>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesSIM") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="purchasessupplementary">
+            <Description>Operación que permite recibir un archivo con MSISDNs a los cuales se les comprarán bonos suplementarios</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/purchasessupplementary") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changeslinking">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changeslinking") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="locksImei">
+            <Description>Operación que permite bloquear imeis enviados por medio de un archivo de texto plano</Description>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/locks") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unlocksImei">
+            <Description>Operación que permite desbloquear IMEIs enviador por medio de un archivo de texto plano</Description>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/unlocks") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="profiles">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/profiles") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="cancelProducts">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/cancelproducts") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="barrings">
+            <Description>Operación que permite recibir un archivo con MSISDNs a suspender (barring)</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/barrings") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unbarrings">
+            <Description>Recurso que permite desbloquear llamadas a través de un archivo plano.</Description>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/unbarrings") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="reactivatesbss">
+            <Description>Operación que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/reactivatesbss") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preDeactivatesbss">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/predeactivatesbss") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="changesMSISDN">
+            <Description>Operacion que permite realizar un cambio de msisdn a un conjunto de suscriptores</Description>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/changesmsisdn") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="preregistrations">
+            <Description>Batch de la operacion de preregistro</Description>
+            <Request>
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-UploadBucketFile</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/preregistrations") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="inclusion-white-list-barrings">
+            <Description>Operación que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/inclusion-white-lists") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="exclusion-white-list-barrings">
+            <Description>Operación que permite recibir un archivo con MSISDNs a reactivar</Description>
+            <Request>
+                <!--
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                -->
+                <Step>
+                    <Name>JS-ValidateContentLength</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateContentLength</Name>
+                    <Condition>(tamOk != "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateExtension</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBatch</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataBatchOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBatch</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBatch</Name>
+                    <Condition>(status != "ok")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBatch</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/exclusion-white-lists") and (request.verb = "POST")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetBatch</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-TargetResponseError</Name>
+            </Step>
+            <Step>
+                <Name>EV-TargetError</Name>
+            </Step>
+            <Step>
+                <Name>RF-TargetError</Name>
+                <Condition>(TargetResponse.faultcode != null) and (TargetResponse.faultcode != "0000")</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="AWS_BATCH"/>
+            <Server name="AWS_BATCH_2"/>
+        </LoadBalancer>
+        <Path>/upload.php</Path>
+        <SSLInfo>
+            <Enabled>false</Enabled>
+        </SSLInfo>
+    </HTTPTargetConnection>
+</TargetEndpoint>

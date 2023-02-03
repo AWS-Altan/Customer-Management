@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="BDLCoordinates">
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubsInfoError")</Condition>
+                <Name>AM-ErrorQuerySubsInfo</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "QuerySubStatusError")</Condition>
+                <Name>AM-ErrorMessageQuerySubStatus</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateHSSError")</Condition>
+                <Name>AM-ErrorMessageValidateHSS</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnsupportedOperation")</Condition>
+                <Name>AM-ErrorUnsupportedOperation</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "GetImeiHssError")</Condition>
+                <Name>AM-ErrorMessageGetImeiHss</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ResponseBDLCoordinates")</Condition>
+                <Name>AM-ErrorMessageBDLCoordinates</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingBDLCoordinates</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+            <Step>
+                <Name>EV-Request</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURL</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-TargetResponseError</Name>
+            </Step>
+            <Step>
+                <Name>EV-TargetError</Name>
+            </Step>
+            <Step>
+                <Name>RF-TargetError</Name>
+                <Condition>(TargetResponse.faultcode != null) and (TargetResponse.faultcode != "0000")</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="subscriberCoordinates">
+            <Description>Operación que permite consultar el perfil de un suscriptor asociado a un msisdn</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestCoordinates</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBDLCoordinates</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <!--
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+                -->
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorDataOutBDLCoordinates</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBDLCoordinates</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateCoordinates</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ResponseBDLCoordinates</Name>
+                    <Condition>coordinates = ""</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseCoordinates</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/{msisdn}/subscriberCoordinates") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://34.237.230.77:8888/ms-gisservices/msisdns/lastcoordinates</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

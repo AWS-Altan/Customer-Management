@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="LookupForOperator">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidateLookupForOperatorError204")</Condition>
+                <Name>AM-ErrorMessageNotFoundOperator</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageDefaultServer</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURL</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="lookupForOperator">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildLookupForOperatorRequest</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorLookupForOperatorIn</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAuditorLookupForOperatorOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ValidateErrorLookupForOperator204</Name>
+                    <Condition>response.status.code = 204</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-PrepareResponseForOperatorService</Name>
+                    <Condition>response.status.code = 200</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/subscribers/lookupForOperator") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="LOOKUP_OPERATOR"/>
+        </LoadBalancer>
+        <!--<Path>/prod/consulta</Path>-->
+        <Path>/prod/consultanew</Path>
+        <Properties>
+            <Property name="success.codes">1xx,2xx,3xx,4xx</Property>
+            <Property name="keepalive.timeout.millis">28000</Property>
+        </Properties>
+    </HTTPTargetConnection>
+</TargetEndpoint>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="EIR">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "TargetError")</Condition>
+                <Name>AM-ErrorMessageTargetError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "LockImeiError")</Condition>
+                <Name>AM-ErrorMessageLockImeiError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "UnlockImeiError")</Condition>
+                <Name>AM-ErrorMessageUnlockImeiError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CallServiceError")</Condition>
+                <Name>AM-ErrorMessageCallService</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "CallUnlockImei")</Condition>
+                <Name>AM-ErrorMessageFlowUnlockImei</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "BlackListImeiError")</Condition>
+                <Name>AM-ErrorMessageBlackListImei</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingEIR</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetTargetURL</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>XTJ-TargetResponseError</Name>
+            </Step>
+            <Step>
+                <Name>EV-TargetError</Name>
+            </Step>
+            <Step>
+                <Name>RF-TargetError</Name>
+                <Condition>(TargetResponse.faultcode != null) and (TargetResponse.faultcode != "0000")</Condition>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="lockImei">
+            <Description>Operación que permite bloquear un dispositivo asignado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestImei</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataImei</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataLockImeiOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>RF-LockImeiError</Name>
+                    <Condition>(responseImei.result != "success")</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AsyncLockImei</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseImei</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/{imei}/lock") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="unlockImei">
+            <Description>Operación que permite desbloquear un dispositivo asignado a un usuario final</Description>
+            <Request>
+                <Step>
+                    <Name>EV-RequestImei</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ParamsValidator</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ParamValidator</Name>
+                    <Condition>validator.error = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestUnlockImei</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>SetAuditorDataUnlockImei</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataUnlockImeiOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseUnlockImei</Name>
+                </Step>
+                <Step>
+                    <Name>RF-UnlockImeiError</Name>
+                    <Condition>(responseImei.result != "success")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseImei</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/{imei}/unlock") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="blackList">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRequestBlackListImei</Name>
+                </Step>
+                <Step>
+                    <Name>XTJ-RequestDataAuditor</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBlackListImei</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>XSL-RemoveEmptyNodes</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveEmptySpaces</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>XTJ-TargetResponse</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseBlackListImei</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataBlackListImeiOut</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>RF-BlackListImeiError</Name>
+                    <Condition>(responseBlackList.result != "success")</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-ExtractImeis</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseBlackListImei</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/imei/blackList") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <!--HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="EIR_APIGW"/>
+        </LoadBalancer>
+        <Path>/prod/ProvisioningGateway/services/SPMLEirNsr30Service</Path>
+        <SSLInfo>
+            <Enabled>false</Enabled>
+        </SSLInfo>
+    </HTTPTargetConnection-->
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://34.237.230.77:8089/ProvisioningGateway/services/SPMLEirNsr30Service</URL>
+    </HTTPTargetConnection>
+</TargetEndpoint>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="Identifier-BE">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="ExpiredAccessToken">
+            <Condition>(fault.name = "access_token_expired")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenExpired</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="InvalidAccessToken">
+            <Condition>(fault.name = "invalid_access_token" OR fault.name = "InvalidAccessToken" OR fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageAccessTokenInvalid</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ExecutionFailed">
+            <Condition>(fault.name = "ExecutionFailed")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ThreatDetected">
+            <Condition>(fault.name = "ThreatDetected")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="RequestTooLarge">
+            <Condition>(fault.name = "TooBigBody")</Condition>
+            <Step>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SourceMessageNotAvailable">
+            <Condition>(fault.name = "SourceMessageNotAvailable")</Condition>
+            <Step>
+                <Name>AM-SourceMessageNotAvailable</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="ControlledError1">
+            <Condition>(fault.name = "RaiseFault")</Condition>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ParamsError") OR (error.header.FaultHeader = "ErrorQueryParam")</Condition>
+                <Name>AM-ErrorMessageVerifyParams</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "ValidatorError")</Condition>
+                <Name>AM-ErrorMessageValidatorError</Name>
+            </Step>
+            <Step>
+                <Condition>(error.header.FaultHeader = "IdentifierBeError")</Condition>
+                <Name>AM-ErrorMessageIdentifierBe</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SpikeArrestErrors">
+            <Step>
+                <Name>AM-LimitCounting</Name>
+                <Condition>(fault.name Matches "SpikeArrestViolation") </Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <DefaultFaultRule name="allErrors">
+        <AlwaysEnforce>true</AlwaysEnforce>
+        <Step>
+            <Condition>(fault.name = "TooBigBody") AND (responseCoverage = null)</Condition>
+            <Name>AM-ErrorMessageContentLength</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.code = null)</Condition>
+            <Name>AM-ErrorMessageDefaultServer</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail != null)</Condition>
+            <Name>AM-ErrorMessageResponseDetail</Name>
+        </Step>
+        <Step>
+            <Condition>(errorMessage.detail = null)</Condition>
+            <Name>AM-ErrorMessageResponse</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>JS-EmptyTPS</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingDefault</Name>
+            </Step>
+            <Step>
+                <Name>SA-LimitCountingCompany</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AM-AssignResponseVerb</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-RemoveBasePath</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="identifierBe">
+            <Description>Brinda informacion del estado de hasta 5 usuarios finales</Description>
+            <Request>
+                <Step>
+                    <Name>AM-BuildRequestIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GenerateSubtransactionId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataInIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-ValidateResponseIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetAuditorDataOutIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>FC-AuditorService</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ResponseIdentifierBe</Name>
+                </Step>
+                <Step>
+                    <Name>RF-DataNotFoundIdentifierBe</Name>
+                    <Condition>errorCode != "200"</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetIdSvaByDevApp</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetBeByIdSva</Name>
+                </Step>
+                <Step>
+                    <Name>JS-ValidateBesBySva</Name>
+                </Step>
+                <Step>
+                    <Name>RF-DataNotFoundIdentifierBe</Name>
+                    <Condition>isBeIdValid = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ResponseIdentifierBe</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/mvno/identifier") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://kxl2jx769c.execute-api.us-east-1.amazonaws.com/prod/identificarbesubscriptor</URL>
+        <Properties>
+            <Property name="success.codes">1xx,2xx,3xx,4xx</Property>
+            <Property name="keepalive.timeout.millis">28000</Property>
+        </Properties>
+    </HTTPTargetConnection>
+</TargetEndpoint>
