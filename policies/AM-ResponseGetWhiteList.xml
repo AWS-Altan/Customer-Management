@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseGetWhiteList">
+    <DisplayName>AM-ResponseGetWhiteList</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "msisdn": "@msisdn#",
+                "whiteList": "@whiteList#",
+                "insertedDate": "@inserted_date#",
+                "effectiveDate": "@timestamp_mex#"
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="response"/>
+</AssignMessage>

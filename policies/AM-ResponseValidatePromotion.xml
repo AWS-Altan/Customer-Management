@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseValidatePromotion">
+    <DisplayName>AM-ResponseValidatePromotion</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "msisdn": "@msisdn#",
+                "operation": "@operation#",
+                "promotion_applied": "@promotion_applied#",
+                "error_code": "@status_code#",
+                "description_error": "@error_description#"
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="response"/>
+</AssignMessage>

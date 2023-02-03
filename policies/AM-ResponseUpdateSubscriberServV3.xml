@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseUpdateSubscriberServV3">
+    <DisplayName>AM-ResponseUpdateSubscriberServV3</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "msisdn": "@msisdn#",
+                "effectiveDate": "@responseChangePrimaryOffering.rspTime#",
+                "offeringId": "@offeringId#",
+                "description": "@errorDescription#",
+                "order": {
+                    "id": "@responseChangePrimaryOffering.orderId#"
+                }
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

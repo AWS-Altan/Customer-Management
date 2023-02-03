@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AM-ResponseQuerySubscriberInformation" enabled="true" continueOnError="false" async="false">
+    <DisplayName>AM-ResponseQuerySubscriberInformation</DisplayName>
+    <Set>
+        <Payload variableSuffix="#" variablePrefix="@" contentType="application/json">
+            {
+                "idSubscriber": "@responseQuerySubsInfo.subId#",
+                "IMSI":"@responseQuerySubsInfo.IMSI#",
+                "ICCID":"@responseQuerySubsInfo.ICCID#",
+                "status": "@responseQuerySubsInfo.subStatusConvert#"
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="https" createNew="true"/>
+</AssignMessage>

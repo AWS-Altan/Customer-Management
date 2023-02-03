@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AM-ResponseQueryFreeUnit" enabled="true" continueOnError="false" async="false">
+    <DisplayName>AM-ResponseQueryFreeUnit</DisplayName>
+    <Set>
+        <Payload variableSuffix="#" variablePrefix="@" contentType="application/json">
+            {
+                "responseSubscriber": {
+                    "information":{
+                        "idSubscriber": "@responseQuerySubsInfo.subId#",
+                        "IMSI":"@responseQuerySubsInfo.IMSI#",
+                        "ICCID":"@responseQuerySubsInfo.ICCID#"
+                    },
+                    "status":{
+                        "subStatus": "@responseQuerySubStatus.subStatus#"
+                    },
+                    "primaryOffering":{
+                        "offeringId": "@responsePrimaryOffering.offeringId#"
+                    },
+                    "freeUnits": @freeUnitsArray#
+                }
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="https" createNew="true"/>
+</AssignMessage>

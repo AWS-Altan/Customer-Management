@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAuditorDataChangeStatusResume">
+    <DisplayName>AM-SetAuditorDataChangeStatusResume</DisplayName>
+    <AssignVariable>
+        <Name>Auditor.inout</Name>
+        <Value>in</Value>
+        <Ref/>
+    </AssignVariable>
+    <!--<AssignVariable>
+        <Name>Auditor.subTransactionId</Name>
+        <Value>003</Value>
+        <Ref/>
+    </AssignVariable>-->
+    <AssignVariable>
+        <Name>Auditor.target</Name>
+        <Value>ChangeSubscriberStatus</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.resource</Name>
+        <Value>ChangeSubscriberStatus</Value>
+        <Ref/>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>Auditor.partnerId</Name>
+        <Ref>PartnerId</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

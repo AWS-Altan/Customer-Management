@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseProfileMSVersion2">
+    <DisplayName>AM-ResponseProfileMSVersion2</DisplayName>
+    <Set>
+        <Payload variableSuffix="#" variablePrefix="@" contentType="application/json">
+            {
+                "responseSubscriber": {
+                    "information":{
+                        "idSubscriber": "@responseProfileMS.idSubscriber#",
+                        "IMSI": "@responseProfileMS.IMSI#",
+                        "ICCID": "@responseProfileMS.ICCID#",
+                        "IMEI": "@imei#",
+                        "coordinates": "@coordinates#"
+                        
+                    },
+                    "status":{
+                        "subStatus": "@responseProfileMS.subStatus#"
+                    },
+                    "primaryOffering":{
+                        "offeringId": "@responseProfileMS.primaryoffering#",
+                        "excessiveProductSpeed": "@responseProfileMS.excessiveProductSpeed#"
+                    },
+                    "freeUnits": @freeUnitsArray#
+                }
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="https" createNew="true"/>
+</AssignMessage>
