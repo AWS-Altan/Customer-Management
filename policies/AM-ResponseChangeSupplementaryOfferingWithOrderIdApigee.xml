@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseActivateEndDate">
-    <DisplayName>AM-ResponseActivateEndDate</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ResponseChangeSupplementaryOfferingWithOrderIdApigee">
+    <DisplayName>AM-ResponseChangeSupplementaryOfferingWithOrderIdApigee</DisplayName>
     <Set>
         <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
             {
                 "msisdn": "@msisdn#",
-                "effectiveDate": "@responseActivateSubscriber.rspTime#",
-                "offeringId": "@offeringId#",
-                "startEffectiveDate": "@startEffectiveDate#",
-                "expireEffectiveDate": "@expireEffectiveDate#",
+                "effectiveDate": "@responseChangeSupOffering.rspTime#",
+                "offerings": @offerings#,
                 "order": {
                     "id": "@orderIdApigee#"
                 }

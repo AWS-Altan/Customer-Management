@@ -11,7 +11,7 @@
                 "startEffectiveDate": "@startEffectiveDate#",
                 "expireEffectiveDate": "@expireEffectiveDate#",
                 "order": {
-                    "id": "@changePrimaryOrderIdFromJs#"
+                    "id": "@orderIdApigee#"
                 }
             }
         </Payload>

@@ -8,7 +8,7 @@
                 "effectiveDate": "@responseChangePrimaryOffering.rspTime#",
                 "offeringId": "@offeringId#",
                 "order": {
-                    "id": "@changePrimaryOrderIdFromJs#"
+                    "id": "@orderIdApigee#"
                 }
             }
         </Payload>

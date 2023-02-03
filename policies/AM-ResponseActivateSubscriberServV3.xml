@@ -9,7 +9,7 @@
                 "offeringId": "@offeringId#",
                 "description": "@errorDescription#",
                 "order": {
-                    "id": "@changePrimaryOrderIdFromJs#"
+                    "id": "@orderIdApigee#"
                 }
             }
         </Payload>
