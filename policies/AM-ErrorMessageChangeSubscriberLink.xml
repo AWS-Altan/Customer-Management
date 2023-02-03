@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageChangeSubscriberLink">
+    <DisplayName>AM-ErrorMessageChangeSubscriberLink</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>500</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>500</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>An error has been thrown by notification service. If necessary, please, contact support Altán Redes.</Value>
+    </AssignVariable>
+</AssignMessage>

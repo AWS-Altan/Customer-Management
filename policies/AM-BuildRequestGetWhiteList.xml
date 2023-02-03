@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestGetWhiteList">
+    <DisplayName>AM-BuildRequestGetWhiteList</DisplayName>
+    <Properties/>
+    <Set>
+        <!--@TODO  hay que cambiar el payload -->
+        <Payload contentType="application/json; charset=UTF-8">
+            {
+                "msisdn": "52{msisdn}",
+                "be_id": "{PartnerId}"
+            }
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

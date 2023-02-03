@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AcceptedMessageGetCatalogPromotionsFiltered">
+    <DisplayName>AM-AcceptedMessageGetCatalogPromotionsFiltered</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>statusAccepted.status</Name>
+        <Value>202</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>statusAccepted.code</Name>
+        <Value>202</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>statusAccepted.message</Name>
+        <Value>Promotions does not apply for this msisdn</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>202</Value>
+    </AssignVariable>
+</AssignMessage>

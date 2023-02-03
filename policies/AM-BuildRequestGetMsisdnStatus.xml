@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestGetMsisdnStatus">
+    <DisplayName>AM-BuildRequestGetMsisdnStatus</DisplayName>
+    <Set>
+        <!--@TODO  hay que cambiar el payload -->
+        <Payload contentType="application/json; charset=UTF-8">
+            {
+              "Operation-Password": "{Operation-Password}",
+              "Operation-User": "{Operation-User}",
+              "OperatorId": "{OperatorId}",
+              "PartnerId": "{PartnerId}",
+              "msisdns": {msisdns},
+              "TransactionId": "{transactionId}",
+              "consulta_profile": "777"
+            }
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="request"/>
+</AssignMessage>

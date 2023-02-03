@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestCoordinates">
+    <DisplayName>AM-BuildRequestCoordinates</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="X-APIGW-TOKEN">{apigee.access_token}</Header>
+        </Headers>
+        <QueryParams>
+            <QueryParam name="msisdn">{msisdn}</QueryParam>
+            <QueryParam name="be_id">{PartnerId}</QueryParam>
+        </QueryParams>
+        <FormParams/>
+        <Verb>GET</Verb>
+        <Path/>
+    </Set>
+    <AssignVariable>
+        <Name>forward.target.url</Name>
+        <Value>http://34.237.230.77:8888/ms-gisservices/msisdns/lastcoordinates?msisdn={msisdn}&amp;be_id={PartnerId}</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

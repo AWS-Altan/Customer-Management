@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AssignResponseVerb">
+    <DisplayName>AM-AssignResponseVerb</DisplayName>
+    <AssignVariable>
+        <Name>request.verb</Name>
+        <Value/>
+        <Ref>OriginVerb</Ref>
+    </AssignVariable>
+</AssignMessage>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ChangePrimaryOfferingAsyncResponse">
+    <DisplayName>AM-ChangePrimaryOfferingAsyncResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "msisdn": "@msisdn#",
+                "effectiveDate": "@responseChangePrimaryOffering.rspTime#",
+                "offeringId": "@offeringId#",
+                "asyncOrder": {
+                    "id": "@rspAWS.id_transation_cudar#"
+                }
+            }
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="response"/>
+</AssignMessage>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageActivateSubscriberError">
+    <DisplayName>AM-ErrorMessageActivateSubscriberError</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>responseActivateSubscriber.returnCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>responseActivateSubscriber.returnMsg</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.msj</Name>
+        <Value>responseActivateSubscriber.orderId</Value>
+    </AssignVariable>
+</AssignMessage>

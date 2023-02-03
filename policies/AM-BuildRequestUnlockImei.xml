@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestUnlockImei">
+    <DisplayName>AM-BuildRequestUnlockImei</DisplayName>
+    <Add>
+        <Headers/>
+    </Add>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">text/xml; charset=utf-8</Header>
+            <Header name="SOAPAction">""</Header>
+        </Headers>
+        <Payload contentType="text/xml">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soapadapter.provgw">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <spml:deleteRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:spml="urn:siemens:names:prov:gw:SPML:2:0" xmlns:dev="urn:siemens:names:prov:gw:EIR_NSR:1:0" newGenerated="true">
+                        <version>EIR_NSR_v30</version>
+                        <objectclass>Device</objectclass>
+                        <identifier>{imei}</identifier>
+                    </spml:deleteRequest>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>forward.target.url</Name>
+        <Value>http://34.237.230.77:8089/ProvisioningGateway/services/SPMLEirNsr30Service</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>POST</Value>
+    </AssignVariable>
+    <AssignTo createNew="true" transport="http" type="request"/>
+</AssignMessage>

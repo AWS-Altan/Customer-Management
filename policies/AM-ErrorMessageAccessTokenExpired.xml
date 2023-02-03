@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageAccessTokenExpired">
+    <DisplayName>AM-ErrorMessageAccessTokenExpired</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>401</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Access token expired</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>The access token sent has expired.</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>401</Value>
+    </AssignVariable>
+</AssignMessage>

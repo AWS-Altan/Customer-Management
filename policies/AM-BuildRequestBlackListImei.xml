@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestBlackListImei">
+    <DisplayName>AM-BuildRequestBlackListImei</DisplayName>
+    <Add>
+        <Headers/>
+    </Add>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application-json; charset=utf-8</Header>
+            <Header name="SOAPAction">""</Header>
+        </Headers>
+        <Payload contentType="text/xml">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soapadapter.provgw">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <spml:searchRequest xmlns:spml="urn:siemens:names:prov:gw:SPML:2:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" newGenerated="true">
+                        <version>EIR_NSR_v30</version>
+                        <base>
+                            <objectclass>Device</objectclass>
+                        </base>
+                        <filter>
+                            <equalityMatch name="colour/colour">
+                                <value>black</value>
+                            </equalityMatch>
+                        </filter>
+                        <returnAttribute>identifier</returnAttribute>
+                    </spml:searchRequest>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>forward.target.url</Name>
+        <Value>http://34.237.230.77:8089/ProvisioningGateway/services/SPMLEirNsr30Service</Value>
+        <!--<Value>http://34.237.230.77:8999/cgi-bin/mme/bloqueo.cgi</Value>-->
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <AssignTo createNew="true" transport="http" type="request"/>
+</AssignMessage>

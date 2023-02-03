@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageDevAppSvaInvalid">
+    <DisplayName>AM-ErrorMessageDevAppSvaInvalid</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>401</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Your credentials are not authorized to use this API</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>401</Value>
+    </AssignVariable>
+</AssignMessage>

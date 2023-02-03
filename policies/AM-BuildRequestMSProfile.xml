@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestMSProfile">
+    <DisplayName>AM-BuildRequestMSProfile</DisplayName>
+    <Add>
+        <Headers/>
+    </Add>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Payload contentType="application/json">
+            {
+                "OperatorId":"{OperatorId}",
+                "Operation-User":"{Operation-User}",
+                "Operation-Password":"{Operation-Password}",
+                "PartnerId":"{PartnerId}",
+                "TransactionId":"{transactionId}",
+                "profile":"{profileVersionMSF}"
+            }
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>profile.operationPath</Name>
+        <Template>/profile/{msisdn}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

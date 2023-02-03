@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestIdentifierBe">
+    <DisplayName>AM-BuildRequestIdentifierBe</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="Transactionid">{transactionId}</Header>
+            <Header name="Operation-User">{Operation-User}</Header>
+            <Header name="Operation-Password">{Operation-Password}</Header>
+            <Header name="OperatorId">{OperatorId}</Header>
+            <Header name="PartnerId">msisdnSVA</Header>
+        </Headers>
+        <QueryParams>
+            <QueryParam name="identifierType">{identifierType}</QueryParam>
+            <QueryParam name="identifierValue">{identifierValue}</QueryParam>
+        </QueryParams>
+        <Verb>GET</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>GET</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

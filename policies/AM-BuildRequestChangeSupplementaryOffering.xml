@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestChangeSupplementaryOffering">
+    <DisplayName>AM-BuildRequestChangeSupplementaryOffering</DisplayName>
+    <Add>
+        <Headers/>
+    </Add>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">text/xml; charset=utf-8</Header>
+            <Header name="SOAPAction">ChangeSupplementaryOffering</Header>
+        </Headers>
+        <Payload variablePrefix="@" variableSuffix="#" contentType="text/xml">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.huawei.com/bss/soaif/interface/OfferingService/" xmlns:com="http://www.huawei.com/bss/soaif/interface/common/">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <off:ChangeSupplementaryOfferingReqMsg>
+                        @payloadPurchase#
+                    </off:ChangeSupplementaryOfferingReqMsg>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>flow.bss.operationpath</Name>
+        <Value>/SELFCARE/HWBSS_Offering</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>POST</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>

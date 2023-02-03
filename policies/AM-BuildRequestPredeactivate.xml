@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRequestPredeactivate">
+    <DisplayName>AM-BuildRequestPredeactivate</DisplayName>
+    <Add>
+        <Headers/>
+    </Add>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">text/xml; charset=utf-8</Header>
+            <Header name="SOAPAction">PreDeactivateSubscriber</Header>
+        </Headers>
+        <Payload variablePrefix="@" variableSuffix="#" contentType="text/xml">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://www.huawei.com/bss/soaif/interface/SubscriberService/" xmlns:com="http://www.huawei.com/bss/soaif/interface/common/">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <sub:PreDeactivateSubReqMsg>
+                        <com:ReqHeader>
+                            <com:Version>1</com:Version>
+                            <com:BusinessCode>QuerySubscriberInformation</com:BusinessCode>
+                            <com:TransactionId>@transactionId#</com:TransactionId>
+                            <com:Channel>51</com:Channel>
+                            <!--Optional:-->
+                            <com:PartnerId>@PartnerId#</com:PartnerId>
+                            <com:ReqTime>@timestamp_mex#</com:ReqTime>
+                            <com:TimeFormat>
+                                <com:TimeType>1</com:TimeType>
+                            </com:TimeFormat>
+                            <com:AccessUser>@Operation-User#</com:AccessUser>
+                            <com:AccessPassword>@Operation-Password#</com:AccessPassword>
+                            <com:OperatorId>@OperatorId#</com:OperatorId>
+                            <!--0 to 100 repetitions:-->
+                            <com:AdditionalProperty>
+                                <com:Code>1</com:Code>
+                                <com:Value>1</com:Value>
+                            </com:AdditionalProperty>
+                        </com:ReqHeader>
+                        <sub:AccessInfo>
+                            <com:ObjectIdType>4</com:ObjectIdType>
+                            <com:ObjectId>@msisdn#</com:ObjectId>
+                        </sub:AccessInfo>
+                    </sub:PreDeactivateSubReqMsg>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+    <AssignVariable>
+        <Name>flow.bss.operationpath</Name>
+        <Value>/SELFCARE/HWBSS_Subscriber</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OriginVerb</Name>
+        <Value>POST</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="https" type="request"/>
+</AssignMessage>
