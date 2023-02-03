@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="258" name="CustomerManagement">
+<APIProxy revision="328" name="CustomerManagement">
     <Basepaths>/cm</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1518661709423</CreatedAt>
     <CreatedBy>victor.montes.urbina@everis.com</CreatedBy>
-    <Description>Fase2_Mejoras en impactos al HSS de Affirmed - SSH a ASAP Rev anterior 256</Description>
+    <Description>Mejora en el API de eliminación de oferta, soporte para External ID.De rev 327 prod</Description>
     <DisplayName>CustomerManagement</DisplayName>
-    <LastModifiedAt>1635470310917</LastModifiedAt>
-    <LastModifiedBy>sonia.terron@altanredes.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:0257e3d9904961fd05350730ce66cbf80fef4498b387e1858905f42485b4bf56644bae59dc9e2ac098d982946debae9e48a61a70f64c4a0240692b3ca8f300a4:us-west-2</ManifestVersion>
+    <LastModifiedAt>1675121067138</LastModifiedAt>
+    <LastModifiedBy>jose.guarneros@altanredes.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:9e1698379c1668ce7dc7c1bb0799394b769d7b66fedc71993a83dc055f3a35472eae6e3d8ecb4e14e5510d74ead8face8b4e3789fbbddc39f401f16698481c4d:us-east-1</ManifestVersion>
     <Policies>
         <Policy>AC-SecurityIP</Policy>
         <Policy>AM-AM-ErrorMessageGetCatalogPromotionsFilteredMoreThanOne</Policy>
@@ -36,6 +36,7 @@
         <Policy>AM-BuildRequestCoordinates</Policy>
         <Policy>AM-BuildRequestDeactivate</Policy>
         <Policy>AM-BuildRequestDeleteWhiteList</Policy>
+        <Policy>AM-BuildRequestGetMsisdnInformation</Policy>
         <Policy>AM-BuildRequestGetMsisdnStatus</Policy>
         <Policy>AM-BuildRequestGetWhiteList</Policy>
         <Policy>AM-BuildRequestIdentifierBe</Policy>
@@ -46,6 +47,7 @@
         <Policy>AM-BuildRequestMultiActivation</Policy>
         <Policy>AM-BuildRequestPredeactivate</Policy>
         <Policy>AM-BuildRequestPrimaryOffering</Policy>
+        <Policy>AM-BuildRequestProfileQuery</Policy>
         <Policy>AM-BuildRequestQueryFreeUnit</Policy>
         <Policy>AM-BuildRequestQueryPurchasePrimaryOffering</Policy>
         <Policy>AM-BuildRequestReactivateSubscriber</Policy>
@@ -84,17 +86,22 @@
         <Policy>AM-ErrorMessageChangeSubscriberSIM</Policy>
         <Policy>AM-ErrorMessageChangeSubscriberStatus</Policy>
         <Policy>AM-ErrorMessageChangeSupplementaryOfferingError</Policy>
+        <Policy>AM-ErrorMessageConnectPromotionsTable</Policy>
         <Policy>AM-ErrorMessageContentLength</Policy>
         <Policy>AM-ErrorMessageContentType</Policy>
+        <Policy>AM-ErrorMessageControlPromotionsDataByOperation</Policy>
+        <Policy>AM-ErrorMessageCountNumberOfChangesMsisdn</Policy>
         <Policy>AM-ErrorMessageDateOperations</Policy>
         <Policy>AM-ErrorMessageDeactivate</Policy>
         <Policy>AM-ErrorMessageDefaultServer</Policy>
+        <Policy>AM-ErrorMessageDeprecatedOperation</Policy>
         <Policy>AM-ErrorMessageDevAppSvaInvalid</Policy>
         <Policy>AM-ErrorMessageExtractLatLong</Policy>
         <Policy>AM-ErrorMessageFIFFNotAllowed</Policy>
         <Policy>AM-ErrorMessageFlowUnlockImei</Policy>
         <Policy>AM-ErrorMessageGetCatalogPromotionsFilteredMoreThanOne</Policy>
         <Policy>AM-ErrorMessageGetControlPromotionsDataByOperation</Policy>
+        <Policy>AM-ErrorMessageGetControlPromotionsDetailExceedEventsPortIn</Policy>
         <Policy>AM-ErrorMessageGetControlPromotionsDetailExceedMaxEvents</Policy>
         <Policy>AM-ErrorMessageGetControlPromotionsDetailOperationNotSupported</Policy>
         <Policy>AM-ErrorMessageGetImeiHss</Policy>
@@ -102,6 +109,8 @@
         <Policy>AM-ErrorMessageGetMsisdnStatus</Policy>
         <Policy>AM-ErrorMessageGetWhiteList</Policy>
         <Policy>AM-ErrorMessageIdentifierBe</Policy>
+        <Policy>AM-ErrorMessageImeiNotAllowedOperation</Policy>
+        <Policy>AM-ErrorMessageImeiNotFoundInInfoByTac</Policy>
         <Policy>AM-ErrorMessageIncorrectScheduleDate</Policy>
         <Policy>AM-ErrorMessageInsertIntoPromotionControlTables</Policy>
         <Policy>AM-ErrorMessageInsertWhiteList</Policy>
@@ -109,7 +118,11 @@
         <Policy>AM-ErrorMessageInvalidMsisdnStatus</Policy>
         <Policy>AM-ErrorMessageInvalidMsisdnType</Policy>
         <Policy>AM-ErrorMessageInvalidNIR</Policy>
+        <Policy>AM-ErrorMessageInvalidOfferVsServiciabilityVersion</Policy>
+        <Policy>AM-ErrorMessageInvalidOperationBarring</Policy>
+        <Policy>AM-ErrorMessageInvalidOperationSuspend</Policy>
         <Policy>AM-ErrorMessageInvalidProductError</Policy>
+        <Policy>AM-ErrorMessageInvalidRechargeProvider</Policy>
         <Policy>AM-ErrorMessageIsInvalidArea</Policy>
         <Policy>AM-ErrorMessageLengthCoordinates</Policy>
         <Policy>AM-ErrorMessageLocationLinking</Policy>
@@ -121,9 +134,12 @@
         <Policy>AM-ErrorMessageMsisdnOnWhiteList</Policy>
         <Policy>AM-ErrorMessageNoBand28</Policy>
         <Policy>AM-ErrorMessageNoHasDownSpeed</Policy>
+        <Policy>AM-ErrorMessageNotApplyPromotionalBonus</Policy>
         <Policy>AM-ErrorMessageNotFoundOperator</Policy>
+        <Policy>AM-ErrorMessageNotValidPCE</Policy>
         <Policy>AM-ErrorMessageOfferinIdProduct</Policy>
         <Policy>AM-ErrorMessageOffering</Policy>
+        <Policy>AM-ErrorMessageOrderError</Policy>
         <Policy>AM-ErrorMessagePredeactivate</Policy>
         <Policy>AM-ErrorMessagePrepaidToPostpaidError</Policy>
         <Policy>AM-ErrorMessagePreregisteredAndActiveHssCommands</Policy>
@@ -137,6 +153,7 @@
         <Policy>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</Policy>
         <Policy>AM-ErrorMessageQueryPurchasedSuppOffer</Policy>
         <Policy>AM-ErrorMessageQuerySubStatus</Policy>
+        <Policy>AM-ErrorMessageQuerySubscriberStatusError</Policy>
         <Policy>AM-ErrorMessageQuerySupplementaryOfferingError</Policy>
         <Policy>AM-ErrorMessageReactivateSub</Policy>
         <Policy>AM-ErrorMessageRefactorDateError</Policy>
@@ -186,6 +203,7 @@
         <Policy>AM-ErrorMessageVerifyParamsActivate</Policy>
         <Policy>AM-ErrorMessageWhenTryToAssignPromotionOffers</Policy>
         <Policy>AM-ErrorMessageWithoutCoordinatesVar</Policy>
+        <Policy>AM-ErrorMsisdnInfo</Policy>
         <Policy>AM-ErrorNotAllowedApplyAdjustment</Policy>
         <Policy>AM-ErrorQuerySubsInfo</Policy>
         <Policy>AM-ErrorUnsupportedOperation</Policy>
@@ -193,6 +211,7 @@
         <Policy>AM-FixedTelephonyResponse</Policy>
         <Policy>AM-FixedTelephonyWithFIFFResponse</Policy>
         <Policy>AM-GenerateTimestamp</Policy>
+        <Policy>AM-GetMsisdnInfoResponse</Policy>
         <Policy>AM-GetMsisdnStatusResponse</Policy>
         <Policy>AM-IPDeniedAccess</Policy>
         <Policy>AM-LimitCountin</Policy>
@@ -200,9 +219,6 @@
         <Policy>AM-MessageTwoHundredTwoAccepted</Policy>
         <Policy>AM-OfferNotValidToPurchase</Policy>
         <Policy>AM-OfferingIdHbbError</Policy>
-        <Policy>AM-ProfileCatching</Policy>
-        <Policy>AM-ProfileVersion2</Policy>
-        <Policy>AM-ProfileVersion3</Policy>
         <Policy>AM-PurchaseAsyncResponse</Policy>
         <Policy>AM-PurchaseAsyncTransaction</Policy>
         <Policy>AM-RemoveBasePath</Policy>
@@ -229,6 +245,7 @@
         <Policy>AM-ResponseChangeSubscriberStatusAsync</Policy>
         <Policy>AM-ResponseChangeSubscriberStatusAsyncAWS</Policy>
         <Policy>AM-ResponseChangeSupplementaryOffering</Policy>
+        <Policy>AM-ResponseChangeSupplementaryOfferingWithOrderIdApigee</Policy>
         <Policy>AM-ResponseCoordinates</Policy>
         <Policy>AM-ResponseDeactivateSub</Policy>
         <Policy>AM-ResponseDeleteEffectiveSupplementary</Policy>
@@ -236,6 +253,7 @@
         <Policy>AM-ResponseExpireDate</Policy>
         <Policy>AM-ResponseExpireDateServV3</Policy>
         <Policy>AM-ResponseExtractOperations</Policy>
+        <Policy>AM-ResponseGetOrderStatus</Policy>
         <Policy>AM-ResponseGetWhiteList</Policy>
         <Policy>AM-ResponseIdentifierBe</Policy>
         <Policy>AM-ResponseImei</Policy>
@@ -252,7 +270,6 @@
         <Policy>AM-ResponseProxyChangeSubscriberLink</Policy>
         <Policy>AM-ResponseProxyChangeSubscriberSIM</Policy>
         <Policy>AM-ResponseProxyPrimaryOffering</Policy>
-        <Policy>AM-ResponseQueryFreeUnit</Policy>
         <Policy>AM-ResponseQueryPurcahsedPrimaryOffering</Policy>
         <Policy>AM-ResponseQueryPurchasedPrimaryOfferingV2</Policy>
         <Policy>AM-ResponseQuerySubscriberInformation</Policy>
@@ -306,15 +323,18 @@
         <Policy>AM-SetAuditorDataInGetWhiteList</Policy>
         <Policy>AM-SetAuditorDataInIdentifierBe</Policy>
         <Policy>AM-SetAuditorDataInInsertWhiteList</Policy>
+        <Policy>AM-SetAuditorDataInMsisdnInfo</Policy>
         <Policy>AM-SetAuditorDataInMsisdnStatus</Policy>
         <Policy>AM-SetAuditorDataInMultiActivation</Policy>
         <Policy>AM-SetAuditorDataLockImeiOut</Policy>
         <Policy>AM-SetAuditorDataOutBDLCoordinates</Policy>
+        <Policy>AM-SetAuditorDataOutChangeSupplementaryOfferIdWithOrderIdApigee</Policy>
         <Policy>AM-SetAuditorDataOutDeleteWhiteList</Policy>
         <Policy>AM-SetAuditorDataOutGetWhiteList</Policy>
         <Policy>AM-SetAuditorDataOutIdentifierBe</Policy>
         <Policy>AM-SetAuditorDataOutInsertWhiteList</Policy>
         <Policy>AM-SetAuditorDataOutMsProfile</Policy>
+        <Policy>AM-SetAuditorDataOutMsisdnInfo</Policy>
         <Policy>AM-SetAuditorDataOutMsisdnStatus</Policy>
         <Policy>AM-SetAuditorDataOutMultiActivation</Policy>
         <Policy>AM-SetAuditorDataOutQueryPurchasePrimaryOffering</Policy>
@@ -336,19 +356,25 @@
         <Policy>AM-SetAuditorLookupForOperatorOut</Policy>
         <Policy>AM-SetAuditorResumeMobility</Policy>
         <Policy>AM-SetAuditorResumeMobilityOut</Policy>
-        <Policy>AM-SetAuxiliaryVariables</Policy>
         <Policy>AM-SetDataChangeImeiIN</Policy>
         <Policy>AM-SetDataChangeImeiOUT</Policy>
         <Policy>AM-SetDataScheduleAsync</Policy>
+        <Policy>AM-SetIdentifierActivation</Policy>
         <Policy>AM-SetMsisdnStatus</Policy>
-        <Policy>AM-SetMsisdnStatusInProfile</Policy>
         <Policy>AM-SetMsisdnStatusPredeactivate</Policy>
         <Policy>AM-SetNotifiedByClient</Policy>
+        <Policy>AM-SetOrderIdApigeeForQueryOrderStatus</Policy>
+        <Policy>AM-SetOrderIdApigeeTwoForQueryOrderStatus</Policy>
         <Policy>AM-SetOrderIdCpo</Policy>
         <Policy>AM-SetOrderIdForQueryOrderStatus</Policy>
         <Policy>AM-SetOrderIdFromDeleteSuppOfferings</Policy>
+        <Policy>AM-SetOrderIdFromOrderIdApigee</Policy>
         <Policy>AM-SetOrderIdToLoopQueryReactivate</Policy>
         <Policy>AM-SetOrderIdToWaitForReactivate</Policy>
+        <Policy>AM-SetOrrferIdFinVigenciaToGeneric</Policy>
+        <Policy>AM-SetPreviousSuppOfferings</Policy>
+        <Policy>AM-SetProfileQueryAuditorIN</Policy>
+        <Policy>AM-SetProfileQueryAuditorOUT</Policy>
         <Policy>AM-SetRequestWaitToCompleteOrder</Policy>
         <Policy>AM-SetRoamabilityVariablesChangeOffer</Policy>
         <Policy>AM-SetScheduleDateBarring</Policy>
@@ -369,9 +395,10 @@
         <Policy>AM-SetTargetEndPointNoRoutes</Policy>
         <Policy>AM-SetTargetEndpoint</Policy>
         <Policy>AM-SetTargetEndpointBatch</Policy>
+        <Policy>AM-SetTargetEndpointMsisdnInfo</Policy>
         <Policy>AM-SetTargetEndpointMsisdnStatus</Policy>
-        <Policy>AM-SetTargetEndpointNewProfile</Policy>
         <Policy>AM-SetTargetEndpointOffering</Policy>
+        <Policy>AM-SetTargetEndpointProfileQuery</Policy>
         <Policy>AM-SetTargetEndpointSubscribers</Policy>
         <Policy>AM-SetTargetEndpointTransactions</Policy>
         <Policy>AM-SetTargetGetWhiteList</Policy>
@@ -415,6 +442,8 @@
         <Policy>EV-ChangeSubscriberStatus</Policy>
         <Policy>EV-DeactivateResponse</Policy>
         <Policy>EV-ErrorMessageServiceability</Policy>
+        <Policy>EV-GetMsisdnInfoResponse</Policy>
+        <Policy>EV-GetMsisdnInformation</Policy>
         <Policy>EV-GetMsisdnStatus</Policy>
         <Policy>EV-GetMsisdnStatusResponse</Policy>
         <Policy>EV-GetProfileMS</Policy>
@@ -437,6 +466,7 @@
         <Policy>EV-RequestOperation</Policy>
         <Policy>EV-RequestOperations</Policy>
         <Policy>EV-RequestPreRegistered</Policy>
+        <Policy>EV-RequestProfileQuery</Policy>
         <Policy>EV-RequestResumeMobility</Policy>
         <Policy>EV-RequestSpeedDown</Policy>
         <Policy>EV-RequestSubscriber</Policy>
@@ -465,6 +495,7 @@
         <Policy>EV-ScheduleDate</Policy>
         <Policy>EV-TargetChangeIMEI</Policy>
         <Policy>EV-TargetError</Policy>
+        <Policy>EV-TargetProfileQueryResponse</Policy>
         <Policy>EV-UpdateProductsExpireDateRequest</Policy>
         <Policy>ErrorMessageVerifyParamsActivate</Policy>
         <Policy>FC-ActivateHSSA</Policy>
@@ -480,6 +511,7 @@
         <Policy>FC-AsyncResume</Policy>
         <Policy>FC-AsyncSuspend</Policy>
         <Policy>FC-AsyncUnbarring</Policy>
+        <Policy>FC-AsyncUnlockImei</Policy>
         <Policy>FC-AsyncValidatePromotion</Policy>
         <Policy>FC-AuditorService</Policy>
         <Policy>FC-AuditorServiceResource</Policy>
@@ -494,7 +526,9 @@
         <Policy>FC-ChangeSubscriberLink</Policy>
         <Policy>FC-ChangeSubscriberMSISDN</Policy>
         <Policy>FC-ChangeSubscriberSIM</Policy>
+        <Policy>FC-ChangeSupplementaryOfferingGeneric</Policy>
         <Policy>FC-CheckActivationMethod</Policy>
+        <Policy>FC-CountNumberOfChangesMsisdn</Policy>
         <Policy>FC-CreateAPNinDMC</Policy>
         <Policy>FC-DeactivateHSSA</Policy>
         <Policy>FC-DeleteAllOfferings</Policy>
@@ -510,20 +544,21 @@
         <Policy>FC-GenerateTransactionId</Policy>
         <Policy>FC-GenericGetReasonCode</Policy>
         <Policy>FC-GetCatalogPromotionsFiltered</Policy>
+        <Policy>FC-GetCheckImeiFromImpala</Policy>
         <Policy>FC-GetControlPromotionsDataByOperation</Policy>
         <Policy>FC-GetControlPromotionsDetailDataByOperation</Policy>
         <Policy>FC-GetControlUnbarringForzado</Policy>
-        <Policy>FC-GetImeiSubscriber</Policy>
+        <Policy>FC-GetDataForOffersRenewal</Policy>
         <Policy>FC-GetOfferingProduct</Policy>
         <Policy>FC-GetOrUpdateControlPromotionsDataByOperation</Policy>
         <Policy>FC-GetPortabilities</Policy>
-        <Policy>FC-GetProfileCatching</Policy>
+        <Policy>FC-GetProduct</Policy>
         <Policy>FC-GetReasonCode</Policy>
+        <Policy>FC-GetRecentlyAssociatedPurchase</Policy>
         <Policy>FC-GetResponseContent</Policy>
         <Policy>FC-GetResponseContentProfile</Policy>
         <Policy>FC-GetResumeCatching</Policy>
         <Policy>FC-GetResumeSPMCatching</Policy>
-        <Policy>FC-GetSecondsOnMinute</Policy>
         <Policy>FC-GetSubscriberStatus</Policy>
         <Policy>FC-GetTripletMbbByMsisdn</Policy>
         <Policy>FC-IdentifySubscriber</Policy>
@@ -537,6 +572,8 @@
         <Policy>FC-LoopOrderStatusPredeactivate</Policy>
         <Policy>FC-LoopQueryOrderStatus-DeleteOfferings</Policy>
         <Policy>FC-LoopQueryOrderStatus</Policy>
+        <Policy>FC-LoopQueryOrderStatusByOrderIdApige</Policy>
+        <Policy>FC-LoopQueryOrderStatusByOrderIdApigeRemove</Policy>
         <Policy>FC-MSLocationActivate</Policy>
         <Policy>FC-NotificationWebhook</Policy>
         <Policy>FC-NotifyBarring</Policy>
@@ -549,15 +586,16 @@
         <Policy>FC-Predeactivate</Policy>
         <Policy>FC-PredeactivateHSSA</Policy>
         <Policy>FC-PreregisterAndActivateOneNDS</Policy>
+        <Policy>FC-PreviousBonusComesPurchase</Policy>
         <Policy>FC-PreviousSuppOffers</Policy>
-        <Policy>FC-ProfileAssamble</Policy>
         <Policy>FC-ProfileAssemble</Policy>
         <Policy>FC-PurchaseExpireEffectiveDateInBackground</Policy>
         <Policy>FC-PurchasePromotionalBonus</Policy>
         <Policy>FC-QueryBalance</Policy>
-        <Policy>FC-QueryCoordinates</Policy>
         <Policy>FC-QueryFreeUnit</Policy>
         <Policy>FC-QueryMsisdnStatus</Policy>
+        <Policy>FC-QueryOrderStatusByOrderIdApigeRemove</Policy>
+        <Policy>FC-QueryPurchasedOfferByIdRemove</Policy>
         <Policy>FC-QueryPurchasedOfferByOrderId</Policy>
         <Policy>FC-QueryPurchasedPrimaryOffering</Policy>
         <Policy>FC-QueryPurchasedSupplementaryOffering</Policy>
@@ -567,12 +605,12 @@
         <Policy>FC-QuerySubscriberStatus</Policy>
         <Policy>FC-ReactivateHSSA</Policy>
         <Policy>FC-ReactiveHSS</Policy>
+        <Policy>FC-RecoverConfigSuspendBarringProv</Policy>
         <Policy>FC-SaveMsisdnStatus</Policy>
         <Policy>FC-ScheduleAsync</Policy>
         <Policy>FC-ScheduleDate</Policy>
         <Policy>FC-ScheduledAsyncOrders</Policy>
         <Policy>FC-ScheduledOrders-Purchase</Policy>
-        <Policy>FC-ScheduledOrders</Policy>
         <Policy>FC-Security</Policy>
         <Policy>FC-SendCommandsHSSHPE</Policy>
         <Policy>FC-SendSMSBarringUnBNotification</Policy>
@@ -581,14 +619,18 @@
         <Policy>FC-SetPortabilityOperationScript</Policy>
         <Policy>FC-SupplementaryOffering</Policy>
         <Policy>FC-UnlockImei</Policy>
+        <Policy>FC-UpdateChangeMsisdnDyna</Policy>
         <Policy>FC-UpdateControlPromotionsDataByOperation</Policy>
+        <Policy>FC-UpdateControlPromotionsDetailDataByOperation</Policy>
         <Policy>FC-UpdateControlUnbarringForzado</Policy>
+        <Policy>FC-UpdateDataForCuatripletaGeneral</Policy>
         <Policy>FC-UpdateQoS</Policy>
         <Policy>FC-UpdateSIMCardOTA</Policy>
         <Policy>FC-UploadBucketFile</Policy>
         <Policy>FC-ValidAddress</Policy>
         <Policy>FC-ValidateBand28</Policy>
         <Policy>FC-ValidateBarringBand28</Policy>
+        <Policy>FC-ValidateBusinessDaysActivationPortInC</Policy>
         <Policy>FC-ValidateDefaultOffering</Policy>
         <Policy>FC-ValidateExtension</Policy>
         <Policy>FC-ValidateHSS</Policy>
@@ -607,10 +649,11 @@
         <Policy>JS-AnalyzeDataForOperationPurchaseFromCatalogPromotion</Policy>
         <Policy>JS-CancelDownSpeed</Policy>
         <Policy>JS-ChangeStatus</Policy>
-        <Policy>JS-ConvertStatus</Policy>
+        <Policy>JS-CheckValueFromAplicaPromoDefault</Policy>
         <Policy>JS-ConvertSubscriberStatus</Policy>
         <Policy>JS-EffectiveDateCPO</Policy>
         <Policy>JS-EmptyTPS</Policy>
+        <Policy>JS-EvalStatus</Policy>
         <Policy>JS-EvaluateCancelOfferings</Policy>
         <Policy>JS-EvaluateSuppOfferNotPurchase</Policy>
         <Policy>JS-ExcludingPromotionalPurchasedOfferings</Policy>
@@ -622,10 +665,10 @@
         <Policy>JS-ForbidFIFF</Policy>
         <Policy>JS-GetMsisdns</Policy>
         <Policy>JS-GetProfileResponse</Policy>
-        <Policy>JS-GetSecondsOfTimeStamp</Policy>
         <Policy>JS-IsFixedTelephony</Policy>
         <Policy>JS-JsonToArrayCancel</Policy>
         <Policy>JS-JsonToArrayObject</Policy>
+        <Policy>JS-LatestExpirationDateFromPreSuppOfferings</Policy>
         <Policy>JS-PrepareDeleteOffering</Policy>
         <Policy>JS-PrepareResponseForOperatorService</Policy>
         <Policy>JS-RecoverTransactionId</Policy>
@@ -635,8 +678,15 @@
         <Policy>JS-RenovateOffer</Policy>
         <Policy>JS-SetAuditorData</Policy>
         <Policy>JS-SetAuditorDataCoverage</Policy>
+        <Policy>JS-SetCompraEliminaOfertaActual</Policy>
+        <Policy>JS-SetImeiFromImpala</Policy>
+        <Policy>JS-SetNewOrderIdApigeeForPromoVigencias</Policy>
+        <Policy>JS-SetOfferIdFromVigenciasField</Policy>
         <Policy>JS-SetOfferingIPromotionFromCatalogPromotion</Policy>
+        <Policy>JS-SetOrderIdApigee</Policy>
         <Policy>JS-SetPortedValueFromGetPortabilities</Policy>
+        <Policy>JS-SetPromotionalBonusErrorMessages</Policy>
+        <Policy>JS-SetQueryByFirstAssignment</Policy>
         <Policy>JS-SetStatusCode</Policy>
         <Policy>JS-SetValidatePromotionResponse</Policy>
         <Policy>JS-SuppPurchase</Policy>
@@ -651,7 +701,6 @@
         <Policy>JS-ValidateDateOperations</Policy>
         <Policy>JS-ValidateDevAppSva</Policy>
         <Policy>JS-ValidateHBBOffer</Policy>
-        <Policy>JS-ValidateIMEI</Policy>
         <Policy>JS-ValidateIdentifier</Policy>
         <Policy>JS-ValidateIdentifierTypeIdentifierBe</Policy>
         <Policy>JS-ValidateIfOfferIsRenewable</Policy>
@@ -662,6 +711,9 @@
         <Policy>JS-ValidateMsisdnStatusAtResume</Policy>
         <Policy>JS-ValidateMultiActivationParameters</Policy>
         <Policy>JS-ValidateOfferForSVA</Policy>
+        <Policy>JS-ValidateOfferIdContents</Policy>
+        <Policy>JS-ValidateOrderIdApigee</Policy>
+        <Policy>JS-ValidateOrderIdLength</Policy>
         <Policy>JS-ValidateQueryFreeUnit</Policy>
         <Policy>JS-ValidateQueryFreeUnitPurchase</Policy>
         <Policy>JS-ValidateReponseProfileMS</Policy>
@@ -685,6 +737,7 @@
         <Policy>JS-VerifySpeedPreregistered</Policy>
         <Policy>JS-getSpeedPrimaryOffering</Policy>
         <Policy>JS-scheduleDateNull</Policy>
+        <Policy>JS-setIdenfierSubscriptorVariables</Policy>
         <Policy>JS-validateIMEIBySubscriberIMEI</Policy>
         <Policy>JS-validateServiciabilityResponseWhenIsInternallCall</Policy>
         <Policy>JTP-MessageLockImei</Policy>
@@ -695,12 +748,15 @@
         <Policy>JTP-MessageSubscriberUpdate</Policy>
         <Policy>JTP-MessageValidatePromotion</Policy>
         <Policy>JTP-RequestMultiActivation</Policy>
+        <Policy>JavaScript-1</Policy>
+        <Policy>JavaScript-2</Policy>
         <Policy>KV-ExposeData</Policy>
         <Policy>KVM-ActivateLock</Policy>
         <Policy>KVM-AllowResumeNoBand28</Policy>
         <Policy>KVM-ApplyHomologatedIMEI</Policy>
         <Policy>KVM-AuthorizedImeiBlockers</Policy>
         <Policy>KVM-Band28Validation</Policy>
+        <Policy>KVM-ConsultaOfertasIncrementalesEnProfile</Policy>
         <Policy>KVM-ExposeData</Policy>
         <Policy>KVM-GetBeByIdSva</Policy>
         <Policy>KVM-GetCatalog_recharge_channel</Policy>
@@ -709,14 +765,12 @@
         <Policy>KVM-GetOfferName</Policy>
         <Policy>KVM-GetRecoveryOffers</Policy>
         <Policy>KVM-Getcatalog_recharge_pipe</Policy>
-        <Policy>KVM-HasProfileCatching</Policy>
         <Policy>KVM-HasResumeCatching</Policy>
         <Policy>KVM-ImeiNotAllowedValidation</Policy>
         <Policy>KVM-IsCICUSer</Policy>
         <Policy>KVM-NotPurchaseOfferById</Policy>
         <Policy>KVM-OneNdsExecutionPart</Policy>
         <Policy>KVM-PurchaseDevAppNameCovid19</Policy>
-        <Policy>KVM-TurnProfileMS</Policy>
         <Policy>KVM-ValidateAddress</Policy>
         <Policy>KVM-VerifyBonusPromotions</Policy>
         <Policy>REP-MessageBalances</Policy>
@@ -740,7 +794,9 @@
         <Policy>RF-ChangeSubscriberStatus</Policy>
         <Policy>RF-ChangeSupplementaryOfferingError</Policy>
         <Policy>RF-CoordinatesNotAllowed</Policy>
+        <Policy>RF-CountNumberOfChangesMsisdn</Policy>
         <Policy>RF-DataNotFoundIdentifierBe</Policy>
+        <Policy>RF-DaysActivationAndPortInCError</Policy>
         <Policy>RF-DeactivateError</Policy>
         <Policy>RF-DefaultOfferingErrorActivate</Policy>
         <Policy>RF-DefaultOfferingErrorChange</Policy>
@@ -755,15 +811,20 @@
         <Policy>RF-FIFFNotAllowed</Policy>
         <Policy>RF-GenerateError</Policy>
         <Policy>RF-GetImeiHssError</Policy>
+        <Policy>RF-GetMsisdnInfoResponse</Policy>
         <Policy>RF-GetMsisdnStatusResponse</Policy>
         <Policy>RF-HasScheduledOperations</Policy>
+        <Policy>RF-ImeiNotAllowedResume</Policy>
+        <Policy>RF-ImeiNotAllowedUnbarring</Policy>
         <Policy>RF-IncorrectScheduleDate</Policy>
         <Policy>RF-InfoByTacNotAllowed</Policy>
         <Policy>RF-InvalidMsisdnStatus</Policy>
+        <Policy>RF-InvalidOfferVsServiciabilityVersion</Policy>
         <Policy>RF-InvalidOffering</Policy>
         <Policy>RF-InvalidParamIdentifierBe</Policy>
         <Policy>RF-InvalidProduct</Policy>
         <Policy>RF-InvalidReasonCode</Policy>
+        <Policy>RF-InvalidRechargeProvider</Policy>
         <Policy>RF-InvalidSubscriberStatus</Policy>
         <Policy>RF-LockImeiError</Policy>
         <Policy>RF-MsisdnIsNotFixed</Policy>
@@ -773,9 +834,11 @@
         <Policy>RF-NoHasDownSpeed</Policy>
         <Policy>RF-NotAllowedApplyAdjustment</Policy>
         <Policy>RF-NotCompatibleOfferingSD</Policy>
+        <Policy>RF-NotCurrentSupplementaryOffering</Policy>
         <Policy>RF-OfferNotValidToPurchase</Policy>
         <Policy>RF-OfferPromo</Policy>
         <Policy>RF-OfferingError</Policy>
+        <Policy>RF-OperationDeprecated</Policy>
         <Policy>RF-ParamValidator</Policy>
         <Policy>RF-PredeactivateError</Policy>
         <Policy>RF-PredeactivateStatus</Policy>
@@ -784,12 +847,15 @@
         <Policy>RF-ProfleMSErrorAuth</Policy>
         <Policy>RF-QueryFreeUnitError</Policy>
         <Policy>RF-QueryOrderStatus</Policy>
+        <Policy>RF-QueryOrderStatusError</Policy>
         <Policy>RF-QueryPurchasedPrimaryOfferingError</Policy>
         <Policy>RF-QueryPurchasedSuppOfferError</Policy>
         <Policy>RF-QuerySubStatusError</Policy>
         <Policy>RF-QuerySubStatusNotSuspend</Policy>
         <Policy>RF-QuerySubsInfoError</Policy>
         <Policy>RF-ReactivateSubError</Policy>
+        <Policy>RF-Response204</Policy>
+        <Policy>RF-Response500</Policy>
         <Policy>RF-ResponseBDLCoordinates</Policy>
         <Policy>RF-ResponseBatch</Policy>
         <Policy>RF-ResponseDeleteWhiteList</Policy>
@@ -810,6 +876,7 @@
         <Policy>RF-TargetError</Policy>
         <Policy>RF-UnlockImeiError</Policy>
         <Policy>RF-UnsupportedOperation</Policy>
+        <Policy>RF-ValidaOrderStatus</Policy>
         <Policy>RF-ValidateContentLength</Policy>
         <Policy>RF-ValidateCoordinatesLength</Policy>
         <Policy>RF-ValidateCoverage</Policy>
@@ -824,6 +891,7 @@
         <Policy>RF-ValidateOffer</Policy>
         <Policy>RF-ValidateQueryFreeUnit</Policy>
         <Policy>RF-ValidateQueryFreeUnitPurchase</Policy>
+        <Policy>RF-ValidateResponse404</Policy>
         <Policy>RF-Verb</Policy>
         <Policy>RF-VerifyAsyncOperations</Policy>
         <Policy>RF-VerifyDate</Policy>
@@ -846,6 +914,7 @@
         <Policy>SC-NewService</Policy>
         <Policy>SC-ReportBeId</Policy>
         <Policy>SetAuditorDataUnlockImei</Policy>
+        <Policy>ValidateOrderIdOrExternalOrderId</Policy>
         <Policy>XSL-RemoveEmptyNodes</Policy>
         <Policy>XTJ-RequestDataAuditor</Policy>
         <Policy>XTJ-RequestQuerySubscriberInformation</Policy>
@@ -868,10 +937,11 @@
         <Resource>jsc://analyzeDataForOperationPurchaseFromCatalogPromotion.js</Resource>
         <Resource>jsc://cancelDownSpeed.js</Resource>
         <Resource>jsc://changePrimaryOffering.js</Resource>
-        <Resource>jsc://convertStatus.js</Resource>
+        <Resource>jsc://checkValueFromAplicaPromoDefault.js</Resource>
         <Resource>jsc://convertSubscriberStatus.js</Resource>
         <Resource>jsc://effectiveDateCPO.js</Resource>
         <Resource>jsc://emptyTPS.js</Resource>
+        <Resource>jsc://evalStatus.js</Resource>
         <Resource>jsc://evaluateCancelOfferings.js</Resource>
         <Resource>jsc://evaluateIfOfferIsNotPurchase.js</Resource>
         <Resource>jsc://excludingPromotionalPurchasedOfferings.js</Resource>
@@ -883,12 +953,12 @@
         <Resource>jsc://forbidFIFF.js</Resource>
         <Resource>jsc://getMsisdns.js</Resource>
         <Resource>jsc://getResponseContentProfile.js</Resource>
-        <Resource>jsc://getSecondsTimeStamp.js</Resource>
         <Resource>jsc://getSpeedPrimaryOffering.js</Resource>
         <Resource>jsc://isFixedTelephony.js</Resource>
         <Resource>jsc://jsonToArray.js</Resource>
         <Resource>jsc://jsonToArray.js.bak</Resource>
         <Resource>jsc://jsonToArrayCancel.js</Resource>
+        <Resource>jsc://latestExpirationDateFromPreSuppOfferings.js</Resource>
         <Resource>jsc://moment-timezone-with-data.min.js</Resource>
         <Resource>jsc://moment.min.js</Resource>
         <Resource>jsc://prepareDeleteOffering.js</Resource>
@@ -900,8 +970,17 @@
         <Resource>jsc://scheduleDateNull.js</Resource>
         <Resource>jsc://setAuditorData.js</Resource>
         <Resource>jsc://setAuditorDataCoverage.js</Resource>
+        <Resource>jsc://setCompraEliminaOfertaActual.js</Resource>
+        <Resource>jsc://setIdenfierSubscriptorVariables.js</Resource>
+        <Resource>jsc://setImeiFromImpala.js</Resource>
+        <Resource>jsc://setNewOrderIdApigeeForPromoVigencias.js</Resource>
+        <Resource>jsc://setOfferIdFromVigenciasField.js</Resource>
         <Resource>jsc://setOfferingIPromotionFromCatalogPromotion.js</Resource>
+        <Resource>jsc://setOrderIdApigee.js</Resource>
         <Resource>jsc://setPortedValueFromGetPortabilities.js</Resource>
+        <Resource>jsc://setPromotionalBonusErrorMessages.js</Resource>
+        <Resource>jsc://setPurchaseErrorMessage.js</Resource>
+        <Resource>jsc://setQueryByFirstAssignment.js</Resource>
         <Resource>jsc://setStatusCode.js</Resource>
         <Resource>jsc://setValidatePromotionResponse.js</Resource>
         <Resource>jsc://suppPurchase.js</Resource>
@@ -914,7 +993,6 @@
         <Resource>jsc://validateDateOperations.js</Resource>
         <Resource>jsc://validateDevAppSva.js</Resource>
         <Resource>jsc://validateHBBOffer.js</Resource>
-        <Resource>jsc://validateIMEI.js</Resource>
         <Resource>jsc://validateIMEIBySubscriberIMEI.js</Resource>
         <Resource>jsc://validateIdentifier.js</Resource>
         <Resource>jsc://validateIdentifierTypeIdentifierBe.js</Resource>
@@ -926,6 +1004,10 @@
         <Resource>jsc://validateMsisdnStatusAtResume.js</Resource>
         <Resource>jsc://validateMultiActivationParameters.js</Resource>
         <Resource>jsc://validateOfferForSVA.js</Resource>
+        <Resource>jsc://validateOfferIdContents.js</Resource>
+        <Resource>jsc://validateOrderIdApigee.js</Resource>
+        <Resource>jsc://validateOrderIdLength.js</Resource>
+        <Resource>jsc://validateOrderIdOrExternalOrderId.js</Resource>
         <Resource>jsc://validateQueryFreeUnit.js</Resource>
         <Resource>jsc://validateQueryFreeUnitPurchase.js</Resource>
         <Resource>jsc://validateReponseProfileMS.js</Resource>
@@ -965,9 +1047,11 @@
         <TargetEndpoint>LambdaMultiActivation</TargetEndpoint>
         <TargetEndpoint>LookupForOperator</TargetEndpoint>
         <TargetEndpoint>OfferingService</TargetEndpoint>
+        <TargetEndpoint>PROFILE-DIRECT</TargetEndpoint>
         <TargetEndpoint>SubscriberInfo</TargetEndpoint>
         <TargetEndpoint>Transactions</TargetEndpoint>
         <TargetEndpoint>default</TargetEndpoint>
         <TargetEndpoint>newProfile</TargetEndpoint>
+        <TargetEndpoint>rechargeManager</TargetEndpoint>
     </TargetEndpoints>
 </APIProxy>
