@@ -45,6 +45,18 @@
         <Variable name="msisdnPorted">
             <JSONPath>$.primaryOffering.msisdnPorted</JSONPath>
         </Variable>
+        <Variable name="allowChangeOfferInSuspendBarring">
+            <JSONPath>$.allowChangeOfferInSuspendBarring</JSONPath>
+        </Variable>
+        <Variable name="Auditor.channelOfSale">
+            <JSONPath>$primaryOffering.channelOfSale</JSONPath>
+        </Variable>
+        <Variable name="Auditor.pipeOfSale">
+            <JSONPath>$primaryOffering.pipeOfSale</JSONPath>
+        </Variable>
+        <Variable name="Auditor.idPoS">
+            <JSONPath>$primaryOffering.idPoS</JSONPath>
+        </Variable>
     </JSONPayload>
     <Header name="Operation-User">
         <Pattern ignoreCase="false">{Operation-User}</Pattern>
@@ -63,6 +75,12 @@
     </Header>
     <Header name="X-Origin">
         <Pattern ignoreCase="false">{X-Origin}</Pattern>
+    </Header>
+    <Header name="X-Is-Internal-Call">
+        <Pattern ignoreCase="false">{isInternalCall}</Pattern>
+    </Header>
+    <Header name="X-Source-Process-Batch">
+        <Pattern ignoreCase="false">{sourceProcessBatch}</Pattern>
     </Header>
     <URIPath>
         <Pattern>**/subscribers/{msisdn}</Pattern>

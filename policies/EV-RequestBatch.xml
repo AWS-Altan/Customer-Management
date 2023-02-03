@@ -23,6 +23,9 @@
         <Pattern>**/imei/{operacion}</Pattern>
     </URIPath>
     <URIPath>
+        <Pattern>**/products/{operacion}</Pattern>
+    </URIPath>
+    <URIPath>
         <Pattern>**/imei/{operation}</Pattern>
     </URIPath>
     <URIPath>

@@ -18,6 +18,9 @@
         <Variable name="expireEffectiveDate">
             <JSONPath>$.expireEffectiveDate</JSONPath>
         </Variable>
+        <Variable name="delete">
+            <JSONPath>$.delete</JSONPath>
+        </Variable>
     </JSONPayload>
     <Header name="Operation-User">
         <Pattern ignoreCase="false">{Operation-User}</Pattern>

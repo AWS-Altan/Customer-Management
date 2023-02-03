@@ -21,6 +21,9 @@
         <Variable name="expireEffectiveDate">
             <JSONPath>$.expireEffectiveDate</JSONPath>
         </Variable>
+        <Variable name="allowPurchaseOnSuspendBarring">
+            <JSONPath>$.allowPurchaseOnSuspendBarring</JSONPath>
+        </Variable>
     </JSONPayload>
     <Header name="Operation-User">
         <Pattern ignoreCase="false">{Operation-User}</Pattern>

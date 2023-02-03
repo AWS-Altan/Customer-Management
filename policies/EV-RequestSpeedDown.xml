@@ -27,6 +27,9 @@
         <Variable name="orderId">
             <JSONPath>$.orderId</JSONPath>
         </Variable>
+        <Variable name="orderIdApigee">
+            <JSONPath>$.orderIdApigee</JSONPath>
+        </Variable>
     </JSONPayload>
     <Source>request</Source>
 </ExtractVariables>

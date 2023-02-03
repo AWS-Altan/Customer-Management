@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ExtractVariables name="EV-Request" enabled="true" continueOnError="false" async="false">
-    <DisplayName>EV-Request</DisplayName>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestProfileQuery">
+    <DisplayName>EV-RequestProfileQuery</DisplayName>
     <Header name="Operation-User">
         <Pattern ignoreCase="false">{Operation-User}</Pattern>
     </Header>

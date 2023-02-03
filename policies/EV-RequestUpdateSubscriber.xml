@@ -27,6 +27,9 @@
         <Variable name="scheduleDate">
             <JSONPath>$.updateLinking.scheduleDate</JSONPath>
         </Variable>
+        <Variable name="allowChangeOfferInSuspendBarring">
+            <JSONPath>$.primaryOffering.allowChangeOfferInSuspendBarring</JSONPath>
+        </Variable>
     </JSONPayload>
     <Source>request</Source>
 </ExtractVariables>

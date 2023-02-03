@@ -6,6 +6,9 @@
         <Variable name="msisdn">
             <JSONPath>$.msisdn</JSONPath>
         </Variable>
+        <Variable name="msisdnTransitory">
+            <JSONPath>$.msisdnTransitory</JSONPath>
+        </Variable>
         <Variable name="product">
             <JSONPath>$.product</JSONPath>
         </Variable>
@@ -23,6 +26,9 @@
         </Variable>
         <Variable name="reasonCode">
             <JSONPath>$.reasonCode</JSONPath>
+        </Variable>
+        <Variable name="queryAssociatedPurchasebyPortin">
+            <JSONPath>$.queryAssociatedPurchasebyPortin</JSONPath>
         </Variable>
     </JSONPayload>
     <Header name="Operation-User">

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetMsisdnInfoResponse">
+    <DisplayName>EV-GetMsisdnInfoResponse</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="statusCode">
+            <JSONPath>$.statusCode</JSONPath>
+        </Variable>
+        <Variable name="errorCode">
+            <JSONPath>$.errorCode</JSONPath>
+        </Variable>
+        <Variable name="description">
+            <JSONPath>$.description</JSONPath>
+        </Variable>
+        <Variable name="subscriberInformation">
+            <JSONPath>$.body</JSONPath>
+        </Variable>
+        <Variable name="partner_id">
+            <JSONPath>$.body.partner_id</JSONPath>
+        </Variable>
+        <Variable name="product">
+            <JSONPath>$.body.product</JSONPath>
+        </Variable>
+        <Variable name="ida">
+            <JSONPath>$.body.ida</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

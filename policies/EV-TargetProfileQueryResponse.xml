@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TargetProfileQueryResponse">
+    <DisplayName>EV-TargetProfileQueryResponse</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="responseCode" type="string">
+            <JSONPath>$.responseCode</JSONPath>
+        </Variable>
+        <Variable name="responseMessage" type="string">
+            <JSONPath>$.responseMessage</JSONPath>
+        </Variable>
+        <Variable name="responseData" type="string">
+            <JSONPath>$.responseData</JSONPath>
+        </Variable>
+        <Variable name="statusCode" type="string">
+            <JSONPath>$.statusCode</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source>response</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>
