@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageSubStatusNotSuspend">
+    <DisplayName>AM-ErrorMessageSubStatusNotSuspend</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>The subscriber isn't in Suspend (B2W) status</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>Only the subscribers in Suspend (B2W) status can be apply to resume the service</Value>
+    </AssignVariable>
+</AssignMessage>

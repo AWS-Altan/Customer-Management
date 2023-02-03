@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageUpdateImsiHss">
+    <DisplayName>AM-ErrorMessageUpdateImsiHss</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>rspUpdateHss.returnCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>rspUpdateHss.returnMsg</Ref>
+    </AssignVariable>
+</AssignMessage>

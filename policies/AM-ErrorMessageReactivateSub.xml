@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageReactivateSub">
+    <DisplayName>AM-ErrorMessageReactivateSub</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>responseReactivateSubs.returnCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>responseReactivateSubs.returnMsg</Ref>
+    </AssignVariable>
+    <!--<AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>El msisdn enviado no existe.</Value>
+    </AssignVariable>-->
+</AssignMessage>

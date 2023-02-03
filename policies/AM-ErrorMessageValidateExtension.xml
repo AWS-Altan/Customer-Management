@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageValidateExtension">
+    <DisplayName>AM-ErrorMessageValidateExtension</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>The file's extension is not valid.</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>Only txt format is accepted.</Value>
+    </AssignVariable>
+</AssignMessage>

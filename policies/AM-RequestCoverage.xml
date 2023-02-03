@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RequestCoverage">
+    <DisplayName>AM-RequestCoverage</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">Bearer {apigee.access_token}</Header>
+        </Headers>
+        <QueryParams>
+            <QueryParam name="address">{address}</QueryParam>
+        </QueryParams>
+        <FormParams/>
+        <Verb>GET</Verb>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="request">requestCoverage</AssignTo>
+</AssignMessage>

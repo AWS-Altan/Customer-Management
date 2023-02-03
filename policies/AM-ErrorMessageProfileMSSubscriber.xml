@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageProfileMSSubscriber">
+    <DisplayName>AM-ErrorMessageProfileMSSubscriber</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>1211000305</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>The subscriber does not exist.@817469325</Value>
+    </AssignVariable>
+    <!--
+    <Remove>
+        <Headers>
+            <Header name="FaultHeader"/>
+        </Headers>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Payload contentType="application/json">
+            {   
+                "errorCode": "1211000305",
+                "description": "The subscriber does not exist.@817469325"
+            }
+        </Payload>
+        <StatusCode>400</StatusCode>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    -->
+</AssignMessage>

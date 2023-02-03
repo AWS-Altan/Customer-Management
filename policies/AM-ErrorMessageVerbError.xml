@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageVerbError">
+    <DisplayName>AM-ErrorMessageVerbError</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>404</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>404</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Not Found</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>The requested URL was not found in this server.</Value>
+    </AssignVariable>
+</AssignMessage>

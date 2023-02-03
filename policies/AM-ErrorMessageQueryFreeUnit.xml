@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageQueryFreeUnit">
+    <DisplayName>AM-ErrorMessageQueryFreeUnit</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>responseQueryFreeUnit.returnCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>responseQueryFreeUnit.returnMsg</Ref>
+    </AssignVariable>
+    <!--<AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>El msisdn ya ha sido suspendido anteriormente</Value>
+    </AssignVariable>-->
+</AssignMessage>

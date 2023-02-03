@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageQueryPurchasedPrimaryOfferingError">
+    <DisplayName>AM-ErrorMessageQueryPurchasedPrimaryOfferingError</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Ref>responsePrimaryOffering.returnCode</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Ref>responsePrimaryOffering.returnMsg</Ref>
+    </AssignVariable>
+    <!--<AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>El msisdn ya ha sido suspendido anteriormente</Value>
+    </AssignVariable>-->
+</AssignMessage>

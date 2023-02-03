@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MessageTwoHundredTwoAccepted">
+    <DisplayName>AM-MessageTwoHundredTwoAccepted</DisplayName>
+    <Remove>
+        <Headers>
+            <Header name="FaultHeader"/>
+        </Headers>
+    </Remove>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/json</Header>
+        </Headers>
+        <Payload contentType="application/json">
+            {   
+                "statusCode": "{statusAccepted.code}",
+                "description": "{statusAccepted.message}"
+            }
+        </Payload>
+        <StatusCode>{statusAccepted.status}</StatusCode>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="https" type="response">error</AssignTo>
+</AssignMessage>

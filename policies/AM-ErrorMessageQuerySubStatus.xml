@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageQuerySubStatus">
+    <DisplayName>AM-ErrorMessageQuerySubStatus</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>1211000163</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Invalid operation. The Subscriber status is invalid</Value>
+    </AssignVariable>
+    <!--<AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>El msisdn enviado no existe.</Value>
+    </AssignVariable>-->
+</AssignMessage>

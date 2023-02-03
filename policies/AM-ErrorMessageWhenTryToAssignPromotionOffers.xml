@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageWhenTryToAssignPromotionOffers">
+    <DisplayName>AM-ErrorMessageWhenTryToAssignPromotionOffers</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Error in promotion configuration.</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>There are not enough incremental offers for the renovation number requested</Value>
+    </AssignVariable>
+</AssignMessage>

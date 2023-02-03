@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageResumeMobilityFalse">
+    <DisplayName>AM-ErrorMessageResumeMobilityFalse</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Your request was not processed correctly</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.detail</Name>
+        <Value>The final user may not be resume because he's driving traffic outside of the permitted area</Value>
+    </AssignVariable>
+</AssignMessage>

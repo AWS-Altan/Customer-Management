@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageValidateCoverageV3ErrorSatellital">
+    <DisplayName>AM-ErrorMessageValidateCoverageV3ErrorSatellital</DisplayName>
+    <AssignVariable>
+        <Name>errorMessage.status</Name>
+        <Value>400</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.code</Name>
+        <Value>E-WS</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.message</Name>
+        <Value>Without serviceability</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>errorMessage.maxSpeed</Name>
+        <Value>broadband2</Value>
+    </AssignVariable>
+</AssignMessage>
