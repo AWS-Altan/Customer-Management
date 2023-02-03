@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StatisticsCollector async="false" continueOnError="false" enabled="true" name="SC-ReportBeId">
+    <DisplayName>SC-ReportBeId</DisplayName>
+    <Properties/>
+    <Statistics>
+        <Statistic name="be_id" ref="PartnerId" type="string"/>
+        <Statistic name="be_id" ref="partnerId" type="string"/>
+        <Statistic name="imsi" ref="imsi" type="string"/>
+        <Statistic name="msisdn" ref="msisdn" type="string"/>
+        <Statistic name="offeringId" ref="offeringId" type="string"/>
+        <Statistic name="transactionId" ref="transactionId" type="string"/>
+    </Statistics>
+</StatisticsCollector>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CoverageService">
+    <DisplayName>SC-CoverageService</DisplayName>
+    <Properties/>
+    <Request variable="requestCoverage">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>responseCoverage</Response>
+    <LocalTargetConnection>
+        <Path>/sqm/v1/network-services/serviceability</Path>
+    </LocalTargetConnection>
+</ServiceCallout>
