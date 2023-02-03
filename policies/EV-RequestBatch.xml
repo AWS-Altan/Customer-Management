@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestBatch">
+    <DisplayName>EV-RequestBatch</DisplayName>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <URIPath>
+        <Pattern>**/subscribers/{operation}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/subscribers/{operacion}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/imei/{operacion}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/imei/{operation}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}/**</Pattern>
+    </URIPath>
+    <Source>request</Source>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</ExtractVariables>

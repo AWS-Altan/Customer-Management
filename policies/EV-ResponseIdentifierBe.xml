@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseIdentifierBe">
+    <DisplayName>EV-ResponseIdentifierBe</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="be">
+            <JSONPath>$.be</JSONPath>
+        </Variable>
+        <Variable name="errorCode">
+            <JSONPath>$.errorCode</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

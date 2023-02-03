@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-DeactivateResponse">
+    <DisplayName>EV-DeactivateResponse</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="returnCode">
+            <JSONPath>$.Envelope.Body.DeactivateSubRspMsg.RspHeader.ReturnCode</JSONPath>
+        </Variable>
+        <Variable name="returnMsg">
+            <JSONPath>$.Envelope.Body.DeactivateSubRspMsg.RspHeader.ReturnMsg</JSONPath>
+        </Variable>
+        <Variable name="rspTime">
+            <JSONPath>$.Envelope.Body.DeactivateSubRspMsg.RspHeader.RspTime</JSONPath>
+        </Variable>
+        <Variable name="orderId">
+            <JSONPath>$.Envelope.Body.DeactivateSubRspMsg.RspHeader.AdditionalProperty.Value</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseDeactivateSubs</VariablePrefix>
+</ExtractVariables>

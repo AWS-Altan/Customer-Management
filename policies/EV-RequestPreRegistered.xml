@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestPreRegistered">
+    <DisplayName>EV-RequestPreRegistered</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="offeringId">
+            <JSONPath>$.offeringId</JSONPath>
+        </Variable>
+        <Variable name="startEffectiveDate" type="string">
+            <JSONPath>$.startEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireEffectiveDate" type="string">
+            <JSONPath>$.expireEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate" type="string">
+            <JSONPath>$.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="msisdnPorted" type="string">
+            <JSONPath>$.msisdnPorted</JSONPath>
+        </Variable>
+        <Variable name="idPos" type="string">
+            <JSONPath>$.idPos</JSONPath>
+        </Variable>
+        <Variable name="address">
+            <JSONPath>$.address</JSONPath>
+        </Variable>
+        <Variable name="preregisteredId">
+            <JSONPath>$.preregisteredId</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <Source clearPayload="false">request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

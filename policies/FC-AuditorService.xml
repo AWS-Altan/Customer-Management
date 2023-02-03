@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout name="FC-AuditorService" enabled="true" continueOnError="true" async="false">
+    <DisplayName>FC-AuditorService</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>UF-AuditorService</SharedFlowBundle>
+</FlowCallout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestSpeedDown">
+    <DisplayName>EV-RequestSpeedDown</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <JSONPayload>
+        <Variable name="msisdn">
+            <JSONPath>$.msisdn</JSONPath>
+        </Variable>
+        <Variable name="offeringId">
+            <JSONPath>$.offeringId</JSONPath>
+        </Variable>
+        <Variable name="orderId">
+            <JSONPath>$.orderId</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source>request</Source>
+</ExtractVariables>

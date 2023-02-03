@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseQuerySubscriberInformation">
+    <DisplayName>EV-ResponseQuerySubscriberInformation</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="returnCode">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.RspHeader.ReturnCode</JSONPath>
+        </Variable>
+        <Variable name="returnMsg">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.RspHeader.ReturnMsg</JSONPath>
+        </Variable>
+        <Variable name="subId">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.Subscriber.SubId</JSONPath>
+        </Variable>
+        <Variable name="partnerId">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.Subscriber.PartnerId</JSONPath>
+        </Variable>
+        <Variable name="IMSI">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.Subscriber.IMSI</JSONPath>
+        </Variable>
+        <Variable name="ICCID">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.Subscriber.ICCID</JSONPath>
+        </Variable>
+        <Variable name="SubStatus">
+            <JSONPath>$.Envelope.Body.QuerySubInfoRspMsg.Subscriber.SubStatus</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseQuerySubsInfo</VariablePrefix>
+</ExtractVariables>

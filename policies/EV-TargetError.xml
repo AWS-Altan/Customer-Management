@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="true" enabled="true" name="EV-TargetError">
+    <DisplayName>EV-TargetError</DisplayName>
+    <JSONPayload>
+        <Variable name="faultcode">
+            <JSONPath>$.Envelope.Body.Fault.faultcode</JSONPath>
+        </Variable>
+        <Variable name="faultstring">
+            <JSONPath>$.Envelope.Body.Fault.faultstring</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">ResponseTargetError</Source>
+    <VariablePrefix>TargetResponse</VariablePrefix>
+</ExtractVariables>

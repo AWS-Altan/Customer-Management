@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseUnlockImei">
+    <DisplayName>EV-ResponseUnlockImei</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="result">
+            <JSONPath>$.Envelope.Body.deleteResponse.result</JSONPath>
+        </Variable>
+        <Variable name="errorCode">
+            <JSONPath>$.Envelope.Body.deleteResponse.errorCode</JSONPath>
+        </Variable>
+        <Variable name="errorMessage">
+            <JSONPath>$.Envelope.Body.deleteResponse.errorMessage</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseImei</VariablePrefix>
+</ExtractVariables>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestCaptivePortal">
+    <DisplayName>EV-RequestCaptivePortal</DisplayName>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}/**</Pattern>
+    </URIPath>
+    <JSONPayload>
+        <Variable name="coordinates">
+            <JSONPath>$.address</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source>request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

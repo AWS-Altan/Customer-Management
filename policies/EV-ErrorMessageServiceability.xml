@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ErrorMessageServiceability">
+    <DisplayName>EV-ErrorMessageServiceability</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="errorServMessage.code">
+            <JSONPath>$.errorCode</JSONPath>
+        </Variable>
+        <Variable name="errorServMessage.description">
+            <JSONPath>$.description</JSONPath>
+        </Variable>
+        <Variable name="errorServMessage.detail">
+            <JSONPath>$.detail</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">responseCoverage</Source>
+</ExtractVariables>

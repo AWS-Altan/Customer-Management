@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseActivateSubscriber">
+    <DisplayName>EV-ResponseActivateSubscriber</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="returnCode">
+            <JSONPath>$.Envelope.Body.ActivateSubRspMsg.RspHeader.ReturnCode</JSONPath>
+        </Variable>
+        <Variable name="returnMsg">
+            <JSONPath>$.Envelope.Body.ActivateSubRspMsg.RspHeader.ReturnMsg</JSONPath>
+        </Variable>
+        <Variable name="rspTime">
+            <JSONPath>$.Envelope.Body.ActivateSubRspMsg.RspHeader.RspTime</JSONPath>
+        </Variable>
+        <Variable name="orderId">
+            <JSONPath>$.Envelope.Body.ActivateSubRspMsg.RspHeader.AdditionalProperty.Value</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="true">response</Source>
+    <VariablePrefix>responseActivateSubscriber</VariablePrefix>
+</ExtractVariables>

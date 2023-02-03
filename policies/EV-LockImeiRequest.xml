@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-LockImeiRequest">
+    <DisplayName>EV-LockImeiRequest</DisplayName>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}/**</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/imei/{imei}/**</Pattern>
+    </URIPath>
+    <JSONPayload>
+        <Variable name="scheduleDate">
+            <JSONPath>$.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="reason">
+            <JSONPath>$.reason</JSONPath>
+        </Variable>
+        <Variable name="securityOrder">
+            <JSONPath>$.securityOrder</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

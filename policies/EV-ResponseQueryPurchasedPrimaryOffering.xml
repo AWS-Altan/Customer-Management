@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseQueryPurchasedPrimaryOffering">
+    <DisplayName>EV-ResponseQueryPurchasedPrimaryOffering</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="returnCode">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.RspHeader.ReturnCode</JSONPath>
+        </Variable>
+        <Variable name="returnMsg">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.RspHeader.ReturnMsg</JSONPath>
+        </Variable>
+        <Variable name="offeringName">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.PrimaryOffering.OfferingName</JSONPath>
+        </Variable>
+        <Variable name="offeringId">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.PrimaryOffering.OfferingId.OfferingId</JSONPath>
+        </Variable>
+        <Variable name="effectiveDate">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.PrimaryOffering.EffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireDate">
+            <JSONPath>$.Envelope.Body.QueryPurchasedPrimaryOfferingRspMsg.PrimaryOffering.ExpireDate</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responsePrimaryOffering</VariablePrefix>
+</ExtractVariables>

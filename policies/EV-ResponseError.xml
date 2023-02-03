@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseError">
+    <DisplayName>EV-ResponseError</DisplayName>
+    <JSONPayload>
+        <Variable name="errorCode">
+            <JSONPath>$.errorCode</JSONPath>
+        </Variable>
+        <Variable name="description">
+            <JSONPath>$.description</JSONPath>
+        </Variable>
+        <Variable name="period">
+            <JSONPath>$.period</JSONPath>
+        </Variable>
+        <Variable name="records">
+            <JSONPath>$.records</JSONPath>
+        </Variable>
+        <Variable name="Status">
+            <JSONPath>$.status</JSONPath>
+        </Variable>
+        <Variable name="msisdn">
+            <JSONPath>$.msisdn</JSONPath>
+        </Variable>
+        <Variable name="imsi">
+            <JSONPath>$.imsi</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

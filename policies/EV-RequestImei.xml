@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestImei">
+    <DisplayName>EV-RequestImei</DisplayName>
+    <URIPath>
+        <Pattern>**/imei/{imei}/**</Pattern>
+    </URIPath>
+    <Source>request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TargetChangeIMEI">
+    <DisplayName>EV-TargetChangeIMEI</DisplayName>
+    <JSONPayload>
+        <Variable name="errorTargetCode" type="string">
+            <JSONPath>$.errorCode</JSONPath>
+        </Variable>
+        <Variable name="errorTargetMessage" type="string">
+            <JSONPath>$.description</JSONPath>
+        </Variable>
+        <Variable name="errorTargetDetail" type="string">
+            <JSONPath>$.detail</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source>response</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

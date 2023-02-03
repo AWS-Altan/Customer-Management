@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseResumeMobility">
+    <DisplayName>EV-ResponseResumeMobility</DisplayName>
+    <JSONPayload>
+        <Variable name="msisdn">
+            <JSONPath>$.msisdn</JSONPath>
+        </Variable>
+        <Variable name="response">
+            <JSONPath>$.respuesta</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>resumespm</VariablePrefix>
+    <Source clearPayload="false">response</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

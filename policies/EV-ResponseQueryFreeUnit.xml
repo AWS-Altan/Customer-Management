@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseQueryFreeUnit">
+    <DisplayName>EV-ResponseQueryFreeUnit</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="returnCode">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.RspHeader.ReturnCode</JSONPath>
+        </Variable>
+        <Variable name="returnMsg">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.RspHeader.ReturnMsg</JSONPath>
+        </Variable>
+        <Variable name="freeUnits">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit</JSONPath>
+        </Variable>
+        <!--Se realizarán modificaciones en la respuesta de los freeUnits-->
+        <!--Variable name="unusedAmt">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.UnusedAmt</JSONPath>
+        </Variable>
+        <Variable name="effectiveDate">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.Detail.EffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireDate">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.Detail.ExpireDate</JSONPath>
+        </Variable>
+        <Variable name="effectiveDate">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.Detail[0].EffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireDate">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.Detail[0].ExpireDate</JSONPath>
+        </Variable>
+        <Variable name="detail">
+            <JSONPath>$.Envelope.Body.QueryFreeUnitRspMsg.FreeUnit.Detail</JSONPath>
+        </Variable-->
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseQueryFreeUnit</VariablePrefix>
+</ExtractVariables>

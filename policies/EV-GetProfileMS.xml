@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetProfileMS">
+    <DisplayName>EV-GetProfileMS</DisplayName>
+    <JSONPayload>
+        <Variable name="idSubscriber">
+            <JSONPath>$.idSubscriber</JSONPath>
+        </Variable>
+        <Variable name="ICCID">
+            <JSONPath>$.ICCID</JSONPath>
+        </Variable>
+        <Variable name="IMSI">
+            <JSONPath>$.IMSI</JSONPath>
+        </Variable>
+        <Variable name="imei">
+            <JSONPath>$.imei</JSONPath>
+        </Variable>
+        <Variable name="subscriberStatus">
+            <JSONPath>$.status</JSONPath>
+        </Variable>
+        <Variable name="primaryoffering">
+            <JSONPath>$.primaryoffering</JSONPath>
+        </Variable>
+        <Variable name="excessiveProductSpeed">
+            <JSONPath>$.excessiveProductSpeed</JSONPath>
+        </Variable>
+        <Variable name="reasoncode">
+            <JSONPath>$.reasoncode</JSONPath>
+        </Variable>
+        <Variable name="balance">
+            <JSONPath>$.balance</JSONPath>
+        </Variable>
+        <Variable name="purchaseSuppoff">
+            <JSONPath>$.purchaseSuppoff</JSONPath>
+        </Variable>
+        <Variable name="queryfreeunit">
+            <JSONPath>$.queryfreeunit</JSONPath>
+        </Variable>
+        <Variable name="lat">
+            <JSONPath>$.lat</JSONPath>
+        </Variable>
+        <Variable name="lon">
+            <JSONPath>$.lon</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseProfileMS</VariablePrefix>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestUpdateSubscriber">
+    <DisplayName>EV-RequestUpdateSubscriber</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="offeringId">
+            <JSONPath>$.primaryOffering.offeringId</JSONPath>
+        </Variable>
+        <Variable name="address">
+            <JSONPath>$.primaryOffering.address</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.primaryOffering.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.changeSubscriberSIM.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="startEffectiveDate">
+            <JSONPath>$.primaryOffering.startEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireEffectiveDate">
+            <JSONPath>$.primaryOffering.expireEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="msisdnPorted">
+            <JSONPath>$.primaryOffering.msisdnPorted</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.updateLinking.scheduleDate</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source>request</Source>
+</ExtractVariables>

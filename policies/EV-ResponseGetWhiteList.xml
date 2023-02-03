@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseGetWhiteList">
+    <DisplayName>EV-ResponseGetWhiteList</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="whiteList">
+            <JSONPath>$.whitelist</JSONPath>
+        </Variable>
+        <Variable name="inserted_date">
+            <JSONPath>$.star_timestamp</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+</ExtractVariables>

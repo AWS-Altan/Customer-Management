@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestChangeIMEI">
+    <DisplayName>EV-RequestChangeIMEI</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="newImei">
+            <JSONPath>$.newImei</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <QueryParam name="identifierType">
+        <Pattern ignoreCase="false">{identifierType}</Pattern>
+    </QueryParam>
+    <QueryParam name="identifierValue">
+        <Pattern ignoreCase="false">{identifierValue}</Pattern>
+    </QueryParam>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

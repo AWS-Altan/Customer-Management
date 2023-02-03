@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseCoverage">
+    <DisplayName>EV-ResponseCoverage</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="coverageData">
+            <JSONPath>$.result</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">responseCoverage</Source>
+</ExtractVariables>

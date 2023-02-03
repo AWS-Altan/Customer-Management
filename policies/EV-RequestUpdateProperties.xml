@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestUpdateProperties">
+    <DisplayName>EV-RequestUpdateProperties</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="changeSubscriberMSISDN">
+            <JSONPath>$.changeSubscriberMSISDN</JSONPath>
+        </Variable>
+        <Variable name="nir">
+            <JSONPath>$.changeSubscriberMSISDN.nir</JSONPath>
+        </Variable>
+        <Variable name="msisdnType">
+            <JSONPath>$.changeSubscriberMSISDN.msisdnType</JSONPath>
+        </Variable>
+        <Variable name="iccid">
+            <JSONPath>$.changeSubscriberSIM.newIccid</JSONPath>
+        </Variable>
+        <Variable name="offeringId">
+            <JSONPath>$.primaryOffering.offeringId</JSONPath>
+        </Variable>
+        <Variable name="address">
+            <JSONPath>$.primaryOffering.address</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.primaryOffering.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.updateLinking.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.changeSubscriberSIM.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="updateLinking">
+            <JSONPath>$.updateLinking</JSONPath>
+        </Variable>
+        <Variable name="address">
+            <JSONPath>$.updateLinking.coordinates</JSONPath>
+        </Variable>
+        <Variable name="startEffectiveDate">
+            <JSONPath>$.primaryOffering.startEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireEffectiveDate">
+            <JSONPath>$.primaryOffering.expireEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="msisdnPorted">
+            <JSONPath>$.primaryOffering.msisdnPorted</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <Header name="X-Origin">
+        <Pattern ignoreCase="false">{X-Origin}</Pattern>
+    </Header>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}/**</Pattern>
+    </URIPath>
+    <Source>request</Source>
+</ExtractVariables>

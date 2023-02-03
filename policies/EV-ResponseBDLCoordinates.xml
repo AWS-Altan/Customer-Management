@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseBDLCoordinates">
+    <DisplayName>EV-ResponseBDLCoordinates</DisplayName>
+    <Properties/>
+    <JSONPayload>
+        <Variable name="latitude">
+            <JSONPath>$.newLat</JSONPath>
+        </Variable>
+        <Variable name="longitude">
+            <JSONPath>$.newLon</JSONPath>
+        </Variable>
+        <Variable name="errorMessage">
+            <JSONPath>$.errorMessage</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

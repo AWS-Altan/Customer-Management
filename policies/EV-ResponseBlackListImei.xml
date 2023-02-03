@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResponseBlackListImei">
+    <DisplayName>EV-ResponseBlackListImei</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="result">
+            <JSONPath>$.Envelope.Body.searchResponse.result</JSONPath>
+        </Variable>
+        <Variable name="errorCode">
+            <JSONPath>$.Envelope.Body.searchResponse.errorCode</JSONPath>
+        </Variable>
+        <Variable name="errorMessage">
+            <JSONPath>$.Envelope.Body.searchResponse.errorMessage</JSONPath>
+        </Variable>
+        <Variable name="objects">
+            <JSONPath>$.Envelope.Body.searchResponse.objects</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>responseBlackList</VariablePrefix>
+</ExtractVariables>

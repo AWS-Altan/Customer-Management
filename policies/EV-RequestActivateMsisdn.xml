@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestActivateMsisdn">
+    <DisplayName>EV-RequestActivateMsisdn</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="address">
+            <JSONPath>$.address</JSONPath>
+        </Variable>
+        <Variable name="offeringId">
+            <JSONPath>$.offeringId</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="startEffectiveDate">
+            <JSONPath>$.startEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireEffectiveDate">
+            <JSONPath>$.expireEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="oldMsisdn">
+            <JSONPath>$.oldMsisdn</JSONPath>
+        </Variable>
+        <Variable name="reason">
+            <JSONPath>$.reason</JSONPath>
+        </Variable>
+        <Variable name="msisdnPorted">
+            <JSONPath>$.msisdnPorted</JSONPath>
+        </Variable>
+        <Variable name="imsi">
+            <JSONPath>$.imsi</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <Header name="X-Origin">
+        <Pattern ignoreCase="false">{X-Origin}</Pattern>
+    </Header>
+    <Header name="X-Source-Process-Batch">
+        <Pattern ignoreCase="false">{sourceProcessBatch}</Pattern>
+    </Header>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

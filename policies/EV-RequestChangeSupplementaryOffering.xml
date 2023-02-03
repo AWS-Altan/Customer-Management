@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-RequestChangeSupplementaryOffering">
+    <DisplayName>EV-RequestChangeSupplementaryOffering</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="msisdn">
+            <JSONPath>$.msisdn</JSONPath>
+        </Variable>
+        <Variable name="offerings">
+            <JSONPath>$.offerings</JSONPath>
+        </Variable>
+        <Variable name="offeringId">
+            <JSONPath>$.offerings[0]</JSONPath>
+        </Variable>
+        <Variable name="scheduleDate">
+            <JSONPath>$.scheduleDate</JSONPath>
+        </Variable>
+        <Variable name="startEffectiveDate">
+            <JSONPath>$.startEffectiveDate</JSONPath>
+        </Variable>
+        <Variable name="expireEffectiveDate">
+            <JSONPath>$.expireEffectiveDate</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <Header name="IdSG500">
+        <Pattern ignoreCase="false">{IdSG500}</Pattern>
+    </Header>
+    <Header name="X-Source-Developer-App">
+        <Pattern ignoreCase="false">{sourceDeveloperApp}</Pattern>
+    </Header>
+    <Header name="X-Is-Internal-Call">
+        <Pattern ignoreCase="false">{isInternalCall}</Pattern>
+    </Header>
+    <Header name="X-Source-Process-Batch">
+        <Pattern ignoreCase="false">{sourceProcessBatch}</Pattern>
+    </Header>
+    <Source>request</Source>
+</ExtractVariables>

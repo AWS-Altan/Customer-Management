@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables name="EV-Request" enabled="true" continueOnError="false" async="false">
+    <DisplayName>EV-Request</DisplayName>
+    <Header name="Operation-User">
+        <Pattern ignoreCase="false">{Operation-User}</Pattern>
+    </Header>
+    <Header name="Operation-Password">
+        <Pattern ignoreCase="false">{Operation-Password}</Pattern>
+    </Header>
+    <Header name="PartnerId">
+        <Pattern ignoreCase="false">{PartnerId}</Pattern>
+    </Header>
+    <Header name="OperatorId">
+        <Pattern ignoreCase="false">{OperatorId}</Pattern>
+    </Header>
+    <URIPath>
+        <Pattern>**/subscribers/{msisdn}/**</Pattern>
+    </URIPath>
+    <QueryParam name="be_id">
+        <Pattern ignoreCase="true">{PartnerId}</Pattern>
+    </QueryParam>
+    <QueryParam name="imsi">
+        <Pattern ignoreCase="true">{imsi}</Pattern>
+    </QueryParam>
+    <URIPath>
+        <Pattern>**/msisdns/{msisdn}/**</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/msisdns/{operacion}</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/imsis/{imsi}/**</Pattern>
+    </URIPath>
+    <URIPath>
+        <Pattern>**/imsis/{imsi}</Pattern>
+    </URIPath>
+    <Source>request</Source>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>
