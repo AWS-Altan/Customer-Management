@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-HasProfileCatching" mapIdentifier="profileCatching">
+    <DisplayName>KVM-HasProfileCatching</DisplayName>
+    <Scope>environment</Scope>
+    <Get assignTo="hasProfileCatching" index="1">
+        <Key>
+            <Parameter ref="PartnerId"/>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-ExposeData" mapIdentifier="kvmAdjustmentCompany">
+    <DisplayName>KVM-ExposeData</DisplayName>
+    <Properties/>
+    <ExpiryTimeInSecs>10</ExpiryTimeInSecs>
+    <Get assignTo="adjustmentAppName">
+        <Key>
+            <Parameter>adjustmentAppName</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="adjustmentOfferingPattern">
+        <Key>
+            <Parameter>adjustmentOfferingPattern</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

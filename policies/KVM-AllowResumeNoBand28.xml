@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-AllowResumeNoBand28" mapIdentifier="allowResumeNoBand28">
+    <DisplayName>KVM-AllowResumeNoBand28</DisplayName>
+    <Get assignTo="allowResumeNoBand28">
+        <Key>
+            <Parameter ref="PartnerId"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

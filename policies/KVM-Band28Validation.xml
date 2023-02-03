@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-Band28Validation" mapIdentifier="Band28Validation">
+    <DisplayName>KVM-Band28Validation</DisplayName>
+    <Scope>environment</Scope>
+    <Get assignTo="validationBand28">
+        <Key>
+            <Parameter ref="PartnerId"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

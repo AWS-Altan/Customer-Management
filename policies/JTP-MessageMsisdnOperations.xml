@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JSONThreatProtection async="false" continueOnError="false" enabled="true" name="JTP-MessageMsisdnOperations">
+    <DisplayName>JTP-MessageMsisdnOperations</DisplayName>
+    <Properties/>
+    <ArrayElementCount>0</ArrayElementCount>
+    <ContainerDepth>1</ContainerDepth>
+    <ObjectEntryCount>2</ObjectEntryCount>
+    <Source>request</Source>
+</JSONThreatProtection>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="800" name="JS-ExtractOperation">
+    <DisplayName>JS-ExtractOperation</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://extractOperation.js</ResourceURL>
+</Javascript>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-Getcatalog_recharge_pipe" mapIdentifier="catalog_recharge_pipe">
+    <DisplayName>KVM-Getcatalog_recharge_pipe</DisplayName>
+    <Properties/>
+    <Scope>environment</Scope>
+    <Get assignTo="validPipes" index="1">
+        <Key>
+            <Parameter ref="Auditor.pipeOfSale"/>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

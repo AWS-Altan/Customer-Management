@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetRecoveryOffers" mapIdentifier="RecoveryOffers">
+    <DisplayName>KVM-GetRecoveryOffers</DisplayName>
+    <Properties/>
+    <Scope>environment</Scope>
+    <Get assignTo="hbbRecoveryOffer">
+        <Key>
+            <Parameter>hbb</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="mbbRecoveryOffer">
+        <Key>
+            <Parameter>mbb</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

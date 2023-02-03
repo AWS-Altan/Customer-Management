@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="800" name="JS-ExtractSuppOffer">
+    <DisplayName>JS-ExtractSuppOffer</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://extractSuppOffer.js</ResourceURL>
+</Javascript>

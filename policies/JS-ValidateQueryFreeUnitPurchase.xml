@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="800" name="JS-ValidateQueryFreeUnitPurchase">
+    <DisplayName>JS-ValidateQueryFreeUnitPurchase</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://validateQueryFreeUnitPurchase.js</ResourceURL>
+</Javascript>

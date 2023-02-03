@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetOfferName" mapIdentifier="OfferNamePromo">
+    <DisplayName>KVM-GetOfferName</DisplayName>
+    <Properties/>
+    <ExpiryTimeInSecs>10</ExpiryTimeInSecs>
+    <Get assignTo="offeringName">
+        <Key>
+            <Parameter ref="offeringId"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

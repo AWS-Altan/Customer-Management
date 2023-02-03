@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="1000" name="JS-VerifyChangePrimaryOfferOrderId">
+    <DisplayName>JS-VerifyChangePrimaryOfferOrderId</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://verifyChangePrimaryOfferOrderId.js</ResourceURL>
+</Javascript>

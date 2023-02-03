@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JSONThreatProtection async="false" continueOnError="false" enabled="true" name="JTP-MessageRenovateOffer">
+    <DisplayName>JTP-MessageRenovateOffer</DisplayName>
+    <Properties/>
+    <ArrayElementCount>0</ArrayElementCount>
+    <ContainerDepth>0</ContainerDepth>
+    <ObjectEntryCount>0</ObjectEntryCount>
+    <Source>request</Source>
+</JSONThreatProtection>

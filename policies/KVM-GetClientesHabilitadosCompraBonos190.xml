@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetClientesHabilitadosCompraBonos190" mapIdentifier="ClientesHabilitadosCompraBonos190">
+    <DisplayName>KVM-GetClientesHabilitadosCompraBonos190</DisplayName>
+    <Properties/>
+    <Scope>environment</Scope>
+    <Get assignTo="clienteHabilitadoCompraBonos190">
+        <Key>
+            <Parameter ref="PartnerId"/>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

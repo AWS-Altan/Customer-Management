@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetIdSvaByDevApp" mapIdentifier="IdSvaByDevApp">
+    <DisplayName>KVM-GetIdSvaByDevApp</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>10</ExpiryTimeInSecs>
+    <Get assignTo="idSva">
+        <Key>
+            <Parameter ref="apigee.developer.app.name"/>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

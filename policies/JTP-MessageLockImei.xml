@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JSONThreatProtection async="false" continueOnError="false" enabled="true" name="JTP-MessageLockImei">
+    <DisplayName>JTP-MessageLockImei</DisplayName>
+    <Properties/>
+    <ArrayElementCount>0</ArrayElementCount>
+    <ContainerDepth>1</ContainerDepth>
+    <ObjectEntryCount>1</ObjectEntryCount>
+    <Source>request</Source>
+</JSONThreatProtection>
