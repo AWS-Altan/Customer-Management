@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-ValidateResponse404">
+    <DisplayName>RF-ValidateResponse404</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Add>
+            <Headers>
+                <Header name="FaultHeader">ValidateError404</Header>
+            </Headers>
+        </Add>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

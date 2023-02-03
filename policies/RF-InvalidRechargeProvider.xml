@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidRechargeProvider">
+    <DisplayName>RF-InvalidRechargeProvider</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Add>
+            <Headers>
+                <Header name="FaultHeader">invalid_recharge_provider</Header>
+            </Headers>
+        </Add>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>
